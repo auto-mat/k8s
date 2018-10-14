@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: celery-worker-$TARGET
+  labels:
+    deployment: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: celery-worker
+  template:
+    metadata:
+      labels:
+        pod: celery-worker
+    spec:
+      containers:
+        - name: celery-worker-$TARGET
+          image: petrdlouhy/dopracenakole:$IMAGE_TAG
+          command: ['celery', '-A', 'kubernetes_django', 'worker', '-l', 'info']
+          envFrom:
+            - configMapRef:
+                name: dpnk-$TARGET-config
+            - secretRef:
+                name: dpnk-general-credentials
+            - secretRef:
+                name: dpnk-$TARGET-credentials
+          env:
+            - name: REDIS_HOST
+              value: redis-service-$TARGET

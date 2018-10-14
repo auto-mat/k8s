@@ -1,5 +1,6 @@
-followed: https://medium.com/@markgituma/kubernetes-local-to-production-with-django-1-introduction-d73adc9ce4b4
 followed: http://blog.arungupta.me/gossip-kubernetes-aws-kops/
+followed: https://medium.com/@markgituma/kubernetes-local-to-production-with-django-1-introduction-d73adc9ce4b4
+read: https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
 
 Create cluster
 

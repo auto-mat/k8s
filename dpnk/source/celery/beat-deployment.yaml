@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: celery-beat-$TARGET
+  labels:
+    deployment: celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: celery-beat
+  template:
+    metadata:
+      labels:
+        pod: celery-beat
+    spec:
+      containers:
+        - name: celery-beat-$TARGET
+          image: petrdlouhy/dopracenakole:$IMAGE_TAG
+          command: ['celery', '-A', 'kubernetes_django', 'beat', '-l', 'debug']
+          envFrom:
+            - configMapRef:
+                name: dpnk-$TARGET-config
+            - secretRef:
+                name: dpnk-general-credentials
+            - secretRef:
+                name: dpnk-$TARGET-credentials
+          env:
+            - name: REDIS_HOST
+              value: redis-service-$TARGET

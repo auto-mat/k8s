@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-initial-migrations-$TARGET
+spec:
+  template:
+    spec:
+      containers:
+        - name: django
+          image: petrdlouhy/dopracenakole:$IMAGE_TAG
+          command: ['python', 'manage.py', 'migrate']
+          envFrom:
+            - configMapRef:
+                name: dpnk-$TARGET-config
+            - secretRef:
+                name: dpnk-general-credentials
+            - secretRef:
+                name: dpnk-$TARGET-credentials
+      restartPolicy: Never
+  backoffLimit: 5
