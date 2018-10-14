@@ -1,0 +1,47 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: postgres-minikube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-container
+  template:
+    metadata:
+      labels:
+        app: postgres-container
+        tier: backend
+    spec:
+      containers:
+        - name: postgres-container
+          image: postgres:9.6.6
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: dpnk-minikube-credentials
+                  key: DPNK_DB_USER
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dpnk-minikube-credentials
+                  key: DPNK_DB_PASSWORD
+
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: dpnk-minikube-credentials
+                  key: DPNK_DB_NAME
+
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-volume-mount-minikube
+              mountPath: /var/lib/postgresql/data
+
+      volumes:
+        - name: postgres-volume-mount-minikube
+          persistentVolumeClaim:
+            claimName: postgres-pvc-minikube

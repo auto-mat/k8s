@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: celery-worker-minikube
+  labels:
+    deployment: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: celery-worker
+  template:
+    metadata:
+      labels:
+        pod: celery-worker
+    spec:
+      containers:
+        - name: celery-worker-minikube
+          image: petrdlouhy/dopracenakole:latest
+          command: ['celery', '-A', 'kubernetes_django', 'worker', '-l', 'info']
+          envFrom:
+            - configMapRef:
+                name: dpnk-minikube-config
+            - secretRef:
+                name: dpnk-general-credentials
+            - secretRef:
+                name: dpnk-minikube-credentials
+          env:
+            - name: REDIS_HOST
+              value: redis-service-minikube
