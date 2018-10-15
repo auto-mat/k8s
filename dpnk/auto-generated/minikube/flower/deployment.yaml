@@ -17,7 +17,7 @@ spec:
       containers:
       - name: flower-minikube
         image: petrdlouhy/dopracenakole:latest
-        command: ['celery', 'flower', '-A', 'kubernetes_django' , 'flower']
+        command: ['celery', 'flower', '-A', 'project.celery' , 'flower']
         ports:
           - containerPort: 5555
         env:
