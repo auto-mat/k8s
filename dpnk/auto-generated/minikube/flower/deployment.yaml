@@ -20,6 +20,12 @@ spec:
         command: ['celery', 'flower', '-A', 'project.celery' , 'flower']
         ports:
           - containerPort: 5555
+          envFrom:
+            - configMapRef:
+                name: dpnk-minikube-config
+            - secretRef:
+                name: dpnk-minikube-credentials
+
         env:
             - name: REDIS_HOST
               value: redis-service-minikube
