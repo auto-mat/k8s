@@ -23,8 +23,8 @@ spec:
         envFrom:
           - configMapRef:
               name: dpnk-minikube-config
-            - configMapRef:
-                name: dpnk-general-config
+          - configMapRef:
+              name: dpnk-general-config
           - secretRef:
               name: dpnk-minikube-credentials
         env:
