@@ -18,7 +18,7 @@ spec:
         - name: django-$TARGET
           image: petrdlouhy/dopracenakole:$IMAGE_TAG
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           envFrom:
             - configMapRef:
                 name: dpnk-$TARGET-config
