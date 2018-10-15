@@ -21,6 +21,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: dpnk-$TARGET-config
+            - configMapRef:
+                name: dpnk-general-config
             - secretRef:
                 name: dpnk-general-credentials
             - secretRef:
