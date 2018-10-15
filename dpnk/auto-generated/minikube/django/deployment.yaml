@@ -18,7 +18,7 @@ spec:
         - name: django-minikube
           image: petrdlouhy/dopracenakole:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           envFrom:
             - configMapRef:
                 name: dpnk-minikube-config
