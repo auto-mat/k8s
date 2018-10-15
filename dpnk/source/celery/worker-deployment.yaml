@@ -17,7 +17,7 @@ spec:
       containers:
         - name: celery-worker-$TARGET
           image: petrdlouhy/dopracenakole:$IMAGE_TAG
-          command: ['/home/aplikace/docker-celerybeat-entrypoint.sh']
+          command: ['/home/aplikace/docker-celery-entrypoint.sh']
           envFrom:
             - configMapRef:
                 name: dpnk-$TARGET-config

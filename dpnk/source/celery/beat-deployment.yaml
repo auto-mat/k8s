@@ -17,7 +17,7 @@ spec:
       containers:
         - name: celery-beat-$TARGET
           image: petrdlouhy/dopracenakole:$IMAGE_TAG
-          command: ['single-beat', 'celery', 'beat', '-A', 'project.celery', '-S', 'django', '-l', 'info']
+          command: ['/home/aplikace/docker-celerybeat-entrypoint.sh']
           envFrom:
             - configMapRef:
                 name: dpnk-$TARGET-config
