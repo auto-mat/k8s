@@ -17,7 +17,7 @@ spec:
       containers:
         - name: celery-worker-minikube
           image: petrdlouhy/dopracenakole:latest
-          command: ['celery', '-A', 'kubernetes_django', 'worker', '-l', 'info']
+          command: ['/home/aplikace/docker-celerybeat-entrypoint.sh']
           envFrom:
             - configMapRef:
                 name: dpnk-minikube-config

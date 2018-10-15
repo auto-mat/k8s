@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgres-container
-          image: postgres:9.6.6
+          image: mdillon/postgis:9.6
           env:
             - name: POSTGRES_USER
               valueFrom:
