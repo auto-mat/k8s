@@ -20,6 +20,12 @@ spec:
         command: ['celery', 'flower', '-A', 'project.celery' , 'flower']
         ports:
           - containerPort: 5555
+          envFrom:
+            - configMapRef:
+                name: dpnk-$TARGET-config
+            - secretRef:
+                name: dpnk-$TARGET-credentials
+
         env:
             - name: REDIS_HOST
               value: redis-service-$TARGET
