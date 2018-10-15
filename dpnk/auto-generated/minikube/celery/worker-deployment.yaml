@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: celery-worker-minikube
@@ -21,6 +21,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: dpnk-minikube-config
+            - configMapRef:
+                name: dpnk-general-config
             - secretRef:
                 name: dpnk-general-credentials
             - secretRef:
