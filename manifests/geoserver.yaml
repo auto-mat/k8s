@@ -1,0 +1,139 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -o k8s
+      kompose.version: 1.21.0 (992df58d8)
+    creationTimestamp: null
+    labels:
+      io.kompose.service: geoserver
+    name: geoserver
+  spec:
+    ports:
+    - name: "8600"
+      port: 8600
+      targetPort: 8080
+    selector:
+      app: geoserver
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: geoserver
+    name: geoserver
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: geoserver
+    template:
+      metadata:
+        labels:
+          app: geoserver
+      spec:
+        containers:
+        - image: kartoza/geoserver:2.17.0
+          name: geoserver
+          ports:
+          - containerPort: 8080
+          resources: {}
+          volumeMounts:
+          - mountPath: /opt/geoserver/data_dir
+            name: geoserver-data
+          env:
+          - name: ENABLE_JSONP
+            valueFrom:
+              configMapKeyRef:
+                key: ENABLE_JSONP
+                name: docker-env-geoserver-env
+          - name: FOOTPRINTS_DATA_DIR
+            valueFrom:
+              configMapKeyRef:
+                key: FOOTPRINTS_DATA_DIR
+                name: docker-env-geoserver-env
+          - name: GEOSERVER_CSRF_DISABLED
+            valueFrom:
+              configMapKeyRef:
+                key: GEOSERVER_CSRF_DISABLED
+                name: docker-env-geoserver-env
+          - name: GEOSERVER_DATA_DIR
+            valueFrom:
+              configMapKeyRef:
+                key: GEOSERVER_DATA_DIR
+                name: docker-env-geoserver-env
+          - name: GEOWEBCACHE_CACHE_DIR
+            valueFrom:
+              configMapKeyRef:
+                key: GEOWEBCACHE_CACHE_DIR
+                name: docker-env-geoserver-env
+          - name: INITIAL_MEMORY
+            valueFrom:
+              configMapKeyRef:
+                key: INITIAL_MEMORY
+                name: docker-env-geoserver-env
+          - name: MAXIMUM_MEMORY
+            valueFrom:
+              configMapKeyRef:
+                key: MAXIMUM_MEMORY
+                name: docker-env-geoserver-env
+          - name: MAX_FILTER_RULES
+            valueFrom:
+              configMapKeyRef:
+                key: MAX_FILTER_RULES
+                name: docker-env-geoserver-env
+          - name: OPTIMIZE_LINE_WIDTH
+            valueFrom:
+              configMapKeyRef:
+                key: OPTIMIZE_LINE_WIDTH
+                name: docker-env-geoserver-env
+          - name: SAMPLE_DATA
+            valueFrom:
+              configMapKeyRef:
+                key: SAMPLE_DATA
+                name: docker-env-geoserver-env
+          - name: STABLE_EXTENSIONS
+            valueFrom:
+              configMapKeyRef:
+                key: STABLE_EXTENSIONS
+                name: docker-env-geoserver-env
+          - name: XFRAME_OPTIONS
+            valueFrom:
+              configMapKeyRef:
+                key: XFRAME_OPTIONS
+                name: docker-env-geoserver-env
+          - name: TOMCAT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: geoserver-access
+                key: tomcat_password
+          - name: GEOSERVER_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: geoserver-access
+                key: geoserver_admin_password
+        volumes:
+        - name: geoserver-data
+          persistentVolumeClaim:
+            claimName: geoserver-data
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: geoserver-data
+    name: geoserver-data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  status: {}
+kind: List
+metadata: {}

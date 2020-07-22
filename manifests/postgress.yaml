@@ -1,0 +1,159 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      io.kompose.service: db
+    name: db
+  spec:
+    ports:
+    - name: "25434"
+      port: 25434
+      targetPort: 5432
+    selector:
+      app: db
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: db
+    name: db
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: db
+    template:
+      metadata:
+        labels:
+           app: db
+      spec:
+        containers:
+        - image: kartoza/postgis:12.0
+          name: db
+          ports:
+          - containerPort: 5432
+          resources: {}
+          volumeMounts:
+          - mountPath: /var/lib/postgresql
+            name: geo-db-data
+          env:
+          - name: ALLOW_IP_RANGE
+            valueFrom:
+              configMapKeyRef:
+                key: ALLOW_IP_RANGE
+                name: docker-env-db-env
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_DB
+                name: docker-env-db-env
+          - name: POSTGRES_PASS
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_PASS
+                name: docker-env-db-env
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_USER
+                name: docker-env-db-env
+        volumes:
+        - name: geo-db-data
+          persistentVolumeClaim:
+            claimName: geo-db-data
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: geo-db-data
+    name: geo-db-data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+  status: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: db-backups
+    name: db-backups
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: db-backups
+    template:
+      metadata:
+        labels:
+           app: db-backups
+      spec:
+        containers:
+        - image: kartoza/pg-backup:12.0
+          name: db-dbbackups
+          resources: {}
+          volumeMounts:
+          - mountPath: /backups
+            name: db-backups
+          env:
+          - name: DUMPPREFIX
+            valueFrom:
+              configMapKeyRef:
+                key: DUMPPREFIX
+                name: docker-env-db-backups-env
+          - name: POSTGRES_DBNAME
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_DBNAME
+                name: docker-env-db-backups-env
+          - name: POSTGRES_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_HOST
+                name: docker-env-db-backups-env
+          - name: POSTGRES_PASS
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_PASS
+                name: docker-env-db-backups-env
+          - name: POSTGRES_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_PORT
+                name: docker-env-db-backups-env
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                key: POSTGRES_USER
+                name: docker-env-db-backups-env 
+        volumes:
+        - name: db-backups
+          persistentVolumeClaim:
+            claimName: db-backups
+  status: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: db-backups
+    name: db-backups
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  status: {}
+kind: List
+metadata: {}

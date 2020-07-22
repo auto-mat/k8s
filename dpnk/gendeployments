@@ -1,2 +1,0 @@
-#!/bin/bash
-IMAGE_TAG=latest ./maketarget.py source/celery/ source/redis/ source/flower/ source/django/ source/postgres/
