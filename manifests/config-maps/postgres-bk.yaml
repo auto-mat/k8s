@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: db-backups-env
+  namespace: default
+  resourceVersion: '91951'
+  managedFields:
+    - manager: kubectl
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          .: {}
+          'f:DUMPPREFIX': {}
+          'f:POSTGRES_DBNAME': {}
+          'f:POSTGRES_HOST': {}
+          'f:POSTGRES_PORT': {}
+          'f:DBLIST': {}
+data:
+  DUMPPREFIX: PG_db
+  POSTGRES_DBNAME: gis
+  POSTGRES_HOST: db
+  POSTGRES_PORT: '5432'
+  DBLIST: pnk

@@ -9,6 +9,7 @@ spec:
   tls:
   - hosts:
     - geoserver1.prahounakole.cz
+    - mapa.prahounakole.cz
     secretName: ngnix-kubernetes-tls
   rules:
   - host: geoserver1.prahounakole.cz
@@ -17,3 +18,9 @@ spec:
       - backend:
           serviceName: geoserver
           servicePort: 8080
+  - host: mapa.prahounakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000

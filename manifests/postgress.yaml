@@ -46,22 +46,22 @@ items:
             valueFrom:
               configMapKeyRef:
                 key: ALLOW_IP_RANGE
-                name: docker-env-db-env
+                name: db-env
           - name: POSTGRES_DB
             valueFrom:
               configMapKeyRef:
                 key: POSTGRES_DB
-                name: docker-env-db-env
+                name: db-env
           - name: POSTGRES_PASS
             valueFrom:
-              configMapKeyRef:
-                key: POSTGRES_PASS
-                name: docker-env-db-env
+              secretKeyRef:
+                name: postgres-access
+                key: postgres_password
           - name: POSTGRES_USER
             valueFrom:
               configMapKeyRef:
                 key: POSTGRES_USER
-                name: docker-env-db-env
+                name: db-env
         volumes:
         - name: geo-db-data
           persistentVolumeClaim:
@@ -110,32 +110,37 @@ items:
             valueFrom:
               configMapKeyRef:
                 key: DUMPPREFIX
-                name: docker-env-db-backups-env
+                name: db-backups-env
           - name: POSTGRES_DBNAME
             valueFrom:
               configMapKeyRef:
                 key: POSTGRES_DBNAME
-                name: docker-env-db-backups-env
+                name: db-backups-env
           - name: POSTGRES_HOST
             valueFrom:
               configMapKeyRef:
                 key: POSTGRES_HOST
-                name: docker-env-db-backups-env
+                name: db-backups-env
           - name: POSTGRES_PASS
             valueFrom:
-              configMapKeyRef:
-                key: POSTGRES_PASS
-                name: docker-env-db-backups-env
+              secretKeyRef:
+                name: postgres-access
+                key: postgres_password
           - name: POSTGRES_PORT
             valueFrom:
               configMapKeyRef:
                 key: POSTGRES_PORT
-                name: docker-env-db-backups-env
+                name: db-backups-env
           - name: POSTGRES_USER
             valueFrom:
               configMapKeyRef:
                 key: POSTGRES_USER
-                name: docker-env-db-backups-env 
+                name: db-env 
+          - name: DBLIST
+            valueFrom:
+              configMapKeyRef:
+                key: DBLIST 
+                name: db-backups-env
         volumes:
         - name: db-backups
           persistentVolumeClaim:
@@ -153,7 +158,7 @@ items:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
+        storage: 40Gi
   status: {}
 kind: List
 metadata: {}
