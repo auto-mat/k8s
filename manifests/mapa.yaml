@@ -79,6 +79,11 @@ items:
               secretKeyRef:
                 name: mapa-access
                 key: secret_key
+          - name: RAVEN_DNS
+            valueFrom:
+              secretKeyRef:
+                name: mapa-access
+                key: raven_dns
   status: {}
 kind: List
 metadata: {}
