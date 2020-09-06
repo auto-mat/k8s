@@ -28,7 +28,7 @@ items:
           app: mapa
       spec:
         containers:
-        - image: auto0mat/mapa-prahounakole:2020.8.21.0507
+        - image: auto0mat/mapa-prahounakole:2020.9.6.1640
           name: mapa
           ports:
           - containerPort: 8080
@@ -94,6 +94,12 @@ items:
               secretKeyRef:
                 name: mapa-access
                 key: aws-key
+          - name: CYCLESTREETS_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: mapa-access
+                key: cyclestreets-api-key
+
   status: {}
 kind: List
 metadata: {}
