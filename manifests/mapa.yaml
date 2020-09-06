@@ -84,6 +84,16 @@ items:
               secretKeyRef:
                 name: mapa-access
                 key: raven_dns
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: mapa-access
+                key: aws-key-id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: mapa-access
+                key: aws-key
   status: {}
 kind: List
 metadata: {}
