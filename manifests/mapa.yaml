@@ -28,7 +28,7 @@ items:
           app: mapa
       spec:
         containers:
-        - image: auto0mat/mapa-prahounakole:2020.9.6.1640
+        - image: auto0mat/mapa-prahounakole:2020.9.6.1650
           name: mapa
           ports:
           - containerPort: 8080
