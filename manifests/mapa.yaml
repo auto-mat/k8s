@@ -28,7 +28,7 @@ items:
           app: mapa
       spec:
         containers:
-        - image: auto0mat/mapa-prahounakole:2020.9.6.1650
+        - image: auto0mat/cyklomapa:2020.18
           name: mapa
           ports:
           - containerPort: 8080
@@ -68,6 +68,11 @@ items:
             valueFrom:
               configMapKeyRef:
                 key: AKLUB_ALLOWED_HOSTS
+                name: mapa-env
+          - name: S3_MEDIA_URL
+            valueFrom:
+              configMapKeyRef:
+                key: S3_MEDIA_URL
                 name: mapa-env
           - name: DB_PASSWORD
             valueFrom:

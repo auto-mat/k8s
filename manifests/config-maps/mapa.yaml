@@ -15,8 +15,10 @@ metadata:
           'f:DJANGO_SETTINGS_MODULE': {}
           'f:AKLUB_ALLOWED_HOSTS': {}
           'f:DEBUG': {}
+          'f:S3_MEDIA_URL': {}
 data:
   DB_NAME: 'pnk'
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
-  AKLUB_ALLOWED_HOSTS: '.prahounakole.cz'
-  DEBUG: 'True'
+  AKLUB_ALLOWED_HOSTS: '.prahounakole.cz:.dopracenakole.net'
+  DEBUG: 'False'
+  S3_MEDIA_URL: 'https://s3-eu-west-1.amazonaws.com/cyklomapa-media/'
