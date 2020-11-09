@@ -1,0 +1,42 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dopravni-screenshots
+spec:
+  schedule: "5 6/8 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:                          
+            - name: dshm
+              emptyDir:
+                medium: Memory
+          containers:
+          - name: dopravni-screenshots
+            image: auto0mat/dopravni-screenshots:5
+            args:
+            - /bin/sh
+            - screenshot.sh
+            volumeMounts:                 
+              - mountPath: /dev/shm
+                name: dshm
+            env:
+            - name: AWS_DEFAULT_REGION
+              value: eu-west-1
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: dopravni-screenshots-access
+                  key: aws-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: dopravni-screenshots-access
+                  key: aws-key
+            - name: RECIPIENTS
+              valueFrom:
+                secretKeyRef:
+                  name: dopravni-screenshots-access
+                  key: recipients
+          restartPolicy: Never
