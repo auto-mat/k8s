@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: dopravni-screenshots
 spec:
-  schedule: "5 6/8 * * *"
+  schedule: "30 8,16 * * *"
   jobTemplate:
     spec:
       template:
