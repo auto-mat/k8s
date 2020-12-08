@@ -1,0 +1,37 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: scitace
+spec:
+  schedule: "42 4 * * 1"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:                          
+            - name: dshm
+              emptyDir:
+                medium: Memory
+          containers:
+          - name: scitace
+            image: auto0mat/scitace:6
+            args:
+            - /bin/sh
+            - /scitace/generate.sh
+            volumeMounts:                 
+              - mountPath: /dev/shm
+                name: dshm
+            env:
+            - name: AWS_DEFAULT_REGION
+              value: eu-west-1
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: scitace-access
+                  key: aws-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: scitace-access
+                  key: aws-key
+          restartPolicy: Never
