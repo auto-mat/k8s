@@ -133,7 +133,7 @@ items:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
+        storage: 5Gi
   status: {}
 kind: List
 metadata: {}
