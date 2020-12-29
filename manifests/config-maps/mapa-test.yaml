@@ -1,0 +1,24 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mapa-test-env
+  namespace: default
+  managedFields:
+    - manager: kubectl
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          .: {}
+          'f:DB_NAME': {}
+          'f:DJANGO_SETTINGS_MODULE': {}
+          'f:AKLUB_ALLOWED_HOSTS': {}
+          'f:DEBUG': {}
+          'f:S3_MEDIA_URL': {}
+data:
+  DB_NAME: 'mapa-test'
+  DJANGO_SETTINGS_MODULE: 'project.settings.base'
+  AKLUB_ALLOWED_HOSTS: '.prahounakole.cz:.dopracenakole.net'
+  DEBUG: 'True'
+  S3_MEDIA_URL: 'https://s3-eu-west-1.amazonaws.com/cyklomapa-test-media/'

@@ -1,0 +1,75 @@
+#@ config_vars = [
+#@     "DB_NAME",
+#@     "DJANGO_SETTINGS_MODULE",
+#@     "DEBUG",
+#@     "AKLUB_ALLOWED_HOSTS",
+#@     "S3_MEDIA_URL",
+#@ ]
+#@ secret_vars = [
+#@    "S3_MEDIA_URL",
+#@    "DB_USER",
+#@    "DB_PASSWORD",
+#@    "DB_HOST",
+#@    "DB_PORT",
+#@    "SECRET_KEY",
+#@    "RAVEN_DNS",
+#@    "AWS_ACCESS_KEY_ID",
+#@    "AWS_SECRET_ACCESS_KEY",
+#@    "CYCLESTREETS_API_KEY",
+#@ ]
+
+#@ def mapa(app_name, image, config_map, secret_map):
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: #@ app_name
+  spec:
+    ports:
+    - name: "8600"
+      port: 8600
+      targetPort: 8000
+    selector:
+      app: #@ app_name
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ app_name
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: #@ app_name
+    template:
+      metadata:
+        labels:
+          app: #@ app_name
+      spec:
+        containers:
+        - image: #@ image
+          name: #@ app_name
+          ports:
+          - containerPort: 8080
+          resources: {}
+          env:
+          #@ for var in config_vars:
+          - name: #@ var
+            valueFrom:
+              configMapKeyRef:
+                key: #@ var
+                name: #@ config_map
+          #@ end
+          #@ for var in secret_vars:
+          - name: #@ var
+            valueFrom:
+              configMapKeyRef:
+                key: #@ var
+                name: #@ secret_map
+          #@ end
+  status: {}
+kind: List
+metadata: {}
+#@ end
