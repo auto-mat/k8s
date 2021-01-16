@@ -4,6 +4,8 @@ metadata:
   name: scitace
 spec:
   schedule: "42 4 * * 1"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:

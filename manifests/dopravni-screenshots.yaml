@@ -4,6 +4,8 @@ metadata:
   name: dopravni-screenshots
 spec:
   schedule: "30 8,16 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
