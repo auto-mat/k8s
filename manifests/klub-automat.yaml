@@ -1,0 +1,6 @@
+#@ app_name = "klub-automat"
+#@ image = "auto0mat/klub:2021.9"
+#@ config_map = "klub-automat-env"
+#@ secret_map = "klub-automat-access"
+#@ load("klub.lib.yml", "klub_web")
+--- #@ klub_web(app_name, image, config_map, secret_map)

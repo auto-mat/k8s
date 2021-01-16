@@ -1,23 +1,32 @@
 #@ config_vars = [
-#@     "DB_NAME",
 #@     "DJANGO_SETTINGS_MODULE",
-#@     "DEBUG",
-#@     "AKLUB_ALLOWED_HOSTS",
-#@     "S3_MEDIA_URL",
+#@     "AKLUB_DEBUG",
+#@     "AWS_STORAGE_BUCKET_NAME",
+#@     "AKLUB_CORS_ORIGIN_WHITELIST",
+#@     "AKLUB_DEFAULT_FROM_EMAIL",
+#@     "AKLUB_MEDIA_ROOT",
+#@     "GUNICORN_TIMEOUT",
+#@     "GUNICORN_WORKERS",
+#@     "HEROKU_APP_URL",
 #@ ]
 #@ secret_vars = [
-#@    "DB_USER",
-#@    "DB_PASSWORD",
-#@    "DB_HOST",
-#@    "DB_PORT",
+#@    "AKLUB_ADMINS",
+#@    "DATABASE_NAME",
+#@    "DATABASE_USER",
+#@    "DATABASE_PASSWORD",
+#@    "DATABASE_HOST",
+#@    "DATABASE_PORT",
 #@    "SECRET_KEY",
-#@    "RAVEN_DNS",
+#@    "AKLUB_RAVEN_DNS",
 #@    "AWS_ACCESS_KEY_ID",
 #@    "AWS_SECRET_ACCESS_KEY",
-#@    "CYCLESTREETS_API_KEY",
+#@    "FLOWER_PASSWORD",
+#@    "NEW_RELIC_APP_NAME",
+#@    "NEW_RELIC_LICENSE_KEY",
+#@    "REDIS_URL",
 #@ ]
 
-#@ def mapa(app_name, image, config_map, secret_map):
+#@ def klub_web(app_name, image, config_map, secret_map):
 apiVersion: v1
 items:
 - apiVersion: v1
@@ -53,6 +62,7 @@ items:
           ports:
           - containerPort: 8080
           resources: {}
+          command: ["/home/aplikace/docker-entrypoint.sh"]
           env:
           #@ for var in config_vars:
           - name: #@ var

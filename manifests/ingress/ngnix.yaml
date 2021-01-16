@@ -5,11 +5,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: 40m
 spec:
   tls:
   - hosts:
     - geoserver1.prahounakole.cz
     - mapa.prahounakole.cz
+    - klub.prahounakole.cz
+    - mapa-test.prahounakole.cz
     - breclav.dopracenakole.net
     - brno.dopracenakole.net
     - budejovice.dopracenakole.net
@@ -37,11 +40,23 @@ spec:
       - backend:
           serviceName: geoserver
           servicePort: 8080
+  - host: mapa-test.prahounakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: mapa-test
+          servicePort: 8000
   - host: mapa.prahounakole.cz
     http:
       paths:
       - backend:
           serviceName: mapa
+          servicePort: 8000
+  - host: klub.prahounakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: klub-automat
           servicePort: 8000
   - host: "*.dopracenakole.net"
     http:
