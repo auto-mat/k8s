@@ -79,6 +79,98 @@ items:
                 name: #@ secret_map
           #@ end
   status: {}
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ app_name + "-celery"
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: #@ app_name + "-celery"
+    template:
+      metadata:
+        labels:
+          app: #@ app_name + "-celery"
+      spec:
+        containers:
+        - image: #@ image
+          name: #@ app_name + "-celery"
+          resources: {}
+          command: ["pipenv", "run", "celery", "worker", "-A", "project.celery"]
+          env:
+          #@ for var in config_vars:
+          - name: #@ var
+            valueFrom:
+              configMapKeyRef:
+                key: #@ var
+                name: #@ config_map
+          #@ end
+          #@ for var in secret_vars:
+          - name: #@ var
+            valueFrom:
+              secretKeyRef:
+                key: #@ var
+                name: #@ secret_map
+          #@ end
+  status: {}
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: #@ app_name + "-redis"
+  spec:
+    ports:
+    - name: "6379"
+      port: 6379
+      targetPort: 6379
+    selector:
+      app: #@ app_name + "-redis"
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ app_name + "-redis"
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: #@ app_name + "-redis"
+    template:
+      metadata:
+        labels:
+          app: #@ app_name + "-redis"
+      spec:
+        containers:
+          - name:  #@ app_name + "-redis"
+            image: redis:5.0.4
+            command:
+              - redis-server
+              - "/redis-master/redis.conf"
+            env:
+            - name: MASTER
+              value: "true"
+            ports:
+            - containerPort: 6379
+            resources:
+              limits:
+                cpu: "0.1"
+            volumeMounts:
+            - mountPath: /redis-master-data
+              name: #@ app_name + "-redis-data"
+            - mountPath: /redis-master
+              name: #@ app_name + "-redis-config"
+        volumes:
+          - name: #@ app_name + "-redis-data"
+            emptyDir: {}
+          - name: #@ app_name + "-redis-config"
+            configMap:
+              name: #@ app_name + "-redis-config"
+              items:
+              - key: redis-config
+                path: redis.conf
 kind: List
 metadata: {}
 #@ end
