@@ -79,7 +79,6 @@ items:
                 name: #@ secret_map
           #@ end
   status: {}
-
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -99,6 +98,42 @@ items:
           name: #@ app_name + "-celery"
           resources: {}
           command: ["pipenv", "run", "celery", "worker", "-A", "project.celery"]
+          env:
+          #@ for var in config_vars:
+          - name: #@ var
+            valueFrom:
+              configMapKeyRef:
+                key: #@ var
+                name: #@ config_map
+          #@ end
+          #@ for var in secret_vars:
+          - name: #@ var
+            valueFrom:
+              secretKeyRef:
+                key: #@ var
+                name: #@ secret_map
+          #@ end
+  status: {}
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ app_name + "-celery-beat"
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: #@ app_name + "-celery-beat"
+    template:
+      metadata:
+        labels:
+          app: #@ app_name + "-celery-beat"
+      spec:
+        containers:
+        - image: #@ image
+          name: #@ app_name + "-celery-beat"
+          resources: {}
+          command: ["pipenv", "run", "celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
           env:
           #@ for var in config_vars:
           - name: #@ var
