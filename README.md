@@ -12,3 +12,13 @@ Databases are stored using digital ocean's managed database solution. When creat
 ``ALTER DATABASE "klub-automat" OWNER TO "klub-automat";``
 
 ``REVOKE "klub-automat" from "doadmin";``
+
+Connecting to internal services
+-------------------------------------
+
+You can connect to an internal service using kubectl to forward a port to your local machine. For example this command will allow you to connect to redis commander:
+
+```
+kubectl port-forward <redis-commander-pod> 8084:8081
+firefox http://localhost:8084/
+```
