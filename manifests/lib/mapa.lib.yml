@@ -3,7 +3,7 @@
 #@     "DJANGO_SETTINGS_MODULE",
 #@     "DEBUG",
 #@     "AKLUB_ALLOWED_HOSTS",
-#@     "S3_MEDIA_URL",
+#@     "AWS_STORAGE_BUCKET_NAME",
 #@ ]
 #@ secret_vars = [
 #@    "DB_USER",
