@@ -4,6 +4,7 @@
 #@     "DEBUG",
 #@     "AKLUB_ALLOWED_HOSTS",
 #@     "AWS_STORAGE_BUCKET_NAME",
+#@     "S3_MEDIA_ROOT",
 #@ ]
 #@ secret_vars = [
 #@    "DB_USER",

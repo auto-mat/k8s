@@ -16,9 +16,11 @@ metadata:
           'f:AKLUB_ALLOWED_HOSTS': {}
           'f:DEBUG': {}
           'f:AWS_STORAGE_BUCKET_NAME': {}
+          'f:S3_MEDIA_ROOT': {}
 data:
   DB_NAME: 'mapa'
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
   AKLUB_ALLOWED_HOSTS: '.prahounakole.cz:.dopracenakole.net'
   DEBUG: 'True'
-  AWS_STORAGE_BUCKET_NAME: 'cyclomapa-media'
+  AWS_STORAGE_BUCKET_NAME: 'cyklomapa-media'
+  S3_MEDIA_ROOT: 'https://cyklomapa-media.s3-eu-west-1.amazonaws.com/'
