@@ -24,3 +24,14 @@ You can connect to an internal service using kubectl to forward a port to your l
 kubectl port-forward <redis-commander-pod> 8084:8081
 firefox http://localhost:8084/
 ```
+
+Monitoring kubernetes
+-------------------------
+
+One way to see the state of kubernetes is to look in the [Dashboard](https://cloud.digitalocean.com/kubernetes/clusters/008342a2-fd75-46c7-b5dc-a84ed93f9a3e/db/99d23692-3f06-4cb4-a133-813c52e0e3ba/#/overview?namespace=_all). More detailed performance statistics can be found in grafana. To access grafana forward it's port.
+
+```
+kubectl port-forward   svc/doks-cluster-monitoring-grafana 8000:80
+```
+
+And go to the page that lists pod statistics: `http://localhost:8000/d/85a562078cdf77779eaa1add43ccec1e/kubernetes-compute-resources-namespace-pods?orgId=1&refresh=10s&var-datasource=default&var-cluster=&var-namespace=default`. If you are prompted to log in, the username is `admin` password can be found in the `k8s-secrets` repo on AWS CodeCommit.
