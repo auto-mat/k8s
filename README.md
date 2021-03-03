@@ -14,9 +14,42 @@ Adding databases
 
 Databases are stored using digital ocean's managed database solution. When creating a new database, you should create a new user for that database, revoke the "doadmin" role for that user, and give it ownership of the database.
 
+1. Database and user creation is done on [the Users & Databases page of the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236)
+4. If you are administring from a new computer, you need to register your IP address before you'll be able to log in to the DB and revoke the `doadmin` permissions. On the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236) you will find an "Edit sources" link where you can do this.
+3. Login information for connecting to the database CLI is also found on the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236). In the connection details section you will find a drop down labled "Connection parameter", select "Flags". Then use the "Copy" button and paste the command to bash. This will give you access to the psql cli logged in as `doadmin`. The commands for setting the DB owner and revoking admin permissions for a new user are as follows:
+
 `ALTER DATABASE "klub-automat" OWNER TO "klub-automat";`
 
 `REVOKE "klub-automat" from "doadmin";`
+
+You should replace `klub-automat` with the name of the database and user that you are configuring.
+
+Adding new klub přatel instances
+--------------------------------
+
+Note, before following these instructions blindly, read them first. When setting up test instances not all steps may be applicable/necessary.
+
+1. Clone the `k8s-secrets` repo from [AWS code commit](https://eu-west-1.console.aws.amazon.com/codesuite/codecommit/repositories/k8s-secrets/browse/refs/heads/master/--/manifests?region=eu-west-1) and copy the `klub-automat.yaml` file.
+2. Create a new s3 bucket for storing media files. Use the [automat-klub-prod](https://s3.console.aws.amazon.com/s3/buckets/automat-klub-prod?region=eu-west-1&tab=objects) bucket for reference when setting permissions.
+3. In [IAM](https://console.aws.amazon.com/iam/home?region=eu-west-1#/users/Heroku-diakonie) create a new users for your klub přatel instance. Use the `Heroku-diakonie` user for reference when setting permissions.
+4. Copy the keys for this new IAM user to your new secrets yaml file.
+5. In [SES](https://eu-west-1.console.aws.amazon.com/ses/home?region=eu-west-1#verified-senders-email:) configure and verify the email addresses that your new klub přatel instance will be sending emails from.
+6. In [sentry](https://sentry.io/organizations/automat-zs/projects/) create a new project.
+7. Copy the raven URL for the new project to your secrets yaml file.
+8. Create a new database (see above) with digital ocean and set the password and user in the secrets yaml file.
+9. Generate a new secret key for your project and put it in the secrets yaml file.
+10. Replace all instances of the string `klub-automat` with the name of your new instance.
+11. Apply your secrets file to the k8s cluster with `kubectl apply -f <secrets-file>.yaml`.
+12. Commit your secrets file and push it to AWS code commit.
+13. Clone the `https://github.com/auto-mat/k8s/` repository and copy the [`klub-automat.yaml`](https://github.com/auto-mat/k8s/blob/master/manifests/config-maps/klub-automat.yaml) config map.
+14. Replace all instances of the string `klub-automat` with the name of your new instance.
+15. Ensure your storage bucket name is set correctly and update the settings as desired.
+16. Apply the new config map with `kubectl apply -f <config-file>.yaml`.
+17. Copy the [`klub-automat.yaml`](https://github.com/auto-mat/k8s/blob/master/manifests/klub-automat.yaml) deployment and service file.
+18. Replace all instances of the string `klub-automat` with the name of your new instance.
+19. Apply with `ytt -f <deployment-file>.yaml -f lib/ | kubectl apply -f -`.
+20. Commit your new files to git and push them to the `k8s` repo.
+21. Done!
 
 Connecting to internal services
 -------------------------------------
