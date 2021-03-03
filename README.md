@@ -9,6 +9,9 @@ Some of these manifests are written using the [ytt](https://get-ytt.io/) In orde
 
 `ytt -f mapa-test.yaml -f lib/ | kubectl apply -f -`
 
+Adding databases
+----------------
+
 Databases are stored using digital ocean's managed database solution. When creating a new database, you should create a new user for that database, revoke the "doadmin" role for that user, and give it ownership of the database.
 
 `ALTER DATABASE "klub-automat" OWNER TO "klub-automat";`
