@@ -37,7 +37,7 @@ Note, before following these instructions blindly, read them first. When setting
 6. In [sentry](https://sentry.io/organizations/automat-zs/projects/) create a new project.
 7. Copy the raven URL for the new project to your secrets yaml file.
 8. Create a new database (see above) with digital ocean and set the password and user in the secrets yaml file.
-9. Generate a new secret key for your project and put it in the secrets yaml file.
+9. Generate a new secret key (you can use the `mcookie` command on linux for this) for your project and put it in the secrets yaml file.
 10. Replace all instances of the string `klub-automat` with the name of your new instance.
 11. Apply your secrets file to the k8s cluster with `kubectl apply -f <secrets-file>.yaml`.
 12. Commit your secrets file and push it to AWS code commit.
