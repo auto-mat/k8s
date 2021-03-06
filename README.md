@@ -3,11 +3,7 @@ Kuberenets manifests for Auto*mat z.s. internal infrastructure
 
 These manifests are used for [Auto*mat's](https://auto-mat.cz/) internal infrastructure. These manifests, combined with manifests stored in our private AWS code commit repository (the secrets), allow for the deployment of much of Auto*mat's internal IT infrastructure.
 
-Currently these manifests are installed on a k8s cluster running on [DigitalOcean](https://cloud.digitalocean.com/projects?i=99d236). You'll need to [install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [configure it](https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/) to work with DigitalOcean in order to update these configuration files.
-
-Some of these manifests are written using the [ytt](https://get-ytt.io/) In order to use these manifests you must first put them through the ytt prepocessor, here is an exmple of how:
-
-`ytt -f mapa-test.yaml -f lib/ | kubectl apply -f -`
+Currently these manifests are installed on a k8s cluster running on [DigitalOcean](https://cloud.digitalocean.com/projects?i=99d236). Changes are automatically applied when you push changes to the main repo.
 
 Adding databases
 ----------------
@@ -44,12 +40,10 @@ Note, before following these instructions blindly, read them first. When setting
 13. Clone the `https://github.com/auto-mat/k8s/` repository and copy the [`klub-automat.yaml`](https://github.com/auto-mat/k8s/blob/master/manifests/config-maps/klub-automat.yaml) config map.
 14. Replace all instances of the string `klub-automat` with the name of your new instance.
 15. Ensure your storage bucket name is set correctly and update the settings as desired.
-16. Apply the new config map with `kubectl apply -f <config-file>.yaml`.
-17. Copy the [`klub-automat.yaml`](https://github.com/auto-mat/k8s/blob/master/manifests/klub-automat.yaml) deployment and service file.
-18. Replace all instances of the string `klub-automat` with the name of your new instance.
-19. Apply with `ytt -f <deployment-file>.yaml -f lib/ | kubectl apply -f -`.
-20. Commit your new files to git and push them to the `k8s` repo.
-21. Done!
+16. Copy the [`klub-automat.yaml`](https://github.com/auto-mat/k8s/blob/master/manifests/klub-automat.yaml) deployment and service file.
+17. Replace all instances of the string `klub-automat` with the name of your new instance.
+18. Commit your new files to git and push them to the `k8s` repo (the changes will be applied automatically to the k8s cluster by circleci).
+19. Done!
 
 Connecting to internal services
 -------------------------------------
@@ -71,3 +65,13 @@ kubectl port-forward   svc/doks-cluster-monitoring-grafana 8000:80
 ```
 
 And go to the page that lists pod statistics: `http://localhost:8000/d/85a562078cdf77779eaa1add43ccec1e/kubernetes-compute-resources-namespace-pods?orgId=1&refresh=10s&var-datasource=default&var-cluster=&var-namespace=default`. If you are prompted to log in, the username is `admin` password can be found in the `k8s-secrets` repo on AWS CodeCommit.
+
+
+Applying changes manually
+------------------------------
+
+You'll need to [install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and [configure it](https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/) to work with DigitalOcean in order to update these configuration files.
+
+Some of these manifests are written using the [ytt](https://get-ytt.io/) In order to use these manifests you must first put them through the ytt prepocessor, here is an exmple of how:
+
+`ytt -f mapa-test.yaml -f lib/ | kubectl apply -f -`
