@@ -1,6 +1,16 @@
 version: 2.1
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - apply:
+          filters:
+            branches:
+              only:
+                - master
+
 jobs:
-  build:
+  apply:
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
