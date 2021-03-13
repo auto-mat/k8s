@@ -12,6 +12,7 @@ spec:
     - geoserver1.prahounakole.cz
     - mapa.prahounakole.cz
     - klub.prahounakole.cz
+    - klub.auto-mat.cz
     - mapa-test.prahounakole.cz
     - breclav.dopracenakole.net
     - brno.dopracenakole.net
@@ -53,6 +54,12 @@ spec:
           serviceName: mapa
           servicePort: 8000
   - host: klub.prahounakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: klub-automat
+          servicePort: 8000
+  - host: klub.auto-mat.cz
     http:
       paths:
       - backend:
