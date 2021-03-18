@@ -8,8 +8,9 @@ Currently these manifests are installed on a k8s cluster running on [DigitalOcea
 Connecting directly to a DB using psql
 ------------------------------------
 
-1. If you are administring from a new computer, you need to register your IP address before you can connect. On the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236) you will find an "Edit sources" link where you can do this.
-2. Login information for connecting to the database CLI is also found on the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236). In the connection details section you will find a drop down labled "Connection parameter", select "Flags". You will also find drop downs for selecting the db name and user. Then use the "Copy" button and paste the command to bash. 
+1. You need `psql` and the postgres 12 client libraries installed. As postgres 12 is a bit of an uncommon version, you'll need to install them  [directly from postgres](https://computingforgeeks.com/install-postgresql-12-on-ubuntu/).
+2. If you are administring from a new computer, you need to register your IP address before you can connect. On the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236) you will find an "Edit sources" link where you can do this.
+3. Login information for connecting to the database CLI is also found on the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236). In the connection details section you will find a drop down labled "Connection parameter", select "Flags". You will also find drop downs for selecting the db name and user. Then use the "Copy" button and paste the command to bash. 
 
 Adding databases
 ----------------
