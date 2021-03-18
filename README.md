@@ -5,14 +5,20 @@ These manifests are used for [Auto*mat's](https://auto-mat.cz/) internal infrast
 
 Currently these manifests are installed on a k8s cluster running on [DigitalOcean](https://cloud.digitalocean.com/projects?i=99d236). Changes are automatically applied when you push changes to the main repo.
 
+Connecting directly to a DB using psql
+------------------------------------
+
+1. If you are administring from a new computer, you need to register your IP address before you can connect. On the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236) you will find an "Edit sources" link where you can do this.
+2. Login information for connecting to the database CLI is also found on the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236). In the connection details section you will find a drop down labled "Connection parameter", select "Flags". You will also find drop downs for selecting the db name and user. Then use the "Copy" button and paste the command to bash. 
+
 Adding databases
 ----------------
 
 Databases are stored using digital ocean's managed database solution. When creating a new database, you should create a new user for that database, revoke the "doadmin" role for that user, and give it ownership of the database.
 
-1. Database and user creation is done on [the Users & Databases page of the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236)
-4. If you are administring from a new computer, you need to register your IP address before you'll be able to log in to the DB and revoke the `doadmin` permissions. On the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236) you will find an "Edit sources" link where you can do this.
-3. Login information for connecting to the database CLI is also found on the [Overview page on the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236). In the connection details section you will find a drop down labled "Connection parameter", select "Flags". Then use the "Copy" button and paste the command to bash. This will give you access to the psql cli logged in as `doadmin`. The commands for setting the DB owner and revoking admin permissions for a new user are as follows:
+Database and user creation is done on [the Users & Databases page of the DO console](https://cloud.digitalocean.com/databases/db-postgresql-fra1-18178/users?i=99d236)
+
+After you have created the db, you need to connect to the DB using psql to finish the process. See the section above, you'll want to connect as `doadmin`. The commands for setting the DB owner and revoking admin permissions for a new user are as follows:
 
 `ALTER DATABASE "klub-automat" OWNER TO "klub-automat";`
 
