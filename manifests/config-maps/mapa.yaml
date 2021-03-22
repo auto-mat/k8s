@@ -17,6 +17,7 @@ metadata:
           'f:DEBUG': {}
           'f:AWS_STORAGE_BUCKET_NAME': {}
           'f:S3_MEDIA_ROOT': {}
+          'f:GUNICORN_TIMEOUT': {}
 data:
   DB_NAME: 'mapa'
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
@@ -24,3 +25,4 @@ data:
   DEBUG: 'False'
   AWS_STORAGE_BUCKET_NAME: 'cyklomapa-media'
   S3_MEDIA_ROOT: 'https://cyklomapa-media.s3-eu-west-1.amazonaws.com/'
+  GUNICORN_TIMEOUT: 300
