@@ -1,4 +1,8 @@
 apiVersion: networking.k8s.io/v1beta1
+data:
+  proxy-connect-timeout: "300s"
+  proxy-read-timeout: "300s"
+  proxy-send-timeout: "300s"
 kind: Ingress
 metadata:
   name: ngnix-kubernetes-ingress
