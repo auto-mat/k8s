@@ -1,8 +1,4 @@
 apiVersion: networking.k8s.io/v1beta1
-data:
-  proxy-connect-timeout: "300s"
-  proxy-read-timeout: "300s"
-  proxy-send-timeout: "300s"
 kind: Ingress
 metadata:
   name: ngnix-kubernetes-ingress
@@ -10,6 +6,9 @@ metadata:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/proxy-body-size: 40m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
 spec:
   tls:
   - hosts:
