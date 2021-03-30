@@ -25,4 +25,4 @@ data:
   DEBUG: 'False'
   AWS_STORAGE_BUCKET_NAME: 'cyklomapa-media'
   S3_MEDIA_ROOT: 'https://cyklomapa-media.s3-eu-west-1.amazonaws.com/'
-  GUNICORN_TIMEOUT: 300
+  GUNICORN_TIMEOUT: '300'
