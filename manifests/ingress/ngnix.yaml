@@ -17,25 +17,7 @@ spec:
     - klub.prahounakole.cz
     - klub.auto-mat.cz
     - mapa-test.prahounakole.cz
-    - breclav.dopracenakole.net
-    - brno.dopracenakole.net
-    - budejovice.dopracenakole.net
-    - hradec.dopracenakole.net
-    - jablonec.dopracenakole.net
-    - jablonec.dopracenakole.net
-    - jindrichuv-hradec.dopracenakole.net
-    - karvina.dopracenakole.net
-    - liberec.dopracenakole.net
-    - olomouc.dopracenakole.net
-    - opava.dopracenakole.net
-    - ostrava.dopracenakole.net
-    - otrokovice.dopracenakole.net
-    - pardubice.dopracenakole.net
-    - plzen.dopracenakole.net
-    - prerov.dopracenakole.net
-    - hradiste.dopracenakole.net
-    - usti.dopracenakole.net
-    - zlin.dopracenakole.net
+    - "*.dopracenakole.net"
     secretName: ngnix-kubernetes-tls
   rules:
   - host: geoserver1.prahounakole.cz
@@ -68,7 +50,115 @@ spec:
       - backend:
           serviceName: klub-automat
           servicePort: 8000
-  - host: "*.dopracenakole.net"
+  - host: breclav.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: brno.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: budejovice.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: hradec.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: jablonec.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: jihlava.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: jindrichuv-hradec.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: karvina.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: liberec.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: olomouc.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: opava.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: ostrava.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: otrokovice.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: pardubice.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: plzen.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: prerov.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: hradiste.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: usti.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mapa
+          servicePort: 8000
+  - host: zlin.dopracenakole.net
     http:
       paths:
       - backend:
