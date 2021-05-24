@@ -8,6 +8,7 @@
 #@     "GUNICORN_TIMEOUT",
 #@     "GUNICORN_WORKERS",
 #@     "HEROKU_APP_URL",
+#@     "AKLUB_ALLOWED_HOSTS",
 #@ ]
 #@ secret_vars = [
 #@    "AKLUB_ADMINS",

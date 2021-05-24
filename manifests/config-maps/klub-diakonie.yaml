@@ -13,3 +13,4 @@ data:
   GUNICORN_WORKERS: "2"
   GUNICORN_TIMEOUT: "30"
   HEROKU_APP_URL: "crm.diakonie.cz"
+  AKLUB_ALLOWED_HOSTS: "diakonie.klub-pratel.cz"
