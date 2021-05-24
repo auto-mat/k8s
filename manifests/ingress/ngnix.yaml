@@ -16,6 +16,7 @@ spec:
     - mapa.prahounakole.cz
     - klub.prahounakole.cz
     - klub.auto-mat.cz
+    - crm.diakonie.cz
     - mapa-test.prahounakole.cz
     - "*.dopracenakole.net"
     secretName: ngnix-kubernetes-tls
@@ -49,6 +50,12 @@ spec:
       paths:
       - backend:
           serviceName: klub-automat
+          servicePort: 8000
+  - host: crm.diakonie.cz
+    http:
+      paths:
+      - backend:
+          serviceName: klub-diakonie
           servicePort: 8000
   - host: breclav.dopracenakole.net
     http:
