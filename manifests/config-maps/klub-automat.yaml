@@ -13,3 +13,4 @@ data:
   GUNICORN_WORKERS: "2"
   GUNICORN_TIMEOUT: "300"
   HEROKU_APP_URL: "klub.prahounakole.cz"
+  AKLUB_ALLOWED_HOSTS: "automat.klub-pratel.cz"
