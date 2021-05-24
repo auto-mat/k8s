@@ -21,7 +21,7 @@ spec:
     - crm.diakonie.cz
     - mapa-test.prahounakole.cz
     - "*.dopracenakole.net"
-    secretName: ngnix-kubernetes-tls
+    secretName: ngnix-kubernetes-tls-1
   rules:
   - host: geoserver1.prahounakole.cz
     http:
