@@ -20,6 +20,25 @@ spec:
     - diakonie.klub-pratel.cz
     - crm.diakonie.cz
     - mapa-test.prahounakole.cz
+    - breclav.dopracenakole.net
+    - brno.dopracenakole.net
+    - budejovice.dopracenakole.net
+    - hradec.dopracenakole.net
+    - jablonec.dopracenakole.net
+    - jablonec.dopracenakole.net
+    - jindrichuv-hradec.dopracenakole.net
+    - karvina.dopracenakole.net
+    - liberec.dopracenakole.net
+    - olomouc.dopracenakole.net
+    - opava.dopracenakole.net
+    - ostrava.dopracenakole.net
+    - otrokovice.dopracenakole.net
+    - pardubice.dopracenakole.net
+    - plzen.dopracenakole.net
+    - prerov.dopracenakole.net
+    - hradiste.dopracenakole.net
+    - usti.dopracenakole.net
+    - zlin.dopracenakole.net
     secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
