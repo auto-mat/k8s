@@ -18,7 +18,6 @@ spec:
     - klub.auto-mat.cz
     - automat.klub-pratel.cz
     - diakonie.klub-pratel.cz
-    - crm.diakonie.cz
     - mapa-test.prahounakole.cz
     secretName: ngnix-kubernetes-tls-2
   rules:
