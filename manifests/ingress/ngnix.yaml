@@ -20,7 +20,7 @@ spec:
     - diakonie.klub-pratel.cz
     - crm.diakonie.cz
     - mapa-test.prahounakole.cz
-    secretName: ngnix-kubernetes-tls-1
+    secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
     http:
