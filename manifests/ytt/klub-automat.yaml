@@ -3,4 +3,4 @@
 #@ config_map = "klub-automat-env"
 #@ secret_map = "klub-automat-access"
 #@ load("klub.lib.yml", "klub_web")
---- #@ klub_web(app_name, image, config_map, secret_map)
+--- #@ klub_web(app_name, image, config_map, secret_map, 2, 2)

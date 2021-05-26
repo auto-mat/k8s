@@ -27,7 +27,7 @@
 #@    "REDIS_URL",
 #@ ]
 
-#@ def klub_web(app_name, image, config_map, secret_map):
+#@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas):
 apiVersion: v1
 items:
 - apiVersion: v1
@@ -48,7 +48,7 @@ items:
   metadata:
     name: #@ app_name
   spec:
-    replicas: 1
+    replicas: #@ replicas
     selector:
       matchLabels:
         app: #@ app_name
@@ -85,7 +85,7 @@ items:
   metadata:
     name: #@ app_name + "-celery"
   spec:
-    replicas: 1
+    replicas: #@ celery-replicas
     selector:
       matchLabels:
         app: #@ app_name + "-celery"
