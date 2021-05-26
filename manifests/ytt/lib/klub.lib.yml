@@ -85,7 +85,7 @@ items:
   metadata:
     name: #@ app_name + "-celery"
   spec:
-    replicas: #@ celery-replicas
+    replicas: #@ celery_replicas
     selector:
       matchLabels:
         app: #@ app_name + "-celery"
