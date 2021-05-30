@@ -13,6 +13,13 @@ metadata:
           .: {}
           "f:DB_TYPE": {}
           "f:POSTGRES_ENV_GOSU_VERSION": {}
+          "f:SMTP_AUTH": {}
+          "f:SMTP_TLS": {}
+          "f:MAIL_FROM_DEFAULT": {}
+          "f:MAIL_DOMAIN:": {}
+          "f:SMTP_TLS_CHECK:": {}
+          "f:SMTP_STARTTLS:": {}
+          "f:SMTP_TLS_TRUST_FILE:": {}
 data:
   DB_TYPE: "pgsql"
   POSTGRES_ENV_GOSU_VERSION: "pgsql"
