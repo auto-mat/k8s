@@ -1,6 +1,13 @@
 #@ config_vars = [
 #@     "DB_TYPE",
 #@     "POSTGRES_ENV_GOSU_VERSION",
+#@     "SMTP_AUTH",
+#@     "SMTP_TLS",
+#@     "MAIL_FROM_DEFAULT",
+#@     "MAIL_DOMAIN",
+#@     "SMTP_TLS_CHECK",
+#@     "SMTP_STARTTLS",
+#@     "SMTP_TLS_TRUST_FILE",
 #@ ]
 #@ secret_vars = [
 #@    "DB_USERNAME",
@@ -8,6 +15,9 @@
 #@    "DB_HOST",
 #@    "DB_PORT",
 #@    "DB_NAME",
+#@    "SMTP_HOST",
+#@    "SMTP_USERNAME",
+#@    "SMTP_PASSWORD",
 #@ ]
 
 #@ def limesurvey(app_name, image, config_map, secret_map):
