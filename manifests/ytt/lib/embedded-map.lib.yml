@@ -1,0 +1,40 @@
+#@ def embeddedmap(app_name, image):
+apiVersion: v1
+items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: #@ app_name
+    spec:
+      ports:
+        - name: "8600"
+          port: 8600
+          targetPort: 80
+      selector:
+        app: #@ app_name
+    status:
+      loadBalancer: {}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: #@ app_name
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: #@ app_name
+      template:
+        metadata:
+          labels:
+            app: #@ app_name
+        spec:
+          containers:
+            - image: #@ image
+              name: #@ app_name
+              ports:
+                - containerPort: 8080
+              resources: {}
+    status: {}
+kind: List
+metadata: {}
+#@ end
