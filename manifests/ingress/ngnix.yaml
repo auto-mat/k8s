@@ -41,6 +41,7 @@ spec:
     - usti.dopracenakole.net
     - zlin.dopracenakole.net
     - limesurvey.dopracenakole.net
+    - embedded-map.dopracenakole.net
     secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
@@ -210,4 +211,10 @@ spec:
       paths:
       - backend:
           serviceName: limesurvey
+          servicePort: 80
+  - host: embedded-map.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: embedded-map
           servicePort: 80
