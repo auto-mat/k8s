@@ -12,7 +12,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - geoserver.prahounakole.cz
+    - geoserver1.prahounakole.cz
     - mapa.prahounakole.cz
     - klub.prahounakole.cz
     - klub.auto-mat.cz
