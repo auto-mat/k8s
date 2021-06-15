@@ -1,0 +1,16 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: klub-test-env
+  namespace: default
+data:
+  DJANGO_SETTINGS_MODULE: 'project.settings.k8s'
+  AKLUB_DEBUG: "False"
+  AWS_STORAGE_BUCKET_NAME: klub-test-server-ver1
+  AKLUB_CORS_ORIGIN_WHITELIST: "https://zazitmestojinak.cz,https://auto-mat.cz,https://cocknut.auto-mat.cz,https://dopracenakole.cz,https://dpnk.dopracenakole.cz"
+  AKLUB_DEFAULT_FROM_EMAIL: kp@auto-mat.cz
+  AKLUB_MEDIA_ROOT: ""
+  GUNICORN_WORKERS: "2"
+  GUNICORN_TIMEOUT: "300"
+  HEROKU_APP_URL: "test.klub-pratel.cz"
+  AKLUB_ALLOWED_HOSTS: "test.klub-pratel.cz"
