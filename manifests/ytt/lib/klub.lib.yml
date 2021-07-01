@@ -27,7 +27,7 @@
 #@    "REDIS_URL",
 #@ ]
 
-#@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas):
+#@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas, celery_log_level=info):
 apiVersion: v1
 items:
 - apiVersion: v1
@@ -98,7 +98,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: ["pipenv", "run", "celery", "worker", "-A", "project.celery"]
+          command: #@ ["pipenv", "run", "celery", "worker", "-A", "project.celery", "-l", celery_log_level]
           env:
           #@ for var in config_vars:
           - name: #@ var
