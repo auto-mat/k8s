@@ -27,7 +27,7 @@
 #@    "REDIS_URL",
 #@ ]
 
-#@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas, celery_log_level=info):
+#@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas, celery_log_level="info"):
 apiVersion: v1
 items:
 - apiVersion: v1
