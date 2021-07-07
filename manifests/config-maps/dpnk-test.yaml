@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dpnk-test-env
+  namespace: default
+data:
+  DJANGO_SETTINGS_MODULE: 'project.settings.base'
+  DJANGO_DEBUG: "False"
+  DPNK_STATIC_URL: "https://d3fsxj6ulepi0p.cloudfront.net/static/"
+  DPNK_AKLUB_URL: "https://devel-klub.auto-mat.cz"
+  GUNICORN_NUM_WORKERS: "2"
+  GUNICORN_TIMEOUT: "4000"
+  GUNICORN_PORT: "8000"
+  AWS_QUERYSTRING_AUTH: True
+  DPNK_LOG_FILE: dpnk.log
+  DPNK_MEDIA_URL: https://s3-eu-west-1.amazonaws.com/dpnk-test/
+  DPNK_BROKER_URL: redis://dpnk-test-redis-broker
+  DPNK_CACHE_REDIS_LOCATION: redis://dpnk-test-redis-cache
+  SINGLE_BEAT_REDIS_SERVER: redis://dpnk-test-redis-beat

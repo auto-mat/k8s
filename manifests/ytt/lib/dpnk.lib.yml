@@ -1,33 +1,55 @@
 #@ config_vars = [
-#@     "DJANGO_SETTINGS_MODULE",
-#@     "AKLUB_DEBUG",
-#@     "AWS_STORAGE_BUCKET_NAME",
-#@     "AKLUB_CORS_ORIGIN_WHITELIST",
-#@     "AKLUB_DEFAULT_FROM_EMAIL",
-#@     "AKLUB_MEDIA_ROOT",
-#@     "GUNICORN_TIMEOUT",
-#@     "GUNICORN_WORKERS",
-#@     "HEROKU_APP_URL",
-#@     "AKLUB_ALLOWED_HOSTS",
+#@  "DJANGO_SETTINGS_MODULE",
+#@  "DJANGO_DEBUG",
+#@  "DPNK_STATIC_URL",
+#@  "DPNK_AKLUB_URL",
+#@  "GUNICORN_NUM_WORKERS",
+#@  "GUNICORN_TIMEOUT",
+#@  "GUNICORN_PORT",
+#@  "AWS_QUERYSTRING_AUTH",
+#@  "DPNK_LOG_FILE",
+#@  "DPNK_MEDIA_URL",
+#@  "DPNK_BROKER_URL",
+#@  "DPNK_CACHE_REDIS_LOCATION",
+#@  "SINGLE_BEAT_REDIS_SERVER",
 #@ ]
 #@ secret_vars = [
-#@    "AKLUB_ADMINS",
-#@    "DATABASE_NAME",
-#@    "DATABASE_USER",
-#@    "DATABASE_PASSWORD",
-#@    "DATABASE_HOST",
-#@    "DATABASE_PORT",
-#@    "SECRET_KEY",
-#@    "AKLUB_RAVEN_DNS",
-#@    "AWS_ACCESS_KEY_ID",
-#@    "AWS_SECRET_ACCESS_KEY",
-#@    "FLOWER_PASSWORD",
-#@    "NEW_RELIC_APP_NAME",
-#@    "NEW_RELIC_LICENSE_KEY",
-#@    "REDIS_URL",
+#@  "DPNK_SECRET_KEY",
+#@  "DPNK_DB_NAME",
+#@  "DPNK_DB_PASSWORD",
+#@  "DPNK_DB_HOST",
+#@  "DPNK_DB_USER",
+#@  "DPNK_ALLOWED_HOSTS",
+#@  "DPNK_MAILING_API_KEY",
+#@  "DPNK_ECOMAIL_MAILING_API_KEY",
+#@  "NEW_RELIC_LICENSE_KEY",
+#@  "NEW_RELIC_APP_NAME",
+#@  "DPNK_AWS_ACCESS_KEY_ID",
+#@  "DPNK_AWS_SECRET_ACCESS_KEY",
+#@  "DPNK_AWS_STORAGE_BUCKET_NAME",
+#@  "DPNK_PAYU_KEY_1",
+#@  "DPNK_PAYU_KEY_2",
+#@  "DPNK_PAYU_POS_AUTH_KEY",
+#@  "DPNK_PAYU_POS_ID",
+#@  "DPNK_FIO_TOKEN",
+#@  "DPNK_RAVEN_DNS",
+#@  "DPNK_GOOGLE_TAG_ID",
+#@  "DPNK_SOCIAL_AUTH_FACEBOOK_KEY",
+#@  "DPNK_SOCIAL_AUTH_FACEBOOK_SECRET",
+#@  "DPNK_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY",
+#@  "DPNK_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET",
+#@  "DPNK_SOCIAL_AUTH_APPLE_ID_CLIENT",
+#@  "DPNK_SOCIAL_AUTH_APPLE_ID_KEY",
+#@  "DPNK_SOCIAL_AUTH_APPLE_ID_TEAM",
+#@  "DPNK_SOCIAL_AUTH_APPLE_ID_SECRET",
+#@  "STRAVA_CLIENT_ID",
+#@  "STRAVA_CLIENT_SECRET",
+#@  "GLS_PASSWORD",
+#@  "GLS_USERNAME",
 #@ ]
+
 #@ load("redis.lib.yml", "redis")
-#@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas, celery_log_level="info"):
+#@ def web(app_name, image, config_map, secret_map, replicas, celery_replicas):
 apiVersion: v1
 items:
 - apiVersion: v1
@@ -98,7 +120,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: #@ ["pipenv", "run", "celery", "worker", "-A", "project.celery", "-l", celery_log_level]
+          command: ["pipenv", "run", "celery", "worker", "-A", "project.celery"]
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -151,7 +173,9 @@ items:
                 name: #@ secret_map
           #@ end
   status: {}
-#@ redis(app_name + "-redis")
+#@ redis(app_name + "-redis-broker")
+#@ redis(app_name + "-redis-cache")
+#@ redis(app_name + "-redis-beat")
 kind: List
 metadata: {}
 #@ end

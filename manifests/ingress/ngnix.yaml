@@ -20,6 +20,7 @@ spec:
     - diakonie.klub-pratel.cz
     - test.klub-pratel.cz
     - crm.diakonie.cz
+    - test.dopracenakole.cz
     - mapa-test.prahounakole.cz
     - breclav.dopracenakole.net
     - brno.dopracenakole.net
@@ -224,4 +225,10 @@ spec:
       paths:
       - backend:
           serviceName: embedded-map
+          servicePort: 80
+  - host: test.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk-test
           servicePort: 80
