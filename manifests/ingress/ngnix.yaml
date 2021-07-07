@@ -237,5 +237,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: dpnk-test
+          serviceName: dpnk
           servicePort: 8000
