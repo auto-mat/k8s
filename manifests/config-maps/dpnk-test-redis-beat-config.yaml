@@ -5,4 +5,4 @@ data:
     maxmemory-policy allkeys-lru
 kind: ConfigMap
 metadata:
-  name: klub-test-redis-config
+  name: dpnk-test-redis-beat-config
