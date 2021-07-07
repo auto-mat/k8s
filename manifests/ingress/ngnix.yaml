@@ -232,3 +232,9 @@ spec:
       - backend:
           serviceName: dpnk-test
           servicePort: 8000
+  - host: dpnk2020.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk-test
+          servicePort: 8000

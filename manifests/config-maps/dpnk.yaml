@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dpnk-env
+  namespace: default
+data:
+  DPNK_LOG_FILE: "dpnk.log"
+  DPNK_ALLOWED_HOSTS: ".dopracenakole.cz,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
+  DPNK_MEDIA_URL: "https://s3-eu-west-1.amazonaws.com/dpnk/"
+  DPNK_STATIC_URL: "https://dlxsohmbtwaie.cloudfront.net/static/"
+  DPNK_BROKER_URL: "redis://dpnk-redis-broker"
+  DPNK_CACHE_REDIS_LOCATION: "redis://dpnk-redis-cache"
+  SINGLE_BEAT_REDIS_SERVER: "redis://dpnk-redis-beat"
+  DPNK_PRODUCTION_ENVIRONMENT: "True"
+  CELERY_TASK_QUEUES: "stravasync,celery"
+  GLS_BASE_URL: "http://online.gls-czech.com"
+  HELPDESK_IFRAME_URL: "None"
