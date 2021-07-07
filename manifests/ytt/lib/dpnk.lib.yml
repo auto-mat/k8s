@@ -173,9 +173,9 @@ items:
                 name: #@ secret_map
           #@ end
   status: {}
-#@ redis(app_name + "-redis-broker")
-#@ redis(app_name + "-redis-cache")
-#@ redis(app_name + "-redis-beat")
+- #@ redis(app_name + "-redis-broker")
+- #@ redis(app_name + "-redis-cache")
+- #@ redis(app_name + "-redis-beat")
 kind: List
 metadata: {}
 #@ end
