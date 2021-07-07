@@ -27,6 +27,7 @@
 #@    "REDIS_URL",
 #@ ]
 #@ load("redis.lib.yml", "redis")
+#@ load("@ytt:template", "template")
 #@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas, celery_log_level="info"):
 apiVersion: v1
 items:
@@ -151,7 +152,7 @@ items:
                 name: #@ secret_map
           #@ end
   status: {}
-#@ redis(app_name + "-redis")
+- #@ template.replace(redis(app_name + "-redis"))
 kind: List
 metadata: {}
 #@ end

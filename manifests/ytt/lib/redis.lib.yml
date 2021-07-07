@@ -48,7 +48,7 @@
         volumes:
           - name: #@ service_name + "-data"
             emptyDir: {}
-          - name: #@ service_name + "-data"
+          - name: #@ service_name + "-config"
             configMap:
               name: #@ service_name + "-config"
               items:
