@@ -86,11 +86,6 @@ items:
           - containerPort: 8080
           resources: {}
           command: ["/home/aplikace/docker-entrypoint.sh"]
-          volumes:
-            - name: logs
-              emptyDir: {}
-            - name: media
-              emptyDir: {}
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -106,6 +101,11 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+        volumes:
+        - name: logs
+          emptyDir: {}
+        - name: media
+          emptyDir: {}
   status: {}
 - apiVersion: apps/v1
   kind: Deployment
@@ -126,11 +126,6 @@ items:
           name: #@ app_name + "-celery"
           resources: {}
           command: ["pipenv", "run", "celery", "worker", "-A", "project.celery"]
-          volumes:
-            - name: logs
-              emptyDir: {}
-            - name: media
-              emptyDir: {}
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -146,6 +141,11 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+        volumes:
+        - name: logs
+          emptyDir: {}
+        - name: media
+          emptyDir: {}
   status: {}
 
 - apiVersion: apps/v1
@@ -167,11 +167,6 @@ items:
           name: #@ app_name + "-celery-beat"
           resources: {}
           command: ["pipenv", "run", "celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
-          volumes:
-            - name: logs
-              emptyDir: {}
-            - name: media
-              emptyDir: {}
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -187,6 +182,11 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+        volumes:
+        - name: logs
+          emptyDir: {}
+        - name: media
+          emptyDir: {}
   status: {}
 #@ redis(app_name + "-redis-broker")
 #@ redis(app_name + "-redis-cache")
