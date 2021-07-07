@@ -86,6 +86,11 @@ items:
           - containerPort: 8080
           resources: {}
           command: ["/home/aplikace/docker-entrypoint.sh"]
+          volumes:
+            - name: logs
+              emptyDir: {}
+            - name: media
+              emptyDir: {}
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -121,6 +126,11 @@ items:
           name: #@ app_name + "-celery"
           resources: {}
           command: ["pipenv", "run", "celery", "worker", "-A", "project.celery"]
+          volumes:
+            - name: logs
+              emptyDir: {}
+            - name: media
+              emptyDir: {}
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -157,6 +167,11 @@ items:
           name: #@ app_name + "-celery-beat"
           resources: {}
           command: ["pipenv", "run", "celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
+          volumes:
+            - name: logs
+              emptyDir: {}
+            - name: media
+              emptyDir: {}
           env:
           #@ for var in config_vars:
           - name: #@ var
