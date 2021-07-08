@@ -21,6 +21,7 @@ spec:
     - test.klub-pratel.cz
     - crm.diakonie.cz
     - test.dopracenakole.cz
+    - dpnk.dopracenakole.cz
     - dpnk2020.dopracenakole.cz
     - mapa-test.prahounakole.cz
     - breclav.dopracenakole.net
@@ -234,6 +235,12 @@ spec:
           serviceName: dpnk-test
           servicePort: 8000
   - host: dpnk2020.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
+  - host: dpnk.dopracenakole.cz
     http:
       paths:
       - backend:
