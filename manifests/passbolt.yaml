@@ -62,6 +62,36 @@ items:
               secretKeyRef:
                 name: passbolt-access
                 key: DATASOURCES_DEFAULT_PASSWORD
+          - name: EMAIL_DEFAULT_FROM
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: EMAIL_DEFAULT_FROM
+          - name: EMAIL_TRANSPORT_DEFAULT_HOST
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: EMAIL_TRANSPORT_DEFAULT_HOST
+          - name: EMAIL_TRANSPORT_DEFAULT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: EMAIL_TRANSPORT_DEFAULT_USERNAME
+          - name: EMAIL_TRANSPORT_DEFAULT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: EMAIL_TRANSPORT_DEFAULT_PASSWORD
+          - name: EMAIL_TRANSPORT_DEFAULT_URL
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: EMAIL_TRANSPORT_DEFAULT_URL
+          - name: EMAIL_TRANSPORT_DEFAULT_TLS
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: EMAIL_TRANSPORT_DEFAULT_TLS
   status: {}
 kind: List
 metadata: {}
