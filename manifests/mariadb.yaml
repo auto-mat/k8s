@@ -16,7 +16,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: mariadb
   strategy:
     type: Recreate
   template:
