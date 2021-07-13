@@ -44,8 +44,6 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pv-claim
 ---
-
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -53,7 +51,6 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
   capacity:
     storage: 20Gi
   accessModes:
@@ -66,9 +63,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 20Gi
+  storageClassName: do-block-storage
