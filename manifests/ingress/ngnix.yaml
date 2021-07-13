@@ -16,6 +16,7 @@ spec:
     - mapa.prahounakole.cz
     - klub.prahounakole.cz
     - klub.auto-mat.cz
+    - automat.passbolt.klub-pratel.cz
     - automat.klub-pratel.cz
     - diakonie.klub-pratel.cz
     - test.klub-pratel.cz
@@ -102,6 +103,12 @@ spec:
       - backend:
           serviceName: klub-test
           servicePort: 8000
+  - host: automat.passbolt.klub-pratel.cz
+    http:
+      paths:
+      - backend:
+          serviceName: passbolt
+          servicePort: 80
   - host: breclav.dopracenakole.net
     http:
       paths:

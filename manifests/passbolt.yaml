@@ -1,0 +1,67 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: passbolt
+  spec:
+    ports:
+    - name: "web"
+      port: 80
+      targetPort: 80
+    selector:
+      app: passbolt
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: passbolt
+    name: passbolt
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: passbolt
+    template:
+      metadata:
+        labels:
+          app: passbolt
+      spec:
+        containers:
+        - image: passbolt/passbolt
+          name: passbolt
+          ports:
+          - containerPort: 80
+          resources: {}
+          env:
+          - name: DATASOURCES_DEFAULT_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DATASOURCES_DEFAULT_HOST
+                name: passbolt-env
+          - name: DATASOURCES_DEFAULT_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: DATASOURCES_DEFAULT_DATABASE
+                name: passbolt-env
+          - name: APP_FULL_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                key: APP_FULL_BASE_URL
+                name: passbolt-env
+          - name: DATASOURCES_DEFAULT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: DATASOURCES_DEFAULT_USERNAME
+          - name: DATASOURCES_DEFAULT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: passbolt-access
+                key: DATASOURCES_DEFAULT_PASSWORD
+  status: {}
+kind: List
+metadata: {}
