@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mariadb
 spec:
   ports:
   - port: 3306
   selector:
-    app: mysql
+    app: mariadb
   clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mariadb
 spec:
   selector:
     matchLabels:
@@ -22,32 +22,32 @@ spec:
   template:
     metadata:
       labels:
-        app: mysql
+        app: mariadb
     spec:
       containers:
-      - image: mysql:5.6
-        name: mysql
+      - image: mariadb
+        name: mariadb
         env:
-        - name: MYSQL_ROOT_PASSWORD
+        - name: MARIADB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              key: MYSQL_ROOT_PASSWORD
-              name: mysql-access
+              key: MARIADB_ROOT_PASSWORD
+              name: mariadb-access
         ports:
         - containerPort: 3306
-          name: mysql
+          name: mariadb
         volumeMounts:
-        - name: mysql-persistent-storage
+        - name: mariadb-persistent-storage
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-persistent-storage
+      - name: mariadb-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: mariadb-pv-claim
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mysql-pv-volume
+  name: mariadb-pv-volume
   labels:
     type: local
 spec:
@@ -61,7 +61,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: mariadb-pv-claim
 spec:
   accessModes:
     - ReadWriteOnce
