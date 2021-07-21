@@ -34,7 +34,7 @@ Note, before following these instructions blindly, read them first. When setting
 
 1. Clone the `k8s-secrets` repo from [AWS code commit](https://eu-west-1.console.aws.amazon.com/codesuite/codecommit/repositories/k8s-secrets/browse/refs/heads/master/--/manifests?region=eu-west-1) and copy the `klub-automat.yaml` file.
 2. Create a new s3 bucket for storing media files. Use the [automat-klub-prod](https://s3.console.aws.amazon.com/s3/buckets/automat-klub-prod?region=eu-west-1&tab=objects) bucket for reference when setting permissions.
-3. In [IAM](https://console.aws.amazon.com/iam/home?region=eu-west-1#/users/Heroku-diakonie) create a new users for your klub přatel instance. Use the `Heroku-diakonie` user for reference when setting permissions.
+3. In [IAM](https://console.aws.amazon.com/iam/home?region=eu-west-1#/users/Heroku-diakonie) create a new users for your klub přatel instance. Use the `aklub-diakonie` user for reference when setting permissions.
 4. Copy the keys for this new IAM user to your new secrets yaml file.
 5. In [SES](https://eu-west-1.console.aws.amazon.com/ses/home?region=eu-west-1#verified-senders-email:) configure and verify the email addresses that your new klub přatel instance will be sending emails from.
 6. In [sentry](https://sentry.io/organizations/automat-zs/projects/) create a new project.
@@ -49,8 +49,9 @@ Note, before following these instructions blindly, read them first. When setting
 15. Ensure your storage bucket name is set correctly and update the settings as desired.
 16. Copy the [`klub-automat.yaml`](https://github.com/auto-mat/k8s/blob/master/manifests/klub-automat.yaml) deployment and service file.
 17. Replace all instances of the string `klub-automat` with the name of your new instance.
-18. Commit your new files to git and push them to the `k8s` repo (the changes will be applied automatically to the k8s cluster by circleci).
-19. Done!
+18. Copy the [redis config](https://github.com/auto-mat/k8s/blob/master/manifests/config-maps/klub-automat-redis-config.yaml) and replace all instances of the string `klub-automat`
+19. Commit your new files to git and push them to the `k8s` repo (the changes will be applied automatically to the k8s cluster by circleci).
+20. Done!
 
 Connecting to internal services
 -------------------------------------
