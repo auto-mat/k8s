@@ -36,6 +36,9 @@ items:
           ports:
           - containerPort: 80
           resources: {}
+          volumeMounts:
+          - mountPath: /etc/passbolt/gpg/
+            name: passbolt-keys
           env:
           - name: DATASOURCES_DEFAULT_HOST
             valueFrom:
@@ -87,6 +90,17 @@ items:
               secretKeyRef:
                 name: passbolt-access
                 key: EMAIL_TRANSPORT_DEFAULT_TLS
+        volumes:
+          - name: passbolt-keys
+            secret:
+              secretName: passbolt-access
+              items:
+              - key: passbolt-serverkey
+                path: serverkey.asc
+              - key: passbolt-serverkey-private
+                path: serverkey_private.asc
+
+
   status: {}
 kind: List
 metadata: {}
