@@ -82,11 +82,6 @@ items:
               secretKeyRef:
                 name: passbolt-access
                 key: EMAIL_TRANSPORT_DEFAULT_PASSWORD
-          - name: EMAIL_TRANSPORT_DEFAULT_URL
-            valueFrom:
-              secretKeyRef:
-                name: passbolt-access
-                key: EMAIL_TRANSPORT_DEFAULT_URL
           - name: EMAIL_TRANSPORT_DEFAULT_TLS
             valueFrom:
               secretKeyRef:
