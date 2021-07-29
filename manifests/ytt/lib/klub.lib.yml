@@ -9,6 +9,11 @@
 #@     "GUNICORN_WORKERS",
 #@     "HEROKU_APP_URL",
 #@     "AKLUB_ALLOWED_HOSTS",
+#@     "SITE_NAME",
+#@     "SUM_LAST_MONTH_PAYMENTS",
+#@     "SUM_LAST_YEAR_PAYMENTS",
+#@     "AWS_QUERYSTRING_EXPIRE",
+#@     "WEB_URL",
 #@ ]
 #@ secret_vars = [
 #@    "AKLUB_ADMINS",

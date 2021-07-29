@@ -14,3 +14,8 @@ data:
   GUNICORN_TIMEOUT: "30"
   HEROKU_APP_URL: "crm.diakonie.cz"
   AKLUB_ALLOWED_HOSTS: "diakonie.klub-pratel.cz"
+  SITE_NAME: Automat Klub přatel
+  SUM_LAST_MONTH_PAYMENTS: 0
+  SUM_LAST_YEAR_PAYMENTS: 0
+  AWS_QUERYSTRING_EXPIRE: 300
+  WEB_URL: ""

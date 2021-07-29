@@ -1,0 +1,31 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: klub-investigace-env
+  namespace: default
+data:
+  DJANGO_SETTINGS_MODULE: 'project.settings.k8s'
+  AKLUB_DEBUG: "False"
+  AWS_STORAGE_BUCKET_NAME: investigace-klub-prod
+  AKLUB_CORS_ORIGIN_WHITELIST: "https://www.investigace.cz"
+  AKLUB_DEFAULT_FROM_EMAIL: kp@auto-mat.cz
+  AKLUB_MEDIA_ROOT: ""
+  GUNICORN_WORKERS: "2"
+  GUNICORN_TIMEOUT: "300"
+  HEROKU_APP_URL: "investigace.klub-pratel.cz"
+  AKLUB_ALLOWED_HOSTS: "investigace.klub-pratel.cz"
+  SITE_NAME: Investigace
+  SUM_LAST_MONTH_PAYMENTS: 250
+  SUM_LAST_YEAR_PAYMENTS: 3000
+  AWS_QUERYSTRING_EXPIRE: 300
+  WEB_URL: https://investigace.cz/files-reset
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: klub-investigace-redis-config
+  namespace: default
+data:
+  redis-config: |-
+    maxmemory 1000mb
+    maxmemory-policy allkeys-lru

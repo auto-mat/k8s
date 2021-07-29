@@ -19,6 +19,7 @@ spec:
     - automat.passbolt.klub-pratel.cz
     - automat.klub-pratel.cz
     - diakonie.klub-pratel.cz
+    - investigace.klub-pratel.cz
     - test.klub-pratel.cz
     - crm.diakonie.cz
     - test.dopracenakole.cz
@@ -90,6 +91,12 @@ spec:
       paths:
       - backend:
           serviceName: klub-diakonie
+          servicePort: 8000
+  - host: investigace.klub-pratel.cz
+    http:
+      paths:
+      - backend:
+          serviceName: klub-investigace
           servicePort: 8000
   - host: crm.diakonie.cz
     http:
