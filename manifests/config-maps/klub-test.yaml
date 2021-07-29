@@ -14,3 +14,8 @@ data:
   GUNICORN_TIMEOUT: "300"
   HEROKU_APP_URL: "test.klub-pratel.cz"
   AKLUB_ALLOWED_HOSTS: "test.klub-pratel.cz"
+  SITE_NAME: Test Klub přatel
+  SUM_LAST_MONTH_PAYMENTS: "0"
+  SUM_LAST_YEAR_PAYMENTS: "0"
+  AWS_QUERYSTRING_EXPIRE: "300"
+  WEB_URL: ""
