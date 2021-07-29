@@ -15,9 +15,9 @@ data:
   HEROKU_APP_URL: "investigace.klub-pratel.cz"
   AKLUB_ALLOWED_HOSTS: "investigace.klub-pratel.cz"
   SITE_NAME: Investigace
-  SUM_LAST_MONTH_PAYMENTS: 250
-  SUM_LAST_YEAR_PAYMENTS: 3000
-  AWS_QUERYSTRING_EXPIRE: 300
+  SUM_LAST_MONTH_PAYMENTS: "250"
+  SUM_LAST_YEAR_PAYMENTS: "3000"
+  AWS_QUERYSTRING_EXPIRE: "300"
   WEB_URL: https://investigace.cz/files-reset
 ---
 kind: ConfigMap
