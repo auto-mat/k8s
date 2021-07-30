@@ -39,6 +39,8 @@ items:
           volumeMounts:
           - mountPath: /etc/passbolt/gpg/
             name: passbolt-keys
+          - name: passbolt-avatars
+            mountPath: /var/lib/passbolt/tmp/avatars/
           env:
           - name: DATASOURCES_DEFAULT_HOST
             valueFrom:
@@ -99,8 +101,22 @@ items:
                 path: serverkey.asc
               - key: passbolt-serverkey-private
                 path: serverkey_private.asc
-
+          - name: passbolt-avatars
+            persistentVolumeClaim:
+              claimName: passbolt-avatars-claim
 
   status: {}
 kind: List
 metadata: {}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: passbolt-avatars-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: do-block-storage
