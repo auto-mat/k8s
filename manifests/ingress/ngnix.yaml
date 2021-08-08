@@ -104,6 +104,12 @@ spec:
       - backend:
           serviceName: klub-diakonie
           servicePort: 8000
+  - host: brontosaurus.klub-pratel.cz
+    http:
+      paths:
+      - backend:
+          serviceName: klub-brontosaurus
+          servicePort: 8000
   - host: test.klub-pratel.cz
     http:
       paths:
