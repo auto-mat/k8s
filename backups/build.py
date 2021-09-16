@@ -1,4 +1,4 @@
-#/usr/bin/python3
+#!/usr/bin/python3
 import subprocess
 result = subprocess.run("git diff --name-only HEAD~..HEAD | grep /backups/", shell=True, capture_output=True)
 if result.stdout:
