@@ -34,6 +34,7 @@ for instance, db_names in dbs.items():
     ]
     os.environ["PGPASSWORD"] = os.environ.get(instance + "_DOADMIN_PASSWORD")
     for db_name in db_names:
+        print("Backing up ", db_name, " from instance ", instance)
         this_dbs_dir = "{parent}{name}/".format(
             parent=pg_backup_parent_dir, name=db_name
         )
@@ -59,7 +60,9 @@ for instance, db_names in dbs.items():
 
 mariadb_backup_parent_dir = "/backup/dbs/mariadb/"
 
-os.makedirs(mariadb_backup_parent_dir)
+print("Backing up Mariadb")
+
+os.makedirs(mariadb_backup_parent_dir, exist_ok=True)
 
 access_flags: List[str] = ["password", "port", "user", "host"]
 access_flags = [
