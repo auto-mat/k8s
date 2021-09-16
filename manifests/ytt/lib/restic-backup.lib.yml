@@ -1,0 +1,48 @@
+#@ config_vars = [
+#@ ]
+#@ secret_vars = [
+#@    "AWS_ACCESS_KEY_ID",
+#@    "AWS_SECRET_ACCESS_KEY",
+#@    "RESTIC_PASSWORD",
+#@    "RESTIC_REPOSITORY",
+#@    "DPNK_HOST",
+#@    "DPNK_PORT",
+#@    "DPNK_DOADMIN_PASSWORD",
+#@    "SHARED_DB_HOST",
+#@    "SHARED_DB_PORT",
+#@    "SHARED_DB_DOADMIN_PASSWORD",
+#@    "MARIADB_PASSWORD",
+#@    "MARIADB_PORT",
+#@    "MARIADB_USER",
+#@    "MARIADB_HOST",
+#@ ]
+
+#@ def backup(app_name, image, secret_map):
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: #@ app_name
+spec:
+  schedule: "42 4 * * 2"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: #@ app_name
+            image: #@ image
+            args:
+            - /usr/bin/python3
+            - /backup.py
+            env:
+              #@ for var in secret_vars:
+              - name: #@ var
+                valueFrom:
+                  secretKeyRef:
+                    key: #@ var
+                    name: #@ secret_map
+              #@ end
+          restartPolicy: Never
+#@ end
