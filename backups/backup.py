@@ -8,7 +8,7 @@ from types import *
 
 dbs = {
     "DPNK": ["dpnk"],
-    "K8S": [
+    "SHARED_DB": [
         "dpnk-test",
         "klub-automat",
         "klub-brontosaurus",
