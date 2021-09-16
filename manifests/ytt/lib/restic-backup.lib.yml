@@ -34,7 +34,8 @@ spec:
           - name: #@ app_name
             image: #@ image
             args:
-            - sleep 100000
+            - sleep
+            - 100000
             env:
               #@ for var in secret_vars:
               - name: #@ var
