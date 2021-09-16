@@ -29,12 +29,14 @@ os.makedirs(pg_backup_parent_dir, exist_ok=True)
 for instance, db_names in dbs.items():
     access_flags: List[str] = ["host", "port"]
     access_flags = [
-        "--{}={}".format(flag ,os.environ.get(instance + "_" + flag.upper()))
+        "--{}={}".format(flag, os.environ.get(instance + "_" + flag.upper()))
         for flag in access_flags
     ]
     os.environ["PGPASSWORD"] = os.environ.get(instance + "_DOADMIN_PASSWORD")
     for db_name in db_names:
-        this_dbs_dir = "{parent}{name}/".format(parent=pg_backup_parent_dir, name=db_name)
+        this_dbs_dir = "{parent}{name}/".format(
+            parent=pg_backup_parent_dir, name=db_name
+        )
         os.makedirs(this_dbs_dir, exist_ok=True)
         os.chdir(this_dbs_dir)
         subprocess.run(
