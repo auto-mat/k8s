@@ -1,5 +1,5 @@
 #@ app_name = "backup"
-#@ image = "auto0mat/k8s-backups:173"
+#@ image = "auto0mat/k8s-backups:175"
 #@ secret_map = "restic-backups-access"
 #@ load("restic-backup.lib.yml", "backup")
 --- #@ backup(app_name, image, secret_map)
