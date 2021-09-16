@@ -6,6 +6,6 @@ result = subprocess.run("git diff --name-only HEAD~..HEAD | grep backups/", shel
 if result.stdout:
     subprocess.run("docker build . -t auto0mat/k8s-backups:latest", shell=True)
     subprocess.run("docker login -u $DOCKER_USER -p $DOCKER_PASS", shell=True)
-    subprocess.run("docker pus auto0mat/k8s-backups:latest")
+    subprocess.run("docker push auto0mat/k8s-backups:latest", shell=True)
 else:
     print("Nothing to build, backup files not changed.")
