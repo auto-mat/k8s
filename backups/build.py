@@ -5,3 +5,5 @@ if result.stdout:
     subprocess.run("docker build . -t auto0mat/k8s-backups:latest", shell=True)
     subprocess.run("docker login -u $DOCKER_USER -p $DOCKER_PASS", shell=True)
     subprocess.run("docker pus auto0mat/k8s-backups:latest")
+else:
+    print("Nothing to build, backup files not changed.")
