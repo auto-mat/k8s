@@ -24,18 +24,18 @@ dbs = {
 
 pg_backup_parent_dir = "/backup/dbs/postgress/"
 
-os.makedirs(pg_backup_parent_dir)
+os.makedirs(pg_backup_parent_dir, exist_ok=True)
 
 for instance, db_names in dbs.items():
     access_flags: List[str] = ["host", "port"]
     access_flags = [
-        "--flag=" + os.environ.get(instance + "_" + flag.upper())
+        "--{}={}".format(flag ,os.environ.get(instance + "_" + flag.upper()))
         for flag in access_flags
     ]
     os.environ["PGPASSWORD"] = os.environ.get(instance + "_DOADMIN_PASSWORD")
-    for db in db_names:
-        this_dbs_dir = "{parent}{name}/".format(parent=pg_backup_parent_dir, name=db)
-        os.makedirs(this_dbs_dir)
+    for db_name in db_names:
+        this_dbs_dir = "{parent}{name}/".format(parent=pg_backup_parent_dir, name=db_name)
+        os.makedirs(this_dbs_dir, exist_ok=True)
         os.chdir(this_dbs_dir)
         subprocess.run(
             [
@@ -45,6 +45,7 @@ for instance, db_names in dbs.items():
                 "--format=d",
                 "--username=doadmin",
                 "--dbname=" + db_name,
+                "--file=" + this_dbs_dir,
             ]
             + access_flags
         )
@@ -63,7 +64,10 @@ access_flags = [
     "--" + flag + "=" + os.environ.get("MARIADB_" + flag.upper())
     for flag in access_flags
 ]
-subprocess.run(["mysqldump", "--all-databases"] + access_flags)
+cmd = ["mysqldump", "--all-databases"] + access_flags
+cmd = " ".join(cmd) + " > " + mariadb_backup_parent_dir + "backup.sql"
+
+subprocess.run(cmd, shell=True)
 
 ##############################################################
 # RESTIC #####################################################
