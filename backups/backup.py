@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import subprocess
 import os
-from types import *
+from typing import *
 
 ##############################################################
 # POSTGRES ###################################################
