@@ -13,6 +13,7 @@ jobs:
   apply:
     docker:
       - image: circleci/buildpack-deps:stretch
+
     steps:
       - checkout
       - run:
@@ -26,6 +27,8 @@ jobs:
       - run:
           name: Deploy Code
           command: PATH=$PATH:$PWD ./apply.sh
+      - setup_remote_docker:
+          reusable: true
       - run:
           name: Build backup docker image
           command: ./backups/build.py
