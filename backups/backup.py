@@ -25,7 +25,7 @@ pg_backup_parent_dir = "/backup/dbs/postgress/"
 
 os.makedirs(pg_backup_parent_dir)
 
-for instance, db_names in dbs:
+for instance, db_names in dbs.items():
     access_flags: List[str] = ["host", "port"]
     access_flags = [
         "--flag=" + os.environ.get(instance + "_" + flag.upper())
