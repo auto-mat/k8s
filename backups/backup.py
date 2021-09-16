@@ -34,7 +34,9 @@ for instance, db_names in dbs.items():
     ]
     os.environ["PGPASSWORD"] = os.environ.get(instance + "_DOADMIN_PASSWORD")
     for db in db_names:
-        os.chdir("{parent}/{name}/".format(parent=pg_backup_parent_dir, name=db))
+        this_dbs_dir = "{parent}{name}/".format(parent=pg_backup_parent_dir, name=db)
+        os.makedirs(this_dbs_dir)
+        os.chdir(this_dbs_dir)
         subprocess.run(
             [
                 "pg_dump",
