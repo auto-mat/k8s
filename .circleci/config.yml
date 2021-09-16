@@ -26,3 +26,6 @@ jobs:
       - run:
           name: Deploy Code
           command: PATH=$PATH:$PWD ./apply.sh
+      - run:
+          name: Build backup docker image
+          command: ./backups/build.sh
