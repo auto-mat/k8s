@@ -34,8 +34,7 @@ spec:
           - name: #@ app_name
             image: #@ image
             args:
-            - /usr/bin/python3
-            - /backup.py
+            - sleep 100000
             env:
               #@ for var in secret_vars:
               - name: #@ var
