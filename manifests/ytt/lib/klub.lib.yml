@@ -104,7 +104,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: #@ ["pipenv", "run", "celery", "worker", "-A", "project.celery", "-l", celery_log_level]
+          command: #@ ["celery", "worker", "-A", "project.celery", "-l", celery_log_level]
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -140,7 +140,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery-beat"
           resources: {}
-          command: ["pipenv", "run", "celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
+          command: ["celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
           env:
           #@ for var in config_vars:
           - name: #@ var
