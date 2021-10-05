@@ -83,3 +83,8 @@ You'll need to [install kubectl](https://kubernetes.io/docs/tasks/tools/install-
 Some of these manifests are written using the [ytt](https://get-ytt.io/) In order to use these manifests you must first put them through the ytt prepocessor, here is an exmple of how:
 
 `ytt -f mapa-test.yaml -f lib/ | kubectl apply -f -`
+
+Backups
+--------
+
+K8S dbs are backed up using a k8s cron job. The image and script for this is in the backup directory.
