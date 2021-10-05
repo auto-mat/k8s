@@ -40,4 +40,5 @@ jobs:
             else
               COMMITS="${CIRCLE_SHA1}..${LAST_SUCCESSFUL_COMMIT}"
             fi
+            export COMMITS
             ./backups/build.py

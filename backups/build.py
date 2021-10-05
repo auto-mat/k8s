@@ -3,7 +3,7 @@ import subprocess
 from subprocess import PIPE
 
 
-result = subprocess.run("git diff --name-only $LAST_SUCCESSFUL_COMMIT~..HEAD | grep backups/", shell=True, stdout=PIPE)
+result = subprocess.run("git diff --name-only $COMMITS | grep backups/", shell=True, stdout=PIPE)
 if result.stdout:
     import os
     os.chdir("./backups/")
