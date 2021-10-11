@@ -7,7 +7,7 @@ data:
   DJANGO_SETTINGS_MODULE: 'project.settings.k8s'
   AKLUB_DEBUG: "False"
   AWS_STORAGE_BUCKET_NAME: diakonie-klub-prod-real
-  AWS_S3_REGION_NAME: ""
+  AWS_S3_REGION_NAME: "eu-west-1"
   AKLUB_CORS_ORIGIN_WHITELIST: "https://www.diakonie.cz"
   AKLUB_DEFAULT_FROM_EMAIL: kp@auto-mat.cz
   AKLUB_MEDIA_ROOT: ""
