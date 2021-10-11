@@ -7,6 +7,7 @@ data:
   DJANGO_SETTINGS_MODULE: 'project.settings.k8s'
   AKLUB_DEBUG: "False"
   AWS_STORAGE_BUCKET_NAME: klub-test-server-ver1
+  AWS_S3_REGION_NAME: ""
   AKLUB_CORS_ORIGIN_WHITELIST: "https://zazitmestojinak.cz,https://auto-mat.cz,https://cocknut.auto-mat.cz,https://dopracenakole.cz,https://dpnk.dopracenakole.cz"
   AKLUB_DEFAULT_FROM_EMAIL: kp@auto-mat.cz
   AKLUB_MEDIA_ROOT: ""
