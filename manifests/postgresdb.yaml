@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresdb
+spec:
+  type: NodePort
+  ports:
+  - port: 5432
+  selector:
+    app: postgresdb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresdb
+spec:
+  selector:
+    matchLabels:
+      app: postgresdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgresdb
+    spec:
+      containers:
+      - image: postgres
+        name: postgresdb
+        imagePullPolicy: "IfNotPresent"
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: POSTGRES_PASSWORD
+              name: postgres-access
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: postgresdb-persistent-storage
+          mountPath: /var/lib/postgresql/
+      volumes:
+      - name: postgresdb-persistent-storage
+        persistentVolumeClaim:
+          claimName: postgresdb-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresdb-pv-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 250Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresdb-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 250Gi
+  storageClassName: do-block-storage
