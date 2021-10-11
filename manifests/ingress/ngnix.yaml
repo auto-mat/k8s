@@ -262,6 +262,12 @@ spec:
       - backend:
           serviceName: dpnk
           servicePort: 8000
+  - host: dpnk2021.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
   - host: dpnk.dopracenakole.cz
     http:
       paths:
