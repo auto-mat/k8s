@@ -5,6 +5,46 @@ These manifests are used for [Auto*mat's](https://auto-mat.cz/) internal infrast
 
 Currently these manifests are installed on a k8s cluster running on [DigitalOcean](https://cloud.digitalocean.com/projects?i=99d236). Changes are automatically applied when you push changes to the main repo.
 
+Deploying: The basics
+---------------------
+
+1. Find the build number
+![](docs/img/s1.png)
+![](docs/img/s2.png)
+2. Set the build number in the manifest.
+![](docs/img/s3.png)
+3. Commit and push this repository
+4. Verify the deployment.
+```
+timothy@yoga ~> kubectl get pods | grep bronto
+klub-brontosaurus-79478c5d7f-f9q4r                           1/1     Running     0          2d18h
+klub-brontosaurus-celery-8599fff748-htxdk                    1/1     Running     0          2d22h
+klub-brontosaurus-celery-beat-74dc46675d-59fb7               1/1     Running     0          2d22h
+klub-brontosaurus-redis-5544ffd69c-vwtj7                     1/1     Running     0          28d
+```
+
+```
+timothy@yoga ~> kubectl describe pod klub-brontosaurus-79478c5d7f-f9q4r
+Name:         klub-brontosaurus-79478c5d7f-f9q4r
+Namespace:    default
+Priority:     0
+Node:         pool-xku34vorr-8zp7f/10.114.0.9
+Start Time:   Mon, 11 Oct 2021 19:01:33 +0200
+Labels:       app=klub-brontosaurus
+              pod-template-hash=79478c5d7f
+Annotations:  <none>
+Status:       Running
+IP:           10.244.0.103
+IPs:
+  IP:           10.244.0.103
+Controlled By:  ReplicaSet/klub-brontosaurus-79478c5d7f
+Containers:
+  klub-brontosaurus:
+    Container ID:  containerd://27f9b218e5223a531c0cae7ae90104507bd34bad27f22d9a2e5a1133e1ada05d
+    Image:         auto0mat/klub:2021.160
+```
+
+![](docs/img/s4.png)
 Connecting directly to a DB using psql
 ------------------------------------
 
