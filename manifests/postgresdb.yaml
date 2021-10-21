@@ -28,9 +28,6 @@ spec:
       - image: postgis/postgis
         name: postgresdb
         imagePullPolicy: "IfNotPresent"
-        resources:
-          requests:
-            memory: "2Gi"
         env:
         - name: POSTGRES_PASSWORD
           valueFrom:
