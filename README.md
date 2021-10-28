@@ -128,3 +128,15 @@ Backups
 --------
 
 K8S dbs are backed up using a k8s cron job. The image and script for this is in the backup directory.
+
+Restoring from backup can be done by connecting to the private restic repo (credentials can be found in the k8s-secrets repository on AWS in the manifest `restic-backups.env`).
+
+```
+source restic-backups.env
+restic snapshots
+restic restore 0e44f57e --include /backup/dbs/postgress/klub-automat/ --target /tmp/klub-automat
+docker run -p 7543:5432 -e POSTGRES_PASSWORD=foobar -e POSTGRES_USER=klub  mdillon/postgis:9.6-alpine # Just an example
+pg_restore --port=7543 --host=0.0.0.0 --username=klub --dbname klub -W /tmp/klub-automat/backup/dbs/postgress/klub-automat/
+```
+
+
