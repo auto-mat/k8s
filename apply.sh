@@ -17,6 +17,7 @@ kubecmd (){
             $@
     fi
 }
+kubecmd apply -f manifests/data/
 kubecmd apply -f manifests/config-maps/
 kubecmd apply -f manifests/ingress/
 kubecmd apply -f manifests/
