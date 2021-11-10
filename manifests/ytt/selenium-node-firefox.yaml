@@ -1,0 +1,5 @@
+#@ app_name = "selenium-node-firefox"
+#@ image = "selenium/node-firefox:latest"
+#@ config_map = "selenium-hub-env"
+#@ load("selenium-node.lib.yml", "node")
+--- #@ node(app_name, image, config_map)
