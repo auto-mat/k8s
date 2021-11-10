@@ -1,0 +1,22 @@
+#@ load("@ytt:data", "data")
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: selenium-hub-env
+  namespace: default
+  managedFields:
+    - manager: kubectl
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          .: {}
+          'f:SE_EVENT_BUS_HOST': {}
+          'f:SE_EVENT_BUS_PUBLISH_PORT': {}
+          'f:SE_EVENT_BUS_SUBSCRIBE_PORT': {}
+data:
+  SE_EVENT_BUS_HOST: #@ data.values.seleniumHub.clusterIP
+  SE_EVENT_BUS_PUBLISH_PORT: "4442"
+  SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
