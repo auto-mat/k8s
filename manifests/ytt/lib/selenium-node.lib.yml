@@ -1,0 +1,50 @@
+#@ config_vars = [
+#@     "SE_EVENT_BUS_HOST",
+#@     "SE_EVENT_BUS_PUBLISH_PORT",
+#@     "SE_EVENT_BUS_SUBSCRIBE_PORT",
+#@ ]
+
+#@ def node(app_name, image, config_map):
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ app_name
+    labels:
+      app: #@ app_name
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: #@ app_name
+    template:
+      metadata:
+        labels:
+          app: #@ app_name
+      spec:
+        volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+        containers:
+        - name: #@ app_name
+          image: #@ image
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5555
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+          env:
+          #@ for var in config_vars:
+          - name: #@ var
+            valueFrom:
+              configMapKeyRef:
+                key: #@ var
+                name: #@ config_map
+          #@ end
+  status: {}
+kind: List
+metadata: {}
+#@ end
