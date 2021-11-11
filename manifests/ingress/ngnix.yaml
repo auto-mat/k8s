@@ -50,6 +50,7 @@ spec:
     - zlin.dopracenakole.net
     - limesurvey.dopracenakole.net
     - embedded-map.dopracenakole.net
+    - selenium-hub.dopracenakole.net
     secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
@@ -274,3 +275,9 @@ spec:
       - backend:
           serviceName: dpnk
           servicePort: 8000
+  - host: selenium-hub.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: selenium-hub
+          servicePort: 4444
