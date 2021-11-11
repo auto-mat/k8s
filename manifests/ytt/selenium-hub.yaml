@@ -67,15 +67,3 @@ spec:
           limits:
             memory: "150Mi"
             cpu: ".5"
-        livenessProbe:
-          httpGet:
-            path: /wd/hub/status
-            port: 4444
-          initialDelaySeconds: 30
-          timeoutSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: /wd/hub/status
-            port: 4444
-          initialDelaySeconds: 30
-          timeoutSeconds: 51
