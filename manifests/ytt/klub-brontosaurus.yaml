@@ -1,5 +1,5 @@
 #@ app_name = "klub-brontosaurus"
-#@ image = "auto0mat/klub:2021.171"
+#@ image = "auto0mat/klub:2021.174"
 #@ config_map = "klub-brontosaurus-env"
 #@ secret_map = "klub-brontosaurus-access"
 #@ load("klub.lib.yml", "klub_web")
