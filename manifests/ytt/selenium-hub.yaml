@@ -43,6 +43,19 @@ spec:
       - name: selenium-hub
         image: selenium/hub:4.1.0
         imagePullPolicy: "IfNotPresent"
+        env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: USERNAME
+              name: selenium-hub-access
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: PASSWORD
+              name: selenium-hub-access
+        - name: SE_OPTS
+          value: "--username $(USERNAME) --password $(PASSWORD)"
         ports:
           - containerPort: 4444
             name: port0
