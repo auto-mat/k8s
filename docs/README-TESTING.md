@@ -1,0 +1,1 @@
+We have a selenium instance running in the cluster at `selenium-hub.dopracenakole.net`. Login using the format `https://username:password@domain`. The credentials are in `k8s-secrets` on AWS code commit.
