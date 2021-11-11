@@ -20,7 +20,7 @@ spec:
     name: port-pub
   selector:
     app: selenium-hub
-  type: NodePort
+  type: ClusterIP
   sessionAffinity: None
 ---
 apiVersion: apps/v1
