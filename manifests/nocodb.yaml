@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nocodb
+spec:
+  ports:
+  - port: 8080
+  selector:
+    app: nocodb
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nocodb
+spec:
+  selector:
+    matchLabels:
+      app: nocodb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nocodb
+    spec:
+      containers:
+      - image: nocodb/nocodb
+        name: nocodb
+        ports:
+        - containerPort: 8080
+          name: nocodb
+        volumeMounts:
+        - name: nocodb-persistent-storage
+          mountPath: /usr/app/data
+      volumes:
+      - name: nocodb-persistent-storage
+        persistentVolumeClaim:
+          claimName: nocodb-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nocodb-pv-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/usr/app/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nocodb-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: do-block-storage

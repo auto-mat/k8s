@@ -17,6 +17,7 @@ spec:
     - klub.prahounakole.cz
     - klub.auto-mat.cz
     - automat.passbolt.klub-pratel.cz
+    - automat.nocodb.klub-pratel.cz
     - automat.klub-pratel.cz
     - diakonie.klub-pratel.cz
     - investigace.klub-pratel.cz
@@ -125,6 +126,12 @@ spec:
       - backend:
           serviceName: passbolt
           servicePort: 80
+  - host: automat.nocodb.klub-pratel.cz
+    http:
+      paths:
+      - backend:
+          serviceName: nocodb
+          servicePort: 8080
   - host: breclav.dopracenakole.net
     http:
       paths:
