@@ -27,6 +27,17 @@ spec:
       containers:
       - image: nocodb/nocodb
         name: nocodb
+        env:
+        - name: NC_DB
+          valueFrom:
+            secretKeyRef:
+              key: NC_DB
+              name: nocodb-access
+        - name: NC_AWS_JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: NC_AWS_JWT_SECRET
+              name: nocodb-access
         ports:
         - containerPort: 8080
           name: nocodb
