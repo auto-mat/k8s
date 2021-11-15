@@ -67,3 +67,13 @@ spec:
           limits:
             memory: "150Mi"
             cpu: ".5"
+        livenessProbe:
+          tcpSocket:
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          tcpSocket:
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 51
