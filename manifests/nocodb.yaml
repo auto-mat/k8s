@@ -38,6 +38,11 @@ spec:
             secretKeyRef:
               key: NC_AWS_JWT_SECRET
               name: nocodb-access
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          valueFrom:
+            secretKeyRef:
+              key: NODE_TLS_REJECT_UNAUTHORIZED
+              name: nocodb-access
         ports:
         - containerPort: 8080
           name: nocodb
