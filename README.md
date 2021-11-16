@@ -8,7 +8,7 @@ Currently these manifests are installed on a k8s cluster running on [DigitalOcea
 Deploying: The basics
 ---------------------
 
-1. Find the build number
+1. Find the build number (you can look it up in the circleci [All Pipelines](https://app.circleci.com/pipelines/github/auto-mat) view)
 ![](docs/img/s1.png)
 ![](docs/img/s2.png)
 2. Set the build number in the manifest.
