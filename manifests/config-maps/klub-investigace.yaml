@@ -20,6 +20,7 @@ data:
   SUM_LAST_YEAR_PAYMENTS: "3000"
   AWS_QUERYSTRING_EXPIRE: "300"
   WEB_URL: https://investigace.cz/files-reset
+  DARUJME_EMAIL_AS_USERNAME: "True"
 ---
 kind: ConfigMap
 apiVersion: v1

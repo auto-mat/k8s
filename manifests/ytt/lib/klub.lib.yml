@@ -15,6 +15,7 @@
 #@     "SUM_LAST_YEAR_PAYMENTS",
 #@     "AWS_QUERYSTRING_EXPIRE",
 #@     "WEB_URL",
+#@     "DARUJME_EMAIL_AS_USERNAME",
 #@ ]
 #@ secret_vars = [
 #@    "AKLUB_ADMINS",
