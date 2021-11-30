@@ -52,6 +52,7 @@ spec:
     - limesurvey.dopracenakole.net
     - embedded-map.dopracenakole.net
     - selenium-hub.dopracenakole.net
+    - metabase.dopracenakole.net
     secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
@@ -288,3 +289,9 @@ spec:
       - backend:
           serviceName: selenium-hub
           servicePort: 4444
+  - host: metabase.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: metabase
+          servicePort: 3000

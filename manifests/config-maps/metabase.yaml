@@ -1,0 +1,18 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: metabase-env
+  namespace: default
+  managedFields:
+    - manager: kubectl
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          .: {}
+          'f:MB_DB_TYPE': {}
+          'f:JAVA_TIMEZONE': {}
+data:
+  MB_DB_TYPE: postgres
+  JAVA_TIMEZONE: EU/Prague
