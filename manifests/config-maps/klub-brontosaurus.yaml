@@ -8,7 +8,7 @@ data:
   AKLUB_DEBUG: "False"
   AWS_STORAGE_BUCKET_NAME: klub-brontosaurus
   AWS_S3_REGION_NAME: "eu-central-1"
-  AKLUB_CORS_ORIGIN_WHITELIST: "https://brontosaurus.cz"
+  AKLUB_CORS_ORIGIN_WHITELIST: "https://brontosaurus.cz,http://localhost:3000,https://bronto-app.vercel.app"
   AKLUB_DEFAULT_FROM_EMAIL: info@brontosaurus.cz
   AKLUB_MEDIA_ROOT: ""
   GUNICORN_WORKERS: "2"
