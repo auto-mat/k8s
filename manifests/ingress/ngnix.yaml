@@ -26,8 +26,15 @@ spec:
     - crm.diakonie.cz
     - test.dopracenakole.cz
     - dpnk.dopracenakole.cz
+    - leden2022.dopracenakole.cz
     - dpnk2021.dopracenakole.cz
     - dpnk2020.dopracenakole.cz
+    - dpnk2019.dopracenakole.cz
+    - dpnk2018.dopracenakole.cz
+    - dpnk2017.dopracenakole.cz
+    - dpnk2016.dopracenakole.cz
+    - dpnk2015.dopracenakole.cz
+    - leden2022.dopracenakole.cz
     - mapa-test.prahounakole.cz
     - breclav.dopracenakole.net
     - brno.dopracenakole.net
@@ -264,6 +271,42 @@ spec:
       paths:
       - backend:
           serviceName: dpnk-test
+          servicePort: 8000
+  - host: leden2022.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
+  - host: dpnk2015.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
+  - host: dpnk2016.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
+  - host: dpnk2017.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
+  - host: dpnk2018.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
+          servicePort: 8000
+  - host: dpnk2019.dopracenakole.cz
+    http:
+      paths:
+      - backend:
+          serviceName: dpnk
           servicePort: 8000
   - host: dpnk2020.dopracenakole.cz
     http:
