@@ -19,7 +19,7 @@ metadata:
           'f:S3_MEDIA_ROOT': {}
           'f:GUNICORN_TIMEOUT': {}
 data:
-  DB_NAME: 'mapa'
+  DB_NAME: 'mapa-pool'
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
   AKLUB_ALLOWED_HOSTS: '.prahounakole.cz:.dopracenakole.net'
   DEBUG: 'False'
