@@ -4,7 +4,7 @@ metadata:
   name: klub-brontosaurus-env
   namespace: default
 data:
-  DJANGO_SETTINGS_MODULE: "project.settings.k8s"
+  DJANGO_SETTINGS_MODULE: "project.settings.bronto"
   AKLUB_DEBUG: "False"
   AWS_STORAGE_BUCKET_NAME: klub-brontosaurus
   AWS_S3_REGION_NAME: "eu-central-1"
