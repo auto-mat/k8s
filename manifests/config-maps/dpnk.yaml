@@ -15,7 +15,7 @@ data:
   SINGLE_BEAT_REDIS_SERVER: "redis://dpnk-redis-beat"
   DPNK_PRODUCTION_ENVIRONMENT: "True"
   CELERY_TASK_QUEUES: "stravasync,celery"
-  GLS_BASE_URL: "http://online.gls-czech.com"
+  GLS_BASE_URL: "https://online.gls-czech.com"
   HELPDESK_IFRAME_URL: "None"
   DPNK_AKLUB_URL: "https://automat.klub-pratel.cz"
   GUNICORN_NUM_WORKERS: "2"
