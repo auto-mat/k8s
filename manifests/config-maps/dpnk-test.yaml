@@ -12,6 +12,7 @@ data:
   GUNICORN_NUM_WORKERS: "2"
   GUNICORN_TIMEOUT: "4000"
   GUNICORN_PORT: "8000"
+  GLS_BASE_URL: "http://test.online.gls-czech.com"
   AWS_QUERYSTRING_AUTH: "True"
   DPNK_LOG_FILE: "dpnk.log"
   DPNK_MEDIA_URL: "https://s3-eu-west-1.amazonaws.com/dpnk-test/"
