@@ -20,6 +20,7 @@ dbs = {
         "mapa",
         "mapa-test",
     ],
+    "METABASE_DB": ["metabase"],
 }
 
 pg_backup_parent_dir = "/backup/dbs/postgress/"
