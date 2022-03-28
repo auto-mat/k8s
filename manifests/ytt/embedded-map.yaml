@@ -1,4 +1,4 @@
 #@ app_name = "embedded-map"
-#@ image = "439267276348970/embedded-map:16"
+#@ image = "439267276348970/embedded-map:17"
 #@ load("embedded-map.lib.yml", "embeddedmap")
 --- #@ embeddedmap(app_name, image)
