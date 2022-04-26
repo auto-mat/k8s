@@ -1,0 +1,53 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: nfs-server
+  spec:
+    clusterIP: #@ data.values.nfsServer.clusterIP
+    ports:
+    - name: "tcp-2049"
+      port: 2049
+      protocol: TCP
+    - name: "udp-111"
+      port: 111
+      protocol: UDP
+    selector:
+      app: nfs-server
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: nfs-server
+    name: nfs-server
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: nfs-server
+    template:
+      metadata:
+        labels:
+          app: nfs-server
+      spec:
+        containers:
+        - image: 439267276348970/nfs-server:0
+          name: nfs-server
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_MODULE
+                - NET_ADMIN
+          args: ["/exports", "/exports/mnk-rendering-conf", "/exports/mnk-rendering-cache"]
+  status: {}
+kind: List
+metadata: {}
+---
