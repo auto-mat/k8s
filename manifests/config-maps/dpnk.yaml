@@ -18,7 +18,7 @@ data:
   GLS_BASE_URL: "https://online.gls-czech.com"
   HELPDESK_IFRAME_URL: "None"
   DPNK_AKLUB_URL: "https://automat.klub-pratel.cz"
-  GUNICORN_NUM_WORKERS: "2"
+  GUNICORN_NUM_WORKERS: "17"
   GUNICORN_TIMEOUT: "4000"
   GUNICORN_PORT: "8000"
   AWS_QUERYSTRING_AUTH: "True"
