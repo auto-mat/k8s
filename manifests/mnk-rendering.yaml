@@ -1,0 +1,191 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mnk-rendering-cache-pv-volume
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/mnk-rendering-cache
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mnk-rendering-cache-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: do-block-storage
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mnk-rendering-conf-pv-volume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/mnk-rendering-conf
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mnk-rendering-conf-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: do-block-storage
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: mnk-rendering
+  spec:
+    ports:
+    - name: "8600"
+      port: 8600
+      targetPort: 80
+    selector:
+      app: mnk-rendering
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: mnk-rendering
+    name: mnk-rendering
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mnk-rendering
+    template:
+      metadata:
+        labels:
+          app: mnk-rendering
+      spec:
+        containers:
+        - image: 439267276348970/mnk-rendering:28
+          name: mnk-rendering
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+          lifecycle:
+            preStop:
+              exec:
+                command: ["fusermount", "-u", "/var/lib/mod_tile"]
+          env:
+            - name: AWS_S3_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_S3_BUCKET_NAME
+                  name: mnk-rendering-access
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_ACCESS_KEY_ID
+                  name: mnk-rendering-access
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_SECRET_ACCESS_KEY
+                  name: mnk-rendering-access
+            - name: POSTGISDB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGISDB_NAME
+                  name: mnk-rendering-access
+            - name: POSTGISDB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGISDB_USER
+                  name: mnk-rendering-access
+            - name: POSTGISDB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGISDB_PASSWORD
+                  name: mnk-rendering-access
+            - name: POSTGISDB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGISDB_HOST
+                  name: mnk-rendering-access
+            - name: POSTGISDB_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGISDB_PORT
+                  name: mnk-rendering-access
+            - name: RENDER_GIT_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: RENDER_GIT_URL
+                  name: mnk-rendering-env
+            - name: RENDERING_DIR
+              valueFrom:
+                configMapKeyRef:
+                  key: RENDERING_DIR
+                  name: mnk-rendering-env
+            - name: UPDATE_DB_AND_RENDERING_LOG
+              valueFrom:
+                configMapKeyRef:
+                  key: UPDATE_DB_AND_RENDERING_LOG
+                  name: mnk-rendering-env
+            - name: RENDERING_QUADRANTS_LOG
+              valueFrom:
+                configMapKeyRef:
+                  key: RENDERING_QUADRANTS_LOG
+                  name: mnk-rendering-env
+            - name: GIT_BRANCH
+              valueFrom:
+                configMapKeyRef:
+                  key: GIT_BRANCH
+                  name: mnk-rendering-env
+            - name: GOOFYS_DONWLOAD_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOFYS_DONWLOAD_URL
+                  name: mnk-rendering-env
+            - name: RENDERD_TILE_DIR
+              valueFrom:
+                configMapKeyRef:
+                  key: RENDERD_TILE_DIR
+                  name: mnk-rendering-env
+            - name: RENDERD_CONF
+              value: "$(RENDERING_DIR)/docker/renderd.conf.sed"
+          ports:
+          - containerPort: 8080
+          resources: {}
+          volumeMounts:
+          - name: mnk-rendering-conf-persistent-storage
+            mountPath: /home/
+          - name: mnk-rendering-cache-persistent-storage
+            mountPath: /usr/local/mapproxy/cache_data
+        volumes:
+        - name: mnk-rendering-conf-persistent-storage
+          persistentVolumeClaim:
+            claimName: mnk-rendering-conf-pv-claim
+        - name: mnk-rendering-cache-persistent-storage
+          persistentVolumeClaim:
+            claimName: mnk-rendering-cache-pv-claim
+
+  status: {}
+kind: List
+metadata: {}

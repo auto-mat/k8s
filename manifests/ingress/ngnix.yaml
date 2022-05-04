@@ -59,6 +59,7 @@ spec:
     - embedded-map.dopracenakole.net
     - selenium-hub.dopracenakole.net
     - metabase.dopracenakole.net
+    - mnk-osm-tiles.dopracenakole.net
     secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
@@ -337,3 +338,9 @@ spec:
       - backend:
           serviceName: metabase
           servicePort: 3000
+  - host: mnk-osm-tiles.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: mnk-rendering
+          servicePort: 80
