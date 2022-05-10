@@ -168,6 +168,11 @@ items:
                 configMapKeyRef:
                   key: RENDERD_TILE_DIR
                   name: mnk-rendering-env
+            - name: RENDERD_NUM_THREADS
+              valueFrom:
+                configMapKeyRef:
+                  key: RENDERD_NUM_THREADS
+                  name: mnk-rendering-env
             - name: RENDERD_CONF
               value: "$(RENDERING_DIR)/docker/renderd.conf.sed"
           ports:
