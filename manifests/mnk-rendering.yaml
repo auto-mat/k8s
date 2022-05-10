@@ -80,7 +80,7 @@ items:
           app: mnk-rendering
       spec:
         containers:
-        - image: 439267276348970/mnk-rendering:28
+        - image: 439267276348970/mnk-rendering:29
           name: mnk-rendering
           imagePullPolicy: "IfNotPresent"
           securityContext:
