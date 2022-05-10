@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mnk-rendering-env
+data:
+  RENDER_GIT_URL: "https://github.com/auto-mat/rendering-PNK-ZM.git"
+  RENDERING_DIR: "/home/rendering"
+  UPDATE_DB_AND_RENDERING_LOG: "update_db_and_rendering.log"
+  RENDERING_QUADRANTS_LOG: "rendering_quadrants.log"
+  GIT_BRANCH: "digital-ocean"
+  GOOFYS_DONWLOAD_URL: "https://github.com/kahing/goofys/releases/download/v0.24.0/goofys"
+  RENDERD_TILE_DIR: "/var/lib/mod_tile/mod_tile"
+  RENDERD_NUM_THREADS: "2"
