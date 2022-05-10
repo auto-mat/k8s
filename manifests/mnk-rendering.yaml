@@ -80,7 +80,7 @@ items:
           app: mnk-rendering
       spec:
         containers:
-        - image: 439267276348970/mnk-rendering:30
+        - image: 439267276348970/mnk-rendering:31
           name: mnk-rendering
           imagePullPolicy: "IfNotPresent"
           securityContext:
@@ -178,19 +178,6 @@ items:
           ports:
           - containerPort: 8080
           resources: {}
-          volumeMounts:
-          - name: mnk-rendering-conf-persistent-storage
-            mountPath: /home/
-          - name: mnk-rendering-cache-persistent-storage
-            mountPath: /usr/local/mapproxy/cache_data
-        volumes:
-        - name: mnk-rendering-conf-persistent-storage
-          persistentVolumeClaim:
-            claimName: mnk-rendering-conf-pv-claim
-        - name: mnk-rendering-cache-persistent-storage
-          persistentVolumeClaim:
-            claimName: mnk-rendering-cache-pv-claim
-
   status: {}
 kind: List
 metadata: {}
