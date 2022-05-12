@@ -42,11 +42,12 @@ items:
           imagePullPolicy: "IfNotPresent"
           securityContext:
             privileged: true
-            capabilities:
-              add:
-                - SYS_MODULE
-                - NET_ADMIN
-          args: ["/exports", "/exports/mnk-rendering-conf", "/exports/mnk-rendering-cache"]
+          args: [
+          "/exports",
+          "/exports/mnk-rendering-conf",
+          "/exports/mnk-rendering-cache",
+          "/exports/mnk-rendering-data"
+          ]
   status: {}
 kind: List
 metadata: {}
