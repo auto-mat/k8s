@@ -1,3 +1,33 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mnk-rendering-data-pv-volume
+spec:
+  capacity:
+    storage: 130Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /mnk-rendering-data
+    server: #@ data.values.nfsServer.clusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mnk-rendering-data-pv-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 130Gi
+  storageClassName: "nfs"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -7,9 +37,14 @@ spec:
   capacity:
     storage: 5Gi
   accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/mnk-rendering-cache
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /mnk-rendering-cache
+    server: #@ data.values.nfsServer.clusterIP
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -17,11 +52,11 @@ metadata:
   name: mnk-rendering-cache-pv-claim
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
-  storageClassName: do-block-storage
+  storageClassName: "nfs"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -29,11 +64,16 @@ metadata:
   name: mnk-rendering-conf-pv-volume
 spec:
   capacity:
-    storage: 1Gi
+    storage: 5Gi
   accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/mnk-rendering-conf
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /mnk-rendering-conf
+    server: #@ data.values.nfsServer.clusterIP
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -41,11 +81,11 @@ metadata:
   name: mnk-rendering-conf-pv-claim
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: do-block-storage
+      storage: 5Gi
+  storageClassName: "nfs"
 ---
 apiVersion: v1
 items:
@@ -80,18 +120,11 @@ items:
           app: mnk-rendering
       spec:
         containers:
-        - image: 439267276348970/mnk-rendering:31
+        - image: 439267276348970/mnk-rendering:38
           name: mnk-rendering
           imagePullPolicy: "IfNotPresent"
           securityContext:
             privileged: true
-            capabilities:
-              add:
-                - SYS_ADMIN
-          lifecycle:
-            preStop:
-              exec:
-                command: ["fusermount", "-u", "/var/lib/mod_tile"]
           env:
             - name: AWS_S3_BUCKET_NAME
               valueFrom:
@@ -158,11 +191,6 @@ items:
                 configMapKeyRef:
                   key: GIT_BRANCH
                   name: mnk-rendering-env
-            - name: GOOFYS_DONWLOAD_URL
-              valueFrom:
-                configMapKeyRef:
-                  key: GOOFYS_DONWLOAD_URL
-                  name: mnk-rendering-env
             - name: RENDERD_TILE_DIR
               valueFrom:
                 configMapKeyRef:
@@ -178,6 +206,23 @@ items:
           ports:
           - containerPort: 8080
           resources: {}
+          volumeMounts:
+          - name: mnk-rendering-conf-persistent-storage
+            mountPath: /home/rendering
+          - name: mnk-rendering-data-persistent-storage
+            mountPath: /var/lib/mod_tile
+          - name: mnk-rendering-cache-persistent-storage
+            mountPath: /usr/local/mapproxy/cache_data
+        volumes:
+        - name: mnk-rendering-data-persistent-storage
+          persistentVolumeClaim:
+            claimName: mnk-rendering-data-pv-claim
+        - name: mnk-rendering-conf-persistent-storage
+          persistentVolumeClaim:
+            claimName: mnk-rendering-conf-pv-claim
+        - name: mnk-rendering-cache-persistent-storage
+          persistentVolumeClaim:
+            claimName: mnk-rendering-cache-pv-claim
   status: {}
 kind: List
 metadata: {}
