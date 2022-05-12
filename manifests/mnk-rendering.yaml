@@ -191,11 +191,6 @@ items:
                 configMapKeyRef:
                   key: GIT_BRANCH
                   name: mnk-rendering-env
-            - name: RENDERD_TILE_DIR
-              valueFrom:
-                configMapKeyRef:
-                  key: RENDERD_TILE_DIR
-                  name: mnk-rendering-env
             - name: RENDERD_NUM_THREADS
               valueFrom:
                 configMapKeyRef:
