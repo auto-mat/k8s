@@ -138,7 +138,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: ["poetry", "run", "celery", "worker", "-A", "project.celery", "-l", "info"]
+          command: ["poetry", "run", "celery", "worker", "-A", "project.celery", "-l", "debug"]
           env:
           #@ for var in config_vars:
           - name: #@ var
