@@ -138,7 +138,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: ["poetry", "run", "celery", "worker", "-A", "project.celery", "--loglevel=info"]
+          command: ["poetry", "run", "celery", "worker", "-A", "project.celery", "--pool=prefork", "--concurrency=8", "--loglevel=info"]
           env:
           #@ for var in config_vars:
           - name: #@ var
