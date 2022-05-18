@@ -19,4 +19,5 @@ kubecmd (){
 }
 kubecmd apply -f manifests/config-maps/
 kubecmd apply -f manifests/ingress/
-ytt -f manifests/ -f manifests/ytt/ -f manifests/ytt/lib/ -f manifests/ytt/config-maps/ -f manifests/ytt/data/ | kubecmd apply -f -
+kubecmd apply -f manifests/
+ytt -f manifests/ytt/ -f manifests/ytt/lib/ -f manifests/ytt/config-maps/ -f manifests/ytt/data/ | kubecmd apply -f -
