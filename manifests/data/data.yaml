@@ -1,6 +1,0 @@
-#@data/values
----
-seleniumHub:
-  clusterIP: 10.245.4.155
-nfsServer:
-  clusterIP: 10.245.4.154
