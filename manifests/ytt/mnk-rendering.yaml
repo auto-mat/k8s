@@ -110,7 +110,7 @@ items:
       io.kompose.service: mnk-rendering
     name: mnk-rendering
   spec:
-    replicas: 4
+    replicas: 1
     selector:
       matchLabels:
         app: mnk-rendering
