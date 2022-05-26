@@ -57,6 +57,7 @@ spec:
     - zlin.dopracenakole.net
     - limesurvey.dopracenakole.net
     - embedded-map.dopracenakole.net
+    - embedded-map-test.dopracenakole.net
     - selenium-hub.dopracenakole.net
     - metabase.dopracenakole.net
     - mnk-osm-tiles.dopracenakole.net
@@ -265,6 +266,12 @@ spec:
       paths:
       - backend:
           serviceName: embedded-map
+          servicePort: 80
+  - host: embedded-map-test.dopracenakole.net
+    http:
+      paths:
+      - backend:
+          serviceName: embedded-map-test
           servicePort: 80
   - host: test.dopracenakole.cz
     http:
