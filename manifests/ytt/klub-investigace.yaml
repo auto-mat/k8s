@@ -1,5 +1,5 @@
 #@ app_name = "klub-investigace"
-#@ image = "auto0mat/klub:2021.197"
+#@ image = "auto0mat/klub:2021.279"
 #@ config_map = "klub-investigace-env"
 #@ secret_map = "klub-investigace-access"
 #@ load("klub.lib.yml", "klub_web")
