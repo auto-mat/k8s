@@ -1,4 +1,4 @@
-#@ def embeddedmap(app_name, image):
+#@ def embeddedmap(app_name, image, replicas):
 apiVersion: v1
 items:
   - apiVersion: v1
@@ -19,7 +19,7 @@ items:
     metadata:
       name: #@ app_name
     spec:
-      replicas: 1
+      replicas: #@ replicas
       selector:
         matchLabels:
           app: #@ app_name
