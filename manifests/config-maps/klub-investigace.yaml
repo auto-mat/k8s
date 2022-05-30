@@ -21,6 +21,7 @@ data:
   AWS_QUERYSTRING_EXPIRE: "300"
   WEB_URL: https://investigace.cz/files-reset
   DARUJME_EMAIL_AS_USERNAME: "True"
+  DISABLE_SERVER_SIDE_CURSORS: "True"
 ---
 kind: ConfigMap
 apiVersion: v1
