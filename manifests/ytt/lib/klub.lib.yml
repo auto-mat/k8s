@@ -16,6 +16,7 @@
 #@     "AWS_QUERYSTRING_EXPIRE",
 #@     "WEB_URL",
 #@     "DARUJME_EMAIL_AS_USERNAME",
+#@     "DISABLE_SERVER_SIDE_CURSORS",
 #@ ]
 #@ secret_vars = [
 #@    "AKLUB_ADMINS",
