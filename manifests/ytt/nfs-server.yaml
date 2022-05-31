@@ -7,6 +7,7 @@ items:
   metadata:
     name: nfs-server
   spec:
+    type: NodePort
     clusterIP: #@ data.values.nfsServer.clusterIP
     ports:
     - name: "tcp-2049"
