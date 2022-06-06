@@ -8,4 +8,4 @@ data:
   UPDATE_DB_AND_RENDERING_LOG: "update_db_and_rendering.log"
   RENDERING_QUADRANTS_LOG: "rendering_quadrants.log"
   GIT_BRANCH: "digital-ocean"
-  RENDERD_NUM_THREADS: "4"
+  RENDERD_NUM_THREADS: "8"
