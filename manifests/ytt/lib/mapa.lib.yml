@@ -6,6 +6,8 @@
 #@     "AWS_STORAGE_BUCKET_NAME",
 #@     "S3_MEDIA_ROOT",
 #@     "GUNICORN_TIMEOUT",
+#@     "DISABLE_SERVER_SIDE_CURSORS",
+#@     "CONN_MAX_AGE",
 #@ ]
 #@ secret_vars = [
 #@    "DB_USER",
