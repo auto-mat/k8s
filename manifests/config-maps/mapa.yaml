@@ -18,6 +18,8 @@ metadata:
           'f:AWS_STORAGE_BUCKET_NAME': {}
           'f:S3_MEDIA_ROOT': {}
           'f:GUNICORN_TIMEOUT': {}
+          'f:DISABLE_SERVER_SIDE_CURSORS': {}
+          'f:CONN_MAX_AGE': {}
 data:
   DB_NAME: 'mapa-pool'
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
@@ -26,3 +28,5 @@ data:
   AWS_STORAGE_BUCKET_NAME: 'cyklomapa-media'
   S3_MEDIA_ROOT: 'https://cyklomapa-media.s3-eu-west-1.amazonaws.com/'
   GUNICORN_TIMEOUT: '300'
+  DISABLE_SERVER_SIDE_CURSORS: 'True'
+  CONN_MAX_AGE: '60'
