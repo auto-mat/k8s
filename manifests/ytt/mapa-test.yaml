@@ -1,5 +1,5 @@
 #@ app_name = "mapa-test"
-#@ image = "auto0mat/cyklomapa:2022.101
+#@ image = "auto0mat/cyklomapa:2022.101"
 #@ config_map = "mapa-test-env"
 #@ secret_map = "mapa-test-access"
 #@ load("mapa.lib.yml", "mapa")
