@@ -8,7 +8,7 @@ from typing import *
 ##############################################################
 
 dbs = {
-    "DPNK": ["dpnk"],
+    # "DPNK": ["dpnk"],
     "SHARED_DB": [
         "dpnk-test",
         "klub-automat",
