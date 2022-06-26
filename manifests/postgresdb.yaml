@@ -25,7 +25,7 @@ spec:
         app: postgresdb
     spec:
       containers:
-      - image: postgis/postgis:14-3.2-alpine
+      - image: postgis/postgis:13-3.2-alpine
         name: postgresdb
         imagePullPolicy: "IfNotPresent"
         env:
