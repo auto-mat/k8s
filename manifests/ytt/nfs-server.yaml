@@ -49,7 +49,40 @@ items:
           "/exports/mnk-rendering-cache",
           "/exports/mnk-rendering-data"
           ]
+          volumeMounts:
+          - name: nfs-server-persistent-storage
+            mountPath: /exports/
+        volumes:
+        - name: nfs-server-persistent-storage
+          persistentVolumeClaim:
+            claimName: nfs-server-pv-claim
+
   status: {}
 kind: List
 metadata: {}
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-server-pv-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 140Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-server-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 140Gi
+  storageClassName: do-block-storage
