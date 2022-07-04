@@ -10,17 +10,17 @@ spec:
     spec:
       template:
         spec:
-          volumes:                          
+          volumes:
             - name: dshm
               emptyDir:
                 medium: Memory
           containers:
           - name: dopravni-screenshots
-            image: auto0mat/dopravni-screenshots:7
+            image: auto0mat/dopravni-screenshots:8
             args:
             - /bin/sh
             - screenshot.sh
-            volumeMounts:                 
+            volumeMounts:
               - mountPath: /dev/shm
                 name: dshm
             env:
