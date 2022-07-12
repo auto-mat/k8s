@@ -102,6 +102,11 @@ items:
           name: #@ app_name
           ports:
           - containerPort: 8080
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
           resources: {}
           command: ["/home/aplikace/docker-entrypoint.sh"]
           env:
