@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: check-nfs-kernel-server-service
+spec:
+  schedule: "*/3 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: check-nfs-kernel-server-service
+            image: 439267276348970/check-k8-nfs-kernel-server-service:0
+            args:
+            - check_host_nfs_service.sh
+            env:
+            - name: DO_KUBERNETES_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: check-nfs-kernel-server-service-access
+                  key: DO_KUBERNETES_TOKEN
+            - name: DO_KUBERNETES_CLUSTER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: check-nfs-kernel-server-service-access
+                  key: DO_KUBERNETES_CLUSTER_ID
+          restartPolicy: Never
