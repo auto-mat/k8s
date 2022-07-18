@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: check-nfs-kernel-server-service
 spec:
-  schedule: "*/3 * * * *"
+  schedule: "*/1 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: check-nfs-kernel-server-service
-            image: 439267276348970/check-k8-nfs-kernel-server-service:0
+            image: 439267276348970/check-k8-nfs-kernel-server-service:1
             args:
             - check_host_nfs_service.sh
             env:
@@ -26,4 +26,9 @@ spec:
                 secretKeyRef:
                   name: check-nfs-kernel-server-service-access
                   key: DO_KUBERNETES_CLUSTER_ID
+            - name: DO_FLOATING_IP_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: check-nfs-kernel-server-service-access
+                  key: DO_FLOATING_IP_ADDRESS
           restartPolicy: Never
