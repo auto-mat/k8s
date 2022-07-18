@@ -6,7 +6,7 @@ metadata:
   name: mnk-rendering-data-pv-volume
 spec:
   capacity:
-    storage: 130Gi
+    storage: 210Gi
   accessModes:
     - ReadWriteMany
   storageClassName: "nfs"
