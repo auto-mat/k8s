@@ -6,7 +6,7 @@ metadata:
   name: mnk-rendering-data-pv-volume
 spec:
   capacity:
-    storage: 210Gi
+    storage: 250Gi
   accessModes:
     - ReadWriteMany
   storageClassName: "nfs"
@@ -26,7 +26,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 130Gi
+      storage: 250Gi
   storageClassName: "nfs"
 ---
 apiVersion: v1
