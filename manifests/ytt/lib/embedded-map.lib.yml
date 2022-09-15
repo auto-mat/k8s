@@ -1,4 +1,22 @@
-#@ def embeddedmap(app_name, image, replicas):
+#@ config_vars = [
+#@     "DEFAULT_MAP_CENTER",
+#@     "DEFAULT_MAP_ZOOM",
+#@     "POI_VECTOR_FEATURES_URL",
+#@     "MNK_OSM_TILES_URL",
+#@     "MNK_OSM_TILES_ATTRIBUTIONS",
+#@     "MAP_COOR_SYSTEM_URL",
+#@     "NOTIFY_POSITION",
+#@     "DEFAULT_FEATURE_COLOR",
+#@     "DEFAULT_FEATURE_CLICK_HIT_TOLERANCE",
+#@     "DEFAULT_WIDGETS_BASE_COLOR",
+#@     "POI_FEATURES_PHOTO_URL",
+#@     "POI_FEATURES_ICON_URL",
+#@     "AUTOMAT_POI_VECTOR_SOURCE_ATTRIBUTIONS",
+#@     "MNK_OSM_TILE_SIZE",
+#@     "SEARCH_ADDRESS_API_URL",
+#@ ]
+
+#@ def embeddedmap(app_name, image, replicas, config_map):
 apiVersion: v1
 items:
   - apiVersion: v1
@@ -34,6 +52,14 @@ items:
               ports:
                 - containerPort: 8080
               resources: {}
+              env:
+                #@ for var in config_vars:
+                - name: #@ var
+                  valueFrom:
+                    configMapKeyRef:
+                      key: #@ var
+                      name: #@ config_map
+                #@ end
     status: {}
 kind: List
 metadata: {}
