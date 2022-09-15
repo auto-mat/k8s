@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mnk-test-env
+data:
+  DEFAULT_MAP_CENTER: "1605740.4855019168,6458756.109287444"
+  DEFAULT_MAP_ZOOM: "14"
+  POI_VECTOR_FEATURES_URL: "https://geoserver1.prahounakole.cz/geoserver/mnk/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mnk%3Apoi_view&outputFormat=application%2Fjson"
+  MNK_OSM_TILES_URL: "https://tiles.prahounakole.cz/{z}/{x}/{y}.png"
+  MNK_OSM_TILES_ATTRIBUTIONS: '<div><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">&copy OpenStreetMap</a> contributors</div>'
+  MAP_COOR_SYSTEM_URL: "https://epsg.io/3857"
+  NOTIFY_POSITION: "top"
+  DEFAULT_FEATURE_COLOR: "primary"
+  DEFAULT_FEATURE_CLICK_HIT_TOLERANCE: "10"
+  DEFAULT_WIDGETS_BASE_COLOR: "indigo"
+  POI_FEATURES_PHOTO_URL: "https://geoserver1.prahounakole.cz/geoserver/mnk/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mnk%3Aphoto_view&outputFormat=application%2Fjson"
+  POI_FEATURES_ICON_URL: "https://cyklomapa-media.s3-eu-west-1.amazonaws.com/"
+  AUTOMAT_POI_VECTOR_SOURCE_ATTRIBUTIONS: '<div><a href="https://auto-mat.cz/en" target="_blank" rel="noopener noreferrer">&copy Auto*Mat</a></div>'
+  MNK_OSM_TILE_SIZE: "256,256"
+  SEARCH_ADDRESS_API_URL: "https://search.osmnames.org/cz/q/address.js?key=dgb7TgC5zR0YpsAqbEgb"
