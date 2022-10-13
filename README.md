@@ -140,3 +140,38 @@ pg_restore --port=7543 --host=0.0.0.0 --username=klub --dbname klub -W /tmp/klub
 ```
 
 
+Keeping things up to date
+-------------------------
+
+Individual services are kept up to date by updating their manifests in this repo. However, there are some "basic" services that are installed via helm. To  see them use:
+
+```
+helm list
+```
+
+To upgrade a helm chart use:
+
+```
+helm repo update
+helm upgrade --reuse-values ingress-nginx ingress-nginx/ingress-nginx
+```
+
+After upgrading the ingress you may need to apply the controller manifest again (no idea why):
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/do/deploy.yaml
+namespace/ingress-nginx created
+```
+
+Sometimes after k8s restarts or updates it will create an extra load ballancer:
+
+![image](https://user-images.githubusercontent.com/1391608/195578991-7a7caf49-5d20-46dc-a3cf-e303bd0c8df3.png)
+
+You can recognize this new guy because his "created" time will be younger than the real load ballancer. Also, you will notice that it is connected to 3 nodes rather than just 1. You should delete this new load ballancer to save money.
+
+Changing the Cluster IP and adding new externally accessible services
+-------------------------------------------------------------------
+
+If you end up in the situation where you need to change the IP of the cluster (usually something got messed up with the load ballancer), go to greengeeks and open the Zone Editor. Enter the zone editor for the `auto-mat.cz` domain. Change the `kubernetes.auto-mat.cz` IP address.
+
+To add a new externally accessible service, add that service to [the nginx config](https://github.com/auto-mat/k8s/blob/master/manifests/ingress/ngnix.yaml) and `CNAME` your domain to `kubernetes.auto-mat.cz`. Note, it may take 30-40 minutes for the SSL cert to be generated, in the mean time you can get very strange errors.
