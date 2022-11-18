@@ -19,11 +19,9 @@ spec:
     - automat.passbolt.klub-pratel.cz
     - automat.nocodb.klub-pratel.cz
     - automat.klub-pratel.cz
-    - diakonie.klub-pratel.cz
     - investigace.klub-pratel.cz
     - test.klub-pratel.cz
     - brontosaurus.klub-pratel.cz
-    - crm.diakonie.cz
     - test.dopracenakole.cz
     - dpnk.dopracenakole.cz
     - dpnk2021.dopracenakole.cz
@@ -101,23 +99,11 @@ spec:
       - backend:
           serviceName: klub-automat
           servicePort: 8000
-  - host: diakonie.klub-pratel.cz
-    http:
-      paths:
-      - backend:
-          serviceName: klub-diakonie
-          servicePort: 8000
   - host: investigace.klub-pratel.cz
     http:
       paths:
       - backend:
           serviceName: klub-investigace
-          servicePort: 8000
-  - host: crm.diakonie.cz
-    http:
-      paths:
-      - backend:
-          serviceName: klub-diakonie
           servicePort: 8000
   - host: brontosaurus.klub-pratel.cz
     http:
