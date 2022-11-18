@@ -179,6 +179,13 @@ To add a new externally accessible service, add that service to [the nginx confi
 Troubleshooting Lets Encrypt / HTTPS / TLS
 -----------------------------
 
+Usefull links:
+
+ - [DO tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-with-cert-manager-on-digitalocean-kubernetes)
+ - [Debugging certmanager webhooks](https://hackmd.io/@maelvls/debug-cert-manager-webhook#)
+ - [Certmanager install docs](https://artifacthub.io/packages/helm/cert-manager/cert-manager)
+ - [Certmanager debugging notes](https://cert-manager.io/docs/troubleshooting/webhook/)
+
 Usefull commands are:
 
 ```
