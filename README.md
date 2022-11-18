@@ -175,3 +175,30 @@ Changing the Cluster IP and adding new externally accessible services
 If you end up in the situation where you need to change the IP of the cluster (usually something got messed up with the load ballancer), go to greengeeks and open the Zone Editor. Enter the zone editor for the `auto-mat.cz` domain. Change the `kubernetes.auto-mat.cz` IP address.
 
 To add a new externally accessible service, add that service to [the nginx config](https://github.com/auto-mat/k8s/blob/master/manifests/ingress/ngnix.yaml) and `CNAME` your domain to `kubernetes.auto-mat.cz`. Note, it may take 30-40 minutes for the SSL cert to be generated, in the mean time you can get very strange errors.
+
+Troubleshooting Lets Encrypt / HTTPS / TLS
+-----------------------------
+
+Usefull commands are:
+
+```
+timothy@nixos ~> kubectl get namespaces
+NAME              STATUS   AGE
+cert-manager      Active   35d
+default           Active   2y124d
+ingress-nginx     Active   36d
+kube-node-lease   Active   2y124d
+kube-public       Active   2y124d
+kube-system       Active   2y124d
+timothy@nixos ~> kubectl -n cert-manager get pods
+NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-7b8d75c477-h984t              1/1     Running   0          35d
+cert-manager-cainjector-6cd8d7f84b-f4bks   1/1     Running   0          35d
+cert-manager-webhook-64d76db6c-twpd6       1/1     Running   0          35d
+timothy@nixos ~> kubectl -n cert-manager logs cert-manager-7b8d75c477-h984t --tail=5
+...
+E1118 10:53:54.346561       1 sync.go:190] cert-manager/challenges "msg"="propagation check failed" "error"="failed to perform self check GET request 'http://dpnk2016.dopracenakole.cz/.well-known/acme-challenge/<snip>': Get \"http://dpnk2016.dopracenakole.cz/.well-known/acme-challenge/<snip>\": EOF" "dnsName"="dpnk2016.dopracenakole.cz" "resource_kind"="Challenge" "resource_name"="ngnix-kubernetes-tls-<snip>" "resource_namespace"="default" "resource_version"="v1" "type"="HTTP-01"
+.....
+```
+
+Then search the web for the error message.
