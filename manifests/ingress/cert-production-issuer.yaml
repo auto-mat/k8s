@@ -3,10 +3,6 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
 spec:
-  dnsConfig:
-    nameservers:
-      - 8.8.8.8
-  dnsPolicy: None
   acme:
     # Email address used for ACME registration
     email: timothy.hobbs@auto-mat.cz
