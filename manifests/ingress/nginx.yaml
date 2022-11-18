@@ -1,10 +1,10 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ngnix-kubernetes-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-staging
     nginx.ingress.kubernetes.io/proxy-body-size: 40m
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
@@ -17,11 +17,8 @@ spec:
     - klub.prahounakole.cz
     - klub.auto-mat.cz
     - automat.passbolt.klub-pratel.cz
-    - automat.nocodb.klub-pratel.cz
     - automat.klub-pratel.cz
-    - investigace.klub-pratel.cz
     - test.klub-pratel.cz
-    - brontosaurus.klub-pratel.cz
     - test.dopracenakole.cz
     - dpnk.dopracenakole.cz
     - dpnk2021.dopracenakole.cz
@@ -66,288 +63,450 @@ spec:
   - host: geoserver1.prahounakole.cz
     http:
       paths:
-      - backend:
-          serviceName: geoserver
-          servicePort: 8080
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+              name: geoserver
+              port:
+                number: 8080
   - host: mapa-test.prahounakole.cz
     http:
       paths:
-      - backend:
-          serviceName: mapa-test
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+              name: mapa-test
+              port:
+                number: 8000
   - host: mapa.prahounakole.cz
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: mapa
+              port:
+                number: 8000
   - host: klub.prahounakole.cz
     http:
       paths:
-      - backend:
-          serviceName: klub-automat
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: klub-automat
+              port:
+                number: 8000
   - host: automat.klub-pratel.cz
     http:
       paths:
-      - backend:
-          serviceName: klub-automat
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: klub-automat
+              port:
+                number: 8000
   - host: klub.auto-mat.cz
     http:
       paths:
-      - backend:
-          serviceName: klub-automat
-          servicePort: 8000
-  - host: investigace.klub-pratel.cz
-    http:
-      paths:
-      - backend:
-          serviceName: klub-investigace
-          servicePort: 8000
-  - host: brontosaurus.klub-pratel.cz
-    http:
-      paths:
-      - backend:
-          serviceName: klub-brontosaurus
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: klub-automat
+              port:
+                number: 8000
   - host: test.klub-pratel.cz
     http:
       paths:
-      - backend:
-          serviceName: klub-test
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: klub-test
+              port:
+                number: 8000
   - host: automat.passbolt.klub-pratel.cz
     http:
       paths:
-      - backend:
-          serviceName: passbolt
-          servicePort: 80
-  - host: automat.nocodb.klub-pratel.cz
-    http:
-      paths:
-      - backend:
-          serviceName: nocodb
-          servicePort: 8080
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: passbolt
+              port:
+                number: 80
   - host: breclav.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: brno.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: budejovice.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: hradec.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: jablonec.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: jihlava.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: jindrichuv-hradec.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: karvina.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: liberec.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: olomouc.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: opava.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: ostrava.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: otrokovice.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: pardubice.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: plzen.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: prerov.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: hradiste.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: usti.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: zlin.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mapa
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mapa
+            port:
+                number: 8000
   - host: limesurvey.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: limesurvey
-          servicePort: 80
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: limesurvey
+            port:
+                number: 80
   - host: embedded-map.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: embedded-map
-          servicePort: 80
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: embedded-map
+            port:
+                number: 80
   - host: embedded-map-test.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: embedded-map-test
-          servicePort: 80
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: embedded-map-test
+            port:
+                number: 80
   - host: test.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk-test
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk-test
+            port:
+                number: 8000
   - host: leden2022.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2015.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2016.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2017.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2018.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2019.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2020.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2021.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk2022.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: bank.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: dpnk.dopracenakole.cz
     http:
       paths:
-      - backend:
-          serviceName: dpnk
-          servicePort: 8000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: selenium-hub.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: selenium-hub
-          servicePort: 4444
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: selenium-hub
+            port:
+                number: 4444
   - host: metabase.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: metabase
-          servicePort: 3000
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: metabase
+            port:
+                number: 3000
   - host: mnk-osm-tiles.dopracenakole.net
     http:
       paths:
-      - backend:
-          serviceName: mnk-rendering
-          servicePort: 80
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mnk-rendering
+            port:
+                number: 80
