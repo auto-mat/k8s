@@ -21,6 +21,7 @@
 #@    "CYCLESTREETS_API_KEY",
 #@ ]
 
+#@ port = 8000
 #@ def mapa(app_name, image, config_map, secret_map):
 apiVersion: v1
 items:
@@ -30,9 +31,9 @@ items:
     name: #@ app_name
   spec:
     ports:
-    - name: "8600"
-      port: 8600
-      targetPort: 8000
+    - name: #@ port
+      port: #@ port
+      targetPort: #@ port
     selector:
       app: #@ app_name
   status:
@@ -55,7 +56,7 @@ items:
         - image: #@ image
           name: #@ app_name
           ports:
-          - containerPort: 8080
+          - containerPort: #@ port
           resources: {}
           env:
           #@ for var in config_vars:
