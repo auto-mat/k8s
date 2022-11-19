@@ -34,6 +34,8 @@
 #@    "NEW_RELIC_LICENSE_KEY",
 #@    "REDIS_URL",
 #@ ]
+
+#@ port = 8000
 #@ load("redis.lib.yml", "redis")
 #@ load("@ytt:template", "template")
 #@ def klub_web(app_name, image, config_map, secret_map, replicas, celery_replicas, celery_log_level="info"):
@@ -45,9 +47,9 @@ items:
     name: #@ app_name
   spec:
     ports:
-    - name: "8600"
-      port: 8600
-      targetPort: 8000
+    - name: #@ port
+      port: #@ port
+      targetPort: #@ port
     selector:
       app: #@ app_name
   status:
@@ -70,7 +72,7 @@ items:
         - image: #@ image
           name: #@ app_name
           ports:
-          - containerPort: 8080
+          - containerPort: #@ port
           resources: {}
           command: ["/home/aplikace/docker-entrypoint.sh"]
           env:
