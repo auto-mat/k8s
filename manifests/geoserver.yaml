@@ -12,8 +12,8 @@ items:
     name: geoserver
   spec:
     ports:
-    - name: "8600"
-      port: 8600
+    - name: "8080"
+      port: 8080
       targetPort: 8080
     selector:
       app: geoserver
