@@ -64,6 +64,7 @@
 #@  "FAKTUROID_PRODUCTION_API_KEY",
 #@  "FAKTUROID_PRODUCTION_USER_AGENT_HEADER",
 #@ ]
+#@ port = 8000
 
 #@ load("redis.lib.yml", "redis")
 #@ load("@ytt:template", "template")
@@ -77,8 +78,8 @@ items:
   spec:
     ports:
     - name: "8000"
-      port: 8000
-      targetPort: 8000
+      port: #@ port
+      targetPort: #@ port
     selector:
       app: #@ app_name
   status:
@@ -101,7 +102,7 @@ items:
         - image: #@ image
           name: #@ app_name
           ports:
-          - containerPort: 8000
+          - containerPort: #@ port
           securityContext:
             privileged: true
             capabilities:
