@@ -31,7 +31,7 @@ items:
       name: #@ app_name
     spec:
       ports:
-        - name: #@ port
+        - name: "80"
           port: #@ port
           targetPort: #@ port
       selector:
