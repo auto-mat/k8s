@@ -19,6 +19,7 @@ spec:
     - automat.passbolt.klub-pratel.cz
     - automat.klub-pratel.cz
     - test.klub-pratel.cz
+    - investigace.klub-pratel.cz
     - test.dopracenakole.cz
     - dpnk.dopracenakole.cz
     - dpnk2021.dopracenakole.cz
@@ -108,6 +109,16 @@ spec:
         backend:
          service:
               name: klub-automat
+              port:
+                number: 8000
+  - host: investigace.klub-pratel.cz
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: investigace-automat
               port:
                 number: 8000
   - host: klub.auto-mat.cz
