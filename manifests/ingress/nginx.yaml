@@ -118,7 +118,7 @@ spec:
         path: "/"
         backend:
          service:
-              name: investigace-automat
+              name: klub-investigace
               port:
                 number: 8000
   - host: klub.auto-mat.cz
