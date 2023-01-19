@@ -31,7 +31,6 @@ spec:
     - dpnk2015.dopracenakole.cz
     - leden2022.dopracenakole.cz
     - dpnk2022.dopracenakole.cz
-    - vyzva2022.dopracenakole.cz
     - bank.dopracenakole.cz
     - mapa-test.prahounakole.cz
     - breclav.dopracenakole.net
@@ -463,16 +462,6 @@ spec:
             port:
                 number: 8000
   - host: dpnk2022.dopracenakole.cz
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: dpnk
-            port:
-                number: 8000
-  - host: vyzva2022.dopracenakole.cz
     http:
       paths:
       - pathType: Prefix
