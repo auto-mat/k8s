@@ -42,7 +42,7 @@ data:
   acmeEABKeyId: ""
   acmeEABMacKey: ""
   debug: "false"
-  email: ""
+  email: "timothy.hobbs@auto-mat.cz"
   experimentalSmartSort: "false"
   metrics: "true"
   onDemandTLS: "true"
