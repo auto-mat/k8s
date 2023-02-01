@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: scitace
@@ -10,7 +10,7 @@ spec:
     spec:
       template:
         spec:
-          volumes:                          
+          volumes:
             - name: dshm
               emptyDir:
                 medium: Memory
@@ -20,7 +20,7 @@ spec:
             args:
             - /bin/sh
             - /scitace/generate.sh
-            volumeMounts:                 
+            volumeMounts:
               - mountPath: /dev/shm
                 name: dshm
             env:
