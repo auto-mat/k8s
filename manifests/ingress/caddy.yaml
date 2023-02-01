@@ -5,57 +5,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: caddy
 spec:
-  tls:
-  - hosts:
-    - geoserver1.prahounakole.cz
-    - mapa.prahounakole.cz
-    - klub.prahounakole.cz
-    - klub.auto-mat.cz
-    - automat.passbolt.klub-pratel.cz
-    - automat.klub-pratel.cz
-    - test.klub-pratel.cz
-    - investigace.klub-pratel.cz
-    - test.dopracenakole.cz
-    - dpnk.dopracenakole.cz
-    - dpnk2021.dopracenakole.cz
-    - dpnk2020.dopracenakole.cz
-    - dpnk2019.dopracenakole.cz
-    - dpnk2018.dopracenakole.cz
-    - dpnk2017.dopracenakole.cz
-    - dpnk2016.dopracenakole.cz
-    - dpnk2015.dopracenakole.cz
-    - leden2022.dopracenakole.cz
-    - dpnk2022.dopracenakole.cz
-    - vyzva2022.dopracenakole.cz
-    - bank.dopracenakole.cz
-    - mapa-test.prahounakole.cz
-    - breclav.dopracenakole.net
-    - brno.dopracenakole.net
-    - budejovice.dopracenakole.net
-    - hradec.dopracenakole.net
-    - jablonec.dopracenakole.net
-    - jablonec.dopracenakole.net
-    - jindrichuv-hradec.dopracenakole.net
-    - jihlava.dopracenakole.net
-    - karvina.dopracenakole.net
-    - liberec.dopracenakole.net
-    - olomouc.dopracenakole.net
-    - opava.dopracenakole.net
-    - ostrava.dopracenakole.net
-    - otrokovice.dopracenakole.net
-    - pardubice.dopracenakole.net
-    - plzen.dopracenakole.net
-    - prerov.dopracenakole.net
-    - hradiste.dopracenakole.net
-    - usti.dopracenakole.net
-    - zlin.dopracenakole.net
-    - limesurvey.dopracenakole.net
-    - embedded-map.dopracenakole.net
-    - embedded-map-test.dopracenakole.net
-    - selenium-hub.dopracenakole.net
-    - metabase.dopracenakole.net
-    - mnk-osm-tiles.dopracenakole.net
-    secretName: ngnix-kubernetes-tls-2
   rules:
   - host: geoserver1.prahounakole.cz
     http:
