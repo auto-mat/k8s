@@ -1,0 +1,18 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: docker-env-geoserver-env
+  namespace: default
+data:
+  ENABLE_JSONP: 'true'
+  FOOTPRINTS_DATA_DIR: /opt/footprints_dir
+  GEOSERVER_CSRF_DISABLED: 'true'
+  GEOSERVER_DATA_DIR: /opt/geoserver/data_dir
+  GEOWEBCACHE_CACHE_DIR: /opt/geoserver/data_dir/gwc
+  INITIAL_MEMORY: 2G
+  MAXIMUM_MEMORY: 4G
+  MAX_FILTER_RULES: '20'
+  OPTIMIZE_LINE_WIDTH: 'false'
+  SAMPLE_DATA: 'false'
+  STABLE_EXTENSIONS: ''''''
+  XFRAME_OPTIONS: '''false'''
