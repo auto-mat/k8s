@@ -45,7 +45,7 @@ data:
   email: ""
   experimentalSmartSort: "false"
   metrics: "true"
-  onDemandTLS: "false"
+  onDemandTLS: "true"
   proxyProtocol: "false"
 ---
 # Source: caddy-ingress-controller/templates/clusterrole.yaml
