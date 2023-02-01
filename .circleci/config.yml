@@ -28,7 +28,7 @@ jobs:
           name: Install doctl
           command: |
             wget https://github.com/digitalocean/doctl/releases/download/v1.92.0/doctl-1.92.0-linux-amd64.tar.gz
-            tar xf ~/doctl-1.92.0-linux-amd64.tar.gz
+            tar xf ./doctl-1.92.0-linux-amd64.tar.gz
             chmod u+x ./doctl
             echo ${KUBERNETES_TOKEN} | doctl auth init --context
             doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${KUBERNETES_CLUSTER_NAME}
