@@ -30,7 +30,7 @@ jobs:
             wget https://github.com/digitalocean/doctl/releases/download/v1.92.0/doctl-1.92.0-linux-amd64.tar.gz
             tar xf ./doctl-1.92.0-linux-amd64.tar.gz
             chmod u+x ./doctl
-            echo ${KUBERNETES_TOKEN} | ./doctl auth init --context
+            echo ${KUBERNETES_TOKEN} | ./doctl auth init
             ./doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${KUBERNETES_CLUSTER_NAME}
       - run:
           name: Deploy Code
