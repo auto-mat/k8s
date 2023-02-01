@@ -1,0 +1,3 @@
+[submodule "manifests/ingress/caddy-ingress-src"]
+	path = manifests/ingress/caddy-ingress-src
+	url = https://github.com/caddyserver/ingress.git

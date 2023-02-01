@@ -1,8 +1,11 @@
 Followed:
 -
 
-[DO tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-on-digitalocean-kubernetes-using-helm)
+[Caddy tutorial](https://github.com/caddyserver/ingress)
 
 ```
-helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
+helm template caddy-ingress ./caddy-ingress-src/charts/caddy-ingress-controller \
+  --namespace=caddy-system \
+    > caddy-ingress.yaml
+
 ```
