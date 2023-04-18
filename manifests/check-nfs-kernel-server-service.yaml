@@ -26,6 +26,11 @@ spec:
                 secretKeyRef:
                   name: check-nfs-kernel-server-service-access
                   key: DO_KUBERNETES_CLUSTER_ID
+            - name: DO_KUBERNETES_CLUSTER_CREDENTIALS_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: check-nfs-kernel-server-service-access
+                  key: DO_KUBERNETES_CLUSTER_CREDENTIALS_EXPIRY
             - name: DO_FLOATING_IP_ADDRESS
               valueFrom:
                 secretKeyRef:
