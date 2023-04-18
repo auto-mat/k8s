@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: check-nfs-kernel-server-service
-            image: 439267276348970/check-k8-nfs-kernel-server-service:5
+            image: 439267276348970/check-k8-nfs-kernel-server-service:6
             args:
             - check_host_nfs_service.sh
             env:
