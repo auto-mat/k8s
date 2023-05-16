@@ -486,3 +486,13 @@ spec:
             name: mnk-rendering
             port:
                 number: 80
+  - host: rtwbb-test.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ride-to-work-by-bike-frontend-test
+            port:
+                number: 80
