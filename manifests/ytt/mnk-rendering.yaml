@@ -95,8 +95,8 @@ items:
     name: mnk-rendering
   spec:
     ports:
-    - name: "8600"
-      port: 8600
+    - name: "80"
+      port: 80
       targetPort: 80
     selector:
       app: mnk-rendering
