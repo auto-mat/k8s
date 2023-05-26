@@ -1,5 +1,5 @@
 #@ app_name = "embedded-map"
-#@ image = "439267276348970/embedded-map:23"
+#@ image = "439267276348970/embedded-map:24"
 #@ config_map = "mnk-env"
 #@ load("embedded-map.lib.yml", "embeddedmap")
 --- #@ embeddedmap(app_name, image, 1, config_map)
