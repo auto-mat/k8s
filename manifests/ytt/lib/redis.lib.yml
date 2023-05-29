@@ -39,7 +39,7 @@
             - containerPort: 6379
             resources:
               limits:
-                cpu: "1000"
+                cpu: "800"
             volumeMounts:
             - mountPath: /redis-master-data
               name: #@ service_name + "-data"
