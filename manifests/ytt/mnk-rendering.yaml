@@ -12,7 +12,12 @@ spec:
   storageClassName: "nfs"
   mountOptions:
     - hard
-    - nfsvers=4.1
+    - nfsvers=4.2
+    - noacl
+    - nocto
+    - noatime
+    - nodiratime
+    - nconnect=16
   nfs:
     path: /mnk-rendering-data
     server: #@ data.values.nfsServer.clusterIP
@@ -41,7 +46,7 @@ spec:
   storageClassName: "nfs"
   mountOptions:
     - hard
-    - nfsvers=4.1
+    - nfsvers=4.2
   nfs:
     path: /mnk-rendering-cache
     server: #@ data.values.nfsServer.clusterIP
@@ -70,7 +75,7 @@ spec:
   storageClassName: "nfs"
   mountOptions:
     - hard
-    - nfsvers=4.1
+    - nfsvers=4.2
   nfs:
     path: /mnk-rendering-conf
     server: #@ data.values.nfsServer.clusterIP
