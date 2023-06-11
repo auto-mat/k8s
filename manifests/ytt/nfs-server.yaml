@@ -47,7 +47,9 @@ items:
           "/exports",
           "/exports/mnk-rendering-conf",
           "/exports/mnk-rendering-cache",
-          "/exports/mnk-rendering-data"
+          "/exports/mnk-rendering-data",
+          "/exports/qgis-server-plugins",
+          "/exports/qgis-server-publish",
           ]
           volumeMounts:
           - name: nfs-server-persistent-storage
