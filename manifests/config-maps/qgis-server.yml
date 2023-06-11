@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: qgis-server-env
+  namespace: default
+data:
+  QGIS_SERVER_IGNORE_BAD_LAYERS: "1"
+  QGIS_SERVER_LOG_LEVEL: "0"
+  QGIS_PLUGINPATH: "/usr/lib/qgis/python/plugins/"
+  QGIS_SERVER_PARALLEL_RENDERING: "true"
