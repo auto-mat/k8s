@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: gisquick-env
+  namespace: default
+data:
+  QGIS_SERVER_IGNORE_BAD_LAYERS: "1"
+  QGIS_SERVER_LOG_LEVEL: "0"
+  QGIS_PLUGINPATH: "/usr/lib/qgis/python/plugins/"
+  QGIS_SERVER_PARALLEL_RENDERING: "true"
+  GISQUICK_PROJECTS_ROOT: "/publish"
+  GISQUICK_MAPSERVER_URL: "http://caddy:10080/qgis-server"
+  GISQUICK_LANGUAGE: "en-us"
+  GISQUICK_SIGNUP_API: "True"
+  AUTH_SESSION_EXPIRATION: "96h"
+  WEB_SITE_URL: "https://gisquick.dopracenakole.net"
+  POSTGRES_SSL_MODE: "require"
