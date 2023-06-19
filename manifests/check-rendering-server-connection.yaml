@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: dopravni-screenshots
-            image: auto0mat/check-rendering-server-connection:0
+            image: auto0mat/check-rendering-server-connection:1
             args:
             - /bin/sh
             - screenshot.sh
