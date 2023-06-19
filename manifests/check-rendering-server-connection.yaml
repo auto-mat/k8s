@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: check-rendering-server-connection
+spec:
+  schedule: "30 6,14 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dopravni-screenshots
+            image: auto0mat/check-rendering-server-connection:0
+            args:
+            - /bin/sh
+            - screenshot.sh
+            env:
+            - name: AWS_DEFAULT_REGION
+              value: eu-west-1
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: aws-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: aws-key
+            - name: RECIPIENTS
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: recipients
+          restartPolicy: Never
