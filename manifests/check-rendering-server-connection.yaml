@@ -23,15 +23,25 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: check-rendering-server-connection-access
-                  key: aws-key-id
+                  key: AWS-KEY-ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: check-rendering-server-connection-access
-                  key: aws-key
+                  key: AWS-KEY
             - name: RECIPIENTS
               valueFrom:
                 secretKeyRef:
                   name: check-rendering-server-connection-access
-                  key: recipients
+                  key: RECIPIENTS
+            - name: SERVER_ADDR
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: SERVER_ADDR
+            - name: SERVER_SSH_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: SERVER_SSH_PORT
           restartPolicy: Never
