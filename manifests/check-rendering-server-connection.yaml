@@ -15,7 +15,7 @@ spec:
             image: auto0mat/check-rendering-server-connection:1
             args:
             - /bin/sh
-            - screenshot.sh
+            - check_rendering_server_connection.sh
             env:
             - name: AWS_DEFAULT_REGION
               value: eu-west-1
