@@ -408,6 +408,12 @@ items:
           volumeMounts:
           - name: gisquick-web-app
             mountPath: /assets
+        - name: copy-gisquick-web-app-map-dir-content
+          image: busybox:latest
+          command: ["sh", "-c", "while [ ! -d /assets/map/map/ ]; do sleep 2; done; mv /assets/map/map/* /assets/map/; rmdir /assets/map/map/"]
+          volumeMounts:
+          - name: gisquick-web-app
+            mountPath: /assets
         volumes:
         - name: gisquick-caddy-conf
           persistentVolumeClaim:
