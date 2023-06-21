@@ -1,0 +1,421 @@
+#@ load("@ytt:data", "data")
+#@ load("redis.lib.yml", "redis")
+#@ load("@ytt:template", "template")
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: qgis-server-publish-pv-volume
+spec:
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.2
+  nfs:
+    path: /qgis-server-publish
+    server: #@ data.values.nfsServer.clusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qgis-server-publish-pv-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
+  storageClassName: "nfs"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: qgis-server-plugins-pv-volume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.2
+  nfs:
+    path: /qgis-server-plugins
+    server: #@ data.values.nfsServer.clusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qgis-server-plugins-pv-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: "nfs"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: gisquick-caddy-conf-pv-volume
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.2
+  nfs:
+    path: /gisquick-caddy-conf
+    server: #@ data.values.nfsServer.clusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gisquick-caddy-conf-pv-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+  storageClassName: "nfs"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: gisquick-web-app-pv-volume
+spec:
+  capacity:
+    storage: 512Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.2
+  nfs:
+    path: /gisquick-web-app
+    server: #@ data.values.nfsServer.clusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gisquick-web-app-pv-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 512Mi
+  storageClassName: "nfs"
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: qgis-server
+  spec:
+    ports:
+    - name: "5555"
+      port: 5555
+    selector:
+      app: qgis-server
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: qgis-server
+    name: qgis-server
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: qgis-server
+    template:
+      metadata:
+        labels:
+          app: qgis-server
+      spec:
+        containers:
+        - image: gisquick/qgis-server:3.22
+          name: qgis-server
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: QGIS_SERVER_IGNORE_BAD_LAYERS
+              valueFrom:
+                configMapKeyRef:
+                  key: QGIS_SERVER_IGNORE_BAD_LAYERS
+                  name: gisquick-env
+            - name: QGIS_SERVER_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: QGIS_SERVER_LOG_LEVEL
+                  name: gisquick-env
+            - name: QGIS_PLUGINPATH
+              valueFrom:
+                configMapKeyRef:
+                  key: QGIS_PLUGINPATH
+                  name: gisquick-env
+            - name: QGIS_SERVER_PARALLEL_RENDERING
+              valueFrom:
+                configMapKeyRef:
+                  key: QGIS_SERVER_PARALLEL_RENDERING
+                  name: gisquick-env
+          ports:
+          - containerPort: 5555
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 3Gi
+          volumeMounts:
+          - name: qgis-server-publish
+            mountPath: /publish
+          - name: qgis-server-plugins
+            mountPath: /usr/lib/qgis/python/plugins
+        volumes:
+        - name: qgis-server-publish
+          persistentVolumeClaim:
+            claimName: qgis-server-publish-pv-claim
+        - name: qgis-server-plugins
+          persistentVolumeClaim:
+            claimName: qgis-server-plugins-pv-claim
+  status: {}
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: gisquick-server
+  spec:
+    ports:
+    - name: "3000"
+      port: 3000
+    selector:
+      app: gisquick-server
+  status:
+    loadBalancer: {}
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: gisquick-server
+    name: gisquick-server
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: gisquick-server
+    template:
+      metadata:
+        labels:
+          app: gisquick-server
+      spec:
+        containers:
+        - image: 439267276348970/gisquick-server:11
+          name: gisquick-server
+          imagePullPolicy: "IfNotPresent"
+          ports:
+          - containerPort: 3000
+          resources: {}
+          volumeMounts:
+          - mountPath: /publish
+            name: qgis-server-publish
+          env:
+            - name: GISQUICK_PROJECTS_ROOT
+              valueFrom:
+                configMapKeyRef:
+                  key: GISQUICK_PROJECTS_ROOT
+                  name: gisquick-env
+            - name: GISQUICK_MAPSERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: GISQUICK_MAPSERVER_URL
+                  name: gisquick-env
+            - name: MAPSERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: GISQUICK_MAPSERVER_URL
+                  name: gisquick-env
+            - name: GISQUICK_LANGUAGE
+              valueFrom:
+                configMapKeyRef:
+                  key: GISQUICK_LANGUAGE
+                  name: gisquick-env
+            - name: GISQUICK_SIGNUP_API
+              valueFrom:
+                configMapKeyRef:
+                  key: GISQUICK_SIGNUP_API
+                  name: gisquick-env
+            - name: AUTH_SESSION_EXPIRATION
+              valueFrom:
+                configMapKeyRef:
+                  key: AUTH_SESSION_EXPIRATION
+                  name: gisquick-env
+            - name: AUTH_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: AUTH_SECRET_KEY
+                  name: gisquick-access
+            - name: WEB_SITE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: WEB_SITE_URL
+                  name: gisquick-env
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_HOST
+                  name: gisquick-access
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB
+                  name: gisquick-access
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+                  name: gisquick-access
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: gisquick-access
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PORT
+                  name: gisquick-access
+            - name: POSTGRES_SSL_MODE
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_SSL_MODE
+                  name: gisquick-env
+            - name: POSTGRES_STATEMENT_CACHE_MODE
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_STATEMENT_CACHE_MODE
+                  name: gisquick-env
+            - name: REDIS_ADDR
+              valueFrom:
+                secretKeyRef:
+                  key: REDIS_ADDR
+                  name: gisquick-access
+        initContainers:
+        - name: set-gisquick-publish-dir-permission
+          image: busybox:latest
+          command: ["sh", "-c", "chmod -R 777 /mnt"]
+          volumeMounts:
+          - name: qgis-server-publish
+            mountPath: /mnt
+        volumes:
+        - name: qgis-server-publish
+          persistentVolumeClaim:
+            claimName: qgis-server-publish-pv-claim
+  status: {}
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: gisquick-caddy
+  spec:
+    ports:
+    - name: "80"
+      port: 80
+    - name: "2019"
+      port: 2019
+    - name: "10080"
+      port: 10080
+    selector:
+      app: gisquick-caddy
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: gisquick-caddy
+    name: gisquick-caddy
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: gisquick-caddy
+    template:
+      metadata:
+        labels:
+          app: gisquick-caddy
+      spec:
+        containers:
+        - image: caddy:2-alpine
+          name: caddy
+          imagePullPolicy: "IfNotPresent"
+          ports:
+          - containerPort: 80
+          resources: {}
+          env:
+            - name: GISQUICK_SERVER_ADDR
+              valueFrom:
+                configMapKeyRef:
+                  key: GISQUICK_SERVER_ADDR
+                  name: gisquick-env
+            - name: QGIS_SERVER_ADDR
+              valueFrom:
+                configMapKeyRef:
+                  key: QGIS_SERVER_ADDR
+                  name: gisquick-env
+          volumeMounts:
+          - name: gisquick-caddy-conf
+            mountPath: /etc/caddy
+          - name: gisquick-web-app
+            mountPath: /var/www/html/
+        initContainers:
+        - name: get-caddy-conf
+          image: busybox:latest
+          command: ["sh", "-c", "cd /mnt; wget -O Caddyfile 'https://raw.githubusercontent.com/auto-mat/gisquick-caddy/main/Caddyfile'"]
+          volumeMounts:
+          - name: gisquick-caddy-conf
+            mountPath: /mnt
+        - name: gisquick-web-map
+          image: gisquick/web-map
+          volumeMounts:
+          - name: gisquick-web-app
+            mountPath: /assets
+        - name: gisquick-web-settings
+          image: gisquick/web-settings
+          volumeMounts:
+          - name: gisquick-web-app
+            mountPath: /assets
+        - name: gisquick-web-accounts
+          image: gisquick/web-accounts
+          command: ["copy-assets", "/var/www", "/assets/accounts"]
+          volumeMounts:
+          - name: gisquick-web-app
+            mountPath: /assets
+        volumes:
+        - name: gisquick-caddy-conf
+          persistentVolumeClaim:
+            claimName: gisquick-caddy-conf-pv-claim
+        - name: gisquick-web-app
+          persistentVolumeClaim:
+            claimName: gisquick-web-app-pv-claim
+  status: {}
+- #@ template.replace(redis("gisquick-redis-broker"))
+kind: List
+metadata: {}

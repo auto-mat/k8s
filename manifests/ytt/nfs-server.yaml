@@ -50,6 +50,8 @@ items:
           "/exports/mnk-rendering-data",
           "/exports/qgis-server-plugins",
           "/exports/qgis-server-publish",
+          "/exports/gisquick-caddy-conf",
+          "/exports/gisquick-web-app",
           ]
           volumeMounts:
           - name: nfs-server-persistent-storage
