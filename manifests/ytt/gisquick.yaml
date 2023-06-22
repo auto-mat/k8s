@@ -226,7 +226,7 @@ items:
           app: gisquick-server
       spec:
         containers:
-        - image: 439267276348970/gisquick-server:11
+        - image: 439267276348970/gisquick-server:17
           name: gisquick-server
           imagePullPolicy: "IfNotPresent"
           ports:
