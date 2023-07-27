@@ -33,6 +33,9 @@
 #@    "NEW_RELIC_APP_NAME",
 #@    "NEW_RELIC_LICENSE_KEY",
 #@    "REDIS_URL",
+#@    "DAKTELA_USERNAME",
+#@    "DAKTELA_PASSWORD",
+#@    "DAKTELA_BASE_REST_API_URL",
 #@ ]
 
 #@ port = 8000
