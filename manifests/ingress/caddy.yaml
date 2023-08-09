@@ -56,16 +56,6 @@ spec:
               name: klub-automat
               port:
                 number: 8000
-  - host: investigace.klub-pratel.cz
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-         service:
-              name: klub-investigace
-              port:
-                number: 8000
   - host: klub.auto-mat.cz
     http:
       paths:
