@@ -128,6 +128,21 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - test $(($(date +%s) - $(stat -c %Y /tmp/worker_heartbeat))) -lt 10
+            initialDelaySeconds: 30
+            periodSeconds: 120
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - -e /tmp/worker_ready
+            initialDelaySeconds: 30
+            periodSeconds: 120
   status: {}
 
 - apiVersion: apps/v1
