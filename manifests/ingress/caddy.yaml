@@ -486,6 +486,16 @@ spec:
             name: mnk-rendering
             port:
                 number: 80
+  - host: tiles.prahounakole.cz
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mnk-rendering
+            port:
+                number: 80
   - host: rtwbb-test.dopracenakole.net
     http:
       paths:
