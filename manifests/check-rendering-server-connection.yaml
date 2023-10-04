@@ -16,8 +16,6 @@ spec:
             args:
             - /bin/sh
             - check_rendering_server_connection.sh
-	    securityContext:
-	      privileged: true
             env:
             - name: AWS_DEFAULT_REGION
               value: eu-west-1
