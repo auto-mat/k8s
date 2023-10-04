@@ -11,8 +11,8 @@ spec:
       template:
         spec:
           containers:
-          - name: dopravni-screenshots
-            image: auto0mat/check-rendering-server-connection:1
+          - name: check-rendering-server-connection
+            image: auto0mat/check-rendering-server-connection:2
             args:
             - /bin/sh
             - check_rendering_server_connection.sh
