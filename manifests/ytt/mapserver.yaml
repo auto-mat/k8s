@@ -1,0 +1,158 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:template", "template")
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mapserver-map-files-pv-volume
+spec:
+  capacity:
+    storage: 256Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  mountOptions:
+    - hard
+    - nfsvers=4.2
+  nfs:
+    path: /mapserver-map-files
+    server: #@ data.values.nfsServer.clusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mapserver-map-files-pv-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 256Mi
+  storageClassName: "nfs"
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: mapserver
+  spec:
+    ports:
+    - name: "80"
+      port: 80
+    selector:
+      app: mapserver
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: mapserver
+    name: mapserver
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mapserver
+    template:
+      metadata:
+        labels:
+          app: mapserver
+      spec:
+        containers:
+        - image: auto0mat/mapserver:0
+          name: mapserver
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: MAPSERVER_MAP_FILE_DIR
+              valueFrom:
+                configMapKeyRef:
+                  key: MAPSERVER_MAP_FILE_DIR
+                  name: mapserver-env
+            - name: MS_DEBUGLEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: MS_DEBUGLEVEL
+                  name: mapserver-env
+            - name: MS_ERRORFILE
+              valueFrom:
+                configMapKeyRef:
+                  key: MS_ERRORFILE
+                  name: mapserver-env
+            - name: MAPSERVER_CONFIG_FILE
+              valueFrom:
+                configMapKeyRef:
+                  key: MAPSERVER_CONFIG_FILE
+                  name: mapserver-env
+            - name: MAPSERVER_BASE_PATH
+              valueFrom:
+                configMapKeyRef:
+                  key: MAPSERVER_BASE_PATH
+                  name: mapserver-env
+            - name: MAX_REQUESTS_PER_PROCESS
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_REQUESTS_PER_PROCESS
+                  name: mapserver-env
+            - name: MIN_PROCESSES
+              valueFrom:
+                configMapKeyRef:
+                  key: MIN_PROCESSES
+                  name: mapserver-env
+            - name: MAX_PROCESSES
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_PROCESSES
+                  name: mapserver-env
+            - name: BUSY_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  key: BUSY_TIMEOUT
+                  name: mapserver-env
+            - name: IDLE_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  key: IDLE_TIMEOUT
+                  name: mapserver-env
+            - name: IO_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  key: IO_TIMEOUT
+                  name: mapserver-env
+            - name: APACHE_LIMIT_REQUEST_LINE
+              valueFrom:
+                configMapKeyRef:
+                  key: APACHE_LIMIT_REQUEST_LINE
+                  name: mapserver-env
+          ports:
+          - containerPort: 80
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 3Gi
+          volumeMounts:
+          - name: mapserver-map-files
+            mountPath: /opt/mapserver
+        initContainers:
+        - name: get-mapserver-map-file
+          image: busybox:latest
+          env:
+            - name: MAPSERVER_MAP_FILE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: MAPSERVER_MAP_FILE_URL
+                  name: mapserver-env
+          command: ["sh", "-c", "cd /mnt; wget -O base_maps.map $(MAPSERVER_MAP_FILE_URL)"]
+          volumeMounts:
+          - name: mapserver-map-files
+            mountPath: /mnt
+        volumes:
+        - name: mapserver-map-files
+          persistentVolumeClaim:
+            claimName: mapserver-map-files-pv-claim
+  status: {}
+kind: List
+metadata: {}

@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mapserver-env
+  namespace: default
+data:
+  MAPSERVER_MAP_FILE_DIR: "/opt/mapserver/"
+  MS_DEBUGLEVEL: "0"
+  MS_ERRORFILE: "stderr"
+  MAPSERVER_CONFIG_FILE: "/etc/mapserver.conf"
+  MAPSERVER_BASE_PATH: ""
+  MAX_REQUESTS_PER_PROCESS: "1000"
+  MIN_PROCESSES: "1"
+  MAX_PROCESSES: "5"
+  BUSY_TIMEOUT: "300"
+  IDLE_TIMEOUT: "300"
+  IO_TIMEOUT: "40"
+  APACHE_LIMIT_REQUEST_LINE: "8190"
+  MAPSERVER_MAP_FILE_URL: "https://raw.githubusercontent.com/auto-mat/mapserver/main/mapserver/base_maps.map"
