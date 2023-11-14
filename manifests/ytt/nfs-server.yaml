@@ -52,6 +52,7 @@ items:
           "/exports/qgis-server-publish",
           "/exports/gisquick-caddy-conf",
           "/exports/gisquick-web-app",
+          "/exports/mapserver-map-files",
           ]
           volumeMounts:
           - name: nfs-server-persistent-storage
