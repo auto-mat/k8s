@@ -36,4 +36,6 @@ spec:
                 secretKeyRef:
                   name: check-nfs-kernel-server-service-access
                   key: DO_FLOATING_IP_ADDRESS
+            - name: DO_BASE_API_URL
+              value: "https://api.digitalocean.com/v2"
           restartPolicy: Never
