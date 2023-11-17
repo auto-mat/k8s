@@ -37,6 +37,7 @@ items:
   metadata:
     name: mapserver
   spec:
+    type: NodePort
     ports:
     - name: "80"
       port: 80
