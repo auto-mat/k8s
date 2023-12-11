@@ -180,7 +180,7 @@ items:
             requests:
               memory: 512Mi
             limits:
-              memory: 3Gi
+              memory: 5Gi
           volumeMounts:
           - name: qgis-server-publish
             mountPath: /publish
