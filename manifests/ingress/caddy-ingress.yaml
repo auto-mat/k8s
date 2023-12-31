@@ -45,7 +45,7 @@ data:
   email: "timothy.hobbs@auto-mat.cz"
   experimentalSmartSort: "false"
   metrics: "true"
-  onDemandTLS: "true"
+  onDemandTLS: "false"
   proxyProtocol: "false"
 ---
 # Source: caddy-ingress-controller/templates/clusterrole.yaml
