@@ -1,0 +1,82 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mnk-gisquick-env
+  namespace: default
+data:
+  QGIS_SERVER_IGNORE_BAD_LAYERS: "1"
+  QGIS_SERVER_LOG_LEVEL: "0"
+  QGIS_PLUGINPATH: "/usr/lib/qgis/python/plugins/"
+  QGIS_SERVER_PARALLEL_RENDERING: "true"
+  GISQUICK_PROJECTS_ROOT: "/publish"
+  GISQUICK_MAPSERVER_URL: "http://mnk-gisquick-caddy:10080/qgis-server"
+  GISQUICK_LANGUAGE: "en-us"
+  GISQUICK_SIGNUP_API: "False"
+  AUTH_SESSION_EXPIRATION: "96h"
+  WEB_SITE_URL: "https://mnk-gisquick.dopracenakole.net"
+  POSTGRES_SSL_MODE: "require"
+  GISQUICK_SERVER_ADDR: "http://mnk-gisquick-server:3000"
+  QGIS_SERVER_ADDR: "http://qgis-server:5555"
+  POSTGRES_STATEMENT_CACHE_MODE: "describe"
+  COMMENTS_APP_DB_TYPE: "pgsql"
+  NEXTAUTH_URL: "https://comments-app.dopracenakole.net"
+  HOST: "https://comments-app.dopracenakole.net"
+  MNK_GISQUICK_RSS_FEED_SERVER_ADDR: "http://mnk-gisquick-rss-app:8010"
+  GISQUICK_LANDING_PROJECT: ""
+  GISQUICK_MAP_CACHE_ROOT: "/cache"
+  GISQUICK_THUMBNAILS_ROOT: "/thumbnails"
+  config.yaml: |
+    baseUrl: https://mnk.tukan.zip
+    owsUrl: https://mnk.tukan.zip/api/map/ows/jerrytm/mnk
+    projectUrl: https://mnk.tukan.zip/api/map/project/jerrytm/mnk
+    defaultProjection: EPSG:3857
+    defaultExtent: [0, 0, 0, 0]
+    bookmarks:
+      group: Města
+      defaultCity: prague
+    paths:
+      /feed/closures:
+        type: wfs
+        title: Městem na kole - aktuální uzavírky
+        description: Aktuální uzavírky cyklostezek a cyklotras
+        language: cs-cz
+        options:
+          id: id
+          title: name
+          description: desc
+          updated_at: last_modification
+        params:
+          TYPENAME: mnk_poi_uzavirky
+          SORTBY: last_modification DESC
+          MAXFEATURES: 10
+          EXP_FILTER: '"marker_id" = 18 AND "status_id" IN (1,4,5,9)'
+      /feed/new_features:
+        type: wfs
+        title: Městem na kole - novinky v mapě
+        description: Novinky v mapě
+        language: cs-cz
+        options:
+          id: id
+          title: name
+          description: desc
+          updated_at: last_modification
+        params:
+          SORTBY: last_modification DESC
+          MAXFEATURES: 10
+          EXP_FILTER: '"status_id" IN (1,4,5,9)'
+          TYPENAME:
+            - mnk_poi_trasy_informace
+            - mnk_poi_cyklopodniky
+            - mnk_poi_fotografie_tras
+            - mnk_poi_stojany_uschova_kol
+            - mnk_poi_verejna_doprava
+            - mnk_poi_problemy_infrastruktura
+            - mnk_poi_uzavirky
+      /feed/comments:
+        type: comments
+        title: Komentáře z webu Městem na kole
+        description: Poslední komentáře na webu Městem na kole
+        language: cs-cz
+        options:
+          url: https://comments.tukan.zip/api/open/comments
+          appId: 0da141f9-30f9-4ceb-86e5-44a6844c3104

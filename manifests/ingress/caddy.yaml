@@ -526,3 +526,23 @@ spec:
             name: mapserver
             port:
                 number: 80
+  - host: mnk-gisquick.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mnk-gisquick-caddy
+            port:
+                number: 80
+  - host: comments-app.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mnk-gisquick-comments-app
+            port:
+                number: 3000
