@@ -138,6 +138,7 @@ items:
               items:
               - key: aurora-rds-pg-dpnk-db-proxy
                 path: aurora-rds-pg-dpnk-db-proxy.pem
+              defaultMode: 0400
 
   status: {}
 - apiVersion: apps/v1
