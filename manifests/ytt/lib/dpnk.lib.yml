@@ -135,7 +135,7 @@ items:
         volumes:
           - name: ssh-key
             secret:
-              secretName: dpnk-access
+              secretName: #@ secret_map
               items:
               - key: aurora-rds-pg-dpnk-db-proxy
                 path: aurora-rds-pg-dpnk-db-proxy.pem
@@ -191,6 +191,17 @@ items:
                 - -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
+          volumeMounts:
+            - mountPath: /root/.ssh/
+              name: ssh-key
+        volumes:
+          - name: ssh-key
+            secret:
+              secretName: #@ secret_map
+              items:
+              - key: aurora-rds-pg-dpnk-db-proxy
+                path: aurora-rds-pg-dpnk-db-proxy.pem
+              defaultMode: 0400
   status: {}
 
 - apiVersion: apps/v1
@@ -227,6 +238,17 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+          volumeMounts:
+            - mountPath: /root/.ssh/
+              name: ssh-key
+        volumes:
+          - name: ssh-key
+            secret:
+              secretName: #@ secret_map
+              items:
+              - key: aurora-rds-pg-dpnk-db-proxy
+                path: aurora-rds-pg-dpnk-db-proxy.pem
+              defaultMode: 0400
   status: {}
 - #@ template.replace(redis(app_name + "-redis-broker"))
 - #@ template.replace(redis(app_name + "-redis-cache"))
