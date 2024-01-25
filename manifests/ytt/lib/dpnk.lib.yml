@@ -22,6 +22,7 @@
 #@  "FAKTUROID_BASE_REST_API_URL",
 #@  "FAKTUROID_DATE_FROM_CREATE_INVOICES",
 #@  "DISABLE_SERVER_SIDE_CURSORS",
+#@  "CELERY_CONCURENCY",
 #@ ]
 #@ secret_vars = [
 #@  "DPNK_SECRET_KEY",
@@ -160,7 +161,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: ["poetry", "run", "celery", "worker", "-A", "project.celery", "--pool=prefork", "--concurrency=8", "--loglevel=info"]
+          command: ["/home/aplikace/docker-celery-entrypoint.sh"]
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -222,7 +223,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery-beat"
           resources: {}
-          command: ["poetry", "run", "celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
+          command: ["/home/aplikace/docker-celerybeat-entrypoint.sh"]
           env:
           #@ for var in config_vars:
           - name: #@ var
