@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aurora-rds-pg-dpnk-db-proxy
+spec:
+  selector:
+    name: aurora-rds-pg-dpnk-db-proxy
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aurora-rds-pg-dpnk-db-proxy
+  labels:
+    name: aurora-rds-pg-dpnk-db-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: aurora-rds-pg-dpnk-db-proxy
+  template:
+    metadata:
+      labels:
+        name: aurora-rds-pg-dpnk-db-proxy
+    spec:
+      containers:
+      - name: aurora-rds-pg-dpnk-db-proxy
+        image: auto0mat/aurora-rds-pg-dpnk-db-proxy:2024.11
+        imagePullPolicy: "IfNotPresent"
+        ports:
+          - containerPort: 5432
+        env:
+          - name: AWS_AURORA_PG_RDS_DPNK_PROXY_REMOTE_HOST
+            valueFrom:
+              secretKeyRef:
+                key: AWS_AURORA_PG_RDS_DPNK_PROXY_REMOTE_HOST
+                name: aurora-rds-pg-dpnk-db-proxy-access
+          - name: AWS_E2C_AURORA_PG_RDS_DPNK_PROXY_REMOTE_USERNAME_WITH_HOST
+            valueFrom:
+              secretKeyRef:
+                key: AWS_E2C_AURORA_PG_RDS_DPNK_PROXY_REMOTE_USERNAME_WITH_HOST
+                name: aurora-rds-pg-dpnk-db-proxy-access
+        volumeMounts:
+          - mountPath: /home/appuser/.ssh_keys/
+            name: ssh-key
+      volumes:
+        - name: ssh-key
+          secret:
+            secretName: aurora-rds-pg-dpnk-db-proxy-access
+            items:
+            - key: aurora-rds-pg-dpnk-db-proxy
+              path: aurora-rds-pg-dpnk-db-proxy.pem
+            defaultMode: 0400
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
