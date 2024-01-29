@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: metabase
-        image: 439267276348970/metabase:v1.41.6-2
+        image: 439267276348970/metabase:v1.41.6-1
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 3000
@@ -37,16 +37,6 @@ spec:
             name: metabase-env
         - secretRef:
             name: metabase-access
-        - name: AWS_AURORA_PG_RDS_DPNK_PROXY_REMOTE_HOST
-          valueFrom:
-            secretKeyRef:
-              key: AWS_AURORA_PG_RDS_DPNK_PROXY_REMOTE_HOST
-              name: dpnk-access
-        - name: AWS_E2C_AURORA_PG_RDS_DPNK_PROXY_REMOTE_USERNAME_WITH_HOST
-          valueFrom:
-            secretKeyRef:
-              key: AWS_E2C_AURORA_PG_RDS_DPNK_PROXY_REMOTE_USERNAME_WITH_HOST
-              name: dpnk-access
         livenessProbe:
           httpGet:
             path: /
@@ -63,14 +53,3 @@ spec:
           timeoutSeconds: 1
           periodSeconds: 10
           failureThreshold: 3
-        volumeMounts:
-          - mountPath: /root/.ssh/
-            name: ssh-key
-      volumes:
-        - name: ssh-key
-          secret:
-            secretName: dpnk-access
-            items:
-            - key: aurora-rds-pg-dpnk-db-proxy
-              path: aurora-rds-pg-dpnk-db-proxy.pem
-            defaultMode: 0400
