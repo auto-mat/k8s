@@ -148,7 +148,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: ["/home/aplikace/docker-celery-entrypoint.sh"]
+          command: ["poetry", "run", "celery", "worker", "-A", "project.celery", "--pool=prefork", "--concurrency=8", "--loglevel=info"]
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -199,7 +199,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery-beat"
           resources: {}
-          command: ["/home/aplikace/docker-celerybeat-entrypoint.sh"]
+          command: ["poetry", "run", "celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info", "--pidfile=/tmp/celery-beat.pid"]
           env:
           #@ for var in config_vars:
           - name: #@ var
