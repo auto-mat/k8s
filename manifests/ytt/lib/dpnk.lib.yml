@@ -215,6 +215,20 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+          livenessProbe:
+            exec:
+              command:
+                - test
+                - -e /tmp/celery-beat.pid
+            initialDelaySeconds: 30
+            periodSeconds: 120
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - -e /tmp/worker_ready
+            initialDelaySeconds: 30
+            periodSeconds: 120
   status: {}
 - #@ template.replace(redis(app_name + "-redis-broker"))
 - #@ template.replace(redis(app_name + "-redis-cache"))
