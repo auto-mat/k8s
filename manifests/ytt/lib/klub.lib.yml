@@ -163,7 +163,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery-beat"
           resources: {}
-          command: ["celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info"]
+          command: ["celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info", "--pidfile=/tmp/celery-beat.pid"]
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -179,6 +179,20 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+          livenessProbe:
+            exec:
+              command:
+                - test
+                - -e /tmp/celery-beat.pid
+            initialDelaySeconds: 30
+            periodSeconds: 120
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - -e /tmp/worker_ready
+            initialDelaySeconds: 30
+            periodSeconds: 120
   status: {}
 - #@ template.replace(redis(app_name + "-redis"))
 kind: List
