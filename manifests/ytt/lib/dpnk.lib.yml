@@ -175,8 +175,9 @@ items:
           readinessProbe:
             exec:
               command:
-                - test
-                - -e /tmp/worker_ready
+                - sh
+                - c
+                - test -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
   status: {}
@@ -225,8 +226,9 @@ items:
           readinessProbe:
             exec:
               command:
-                - test
-                - -e /tmp/worker_ready
+                - sh
+                - c
+                - test -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
   status: {}

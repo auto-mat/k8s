@@ -139,8 +139,9 @@ items:
           readinessProbe:
             exec:
               command:
-                - test
-                - -e /tmp/worker_ready
+                - sh
+                - c
+                - test -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
   status: {}
@@ -182,15 +183,17 @@ items:
           livenessProbe:
             exec:
               command:
-                - test
-                - -e /tmp/celery-beat.pid
+                - sh
+                - -c
+                - test -e /tmp/celery-beat.pid
             initialDelaySeconds: 30
             periodSeconds: 120
           readinessProbe:
             exec:
               command:
-                - test
-                - -e /tmp/worker_ready
+                - sh
+                - -c
+                - test -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
   status: {}
