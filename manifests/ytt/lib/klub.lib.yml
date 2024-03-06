@@ -188,7 +188,7 @@ items:
                 - python manage.py check_celerybeat_liveness
             initialDelaySeconds: 30
             periodSeconds: 120
-            timeoutSeconds: 10
+            timeoutSeconds: 60
           readinessProbe:
             exec:
               command:
