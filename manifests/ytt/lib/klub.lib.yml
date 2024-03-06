@@ -180,14 +180,14 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #       - sh
-          #       - -c
-          #       - python manage.py check_celerybeat_liveness
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 120
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - python manage.py check_celerybeat_liveness
+            initialDelaySeconds: 30
+            periodSeconds: 120
           readinessProbe:
             exec:
               command:
