@@ -221,7 +221,7 @@ items:
               command:
                 - sh
                 - -c
-                - python manage.py check_celerybeat_liveness
+                - poetry run python manage.py check_celerybeat_liveness
             initialDelaySeconds: 30
             periodSeconds: 120
             timeoutSeconds: 10
