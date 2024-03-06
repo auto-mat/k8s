@@ -164,7 +164,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery-beat"
           resources: {}
-          command: ["celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info", "--pidfile=/tmp/celery-beat.pid"]
+          command: ["celery", "beat", "-A", "project.celery", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler", "--loglevel=info", "--schedule=/tmp/celerybeat-schedule"]
           env:
           #@ for var in config_vars:
           - name: #@ var
@@ -185,7 +185,7 @@ items:
               command:
                 - sh
                 - -c
-                - test -e /tmp/celery-beat.pid
+                - python manage.py check_celerybeat_liveness
             initialDelaySeconds: 30
             periodSeconds: 120
           readinessProbe:
