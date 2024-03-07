@@ -446,6 +446,16 @@ spec:
             name: dpnk
             port:
                 number: 8000
+  - host: leden2024.dopracenakole.cz
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: bank.dopracenakole.cz
     http:
       paths:
