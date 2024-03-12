@@ -16,7 +16,7 @@ spec:
                 medium: Memory
           containers:
           - name: dopravni-screenshots
-            image: auto0mat/dopravni-screenshots:12
+            image: auto0mat/dopravni-screenshots:13
             args:
             - /bin/sh
             - screenshot.sh
