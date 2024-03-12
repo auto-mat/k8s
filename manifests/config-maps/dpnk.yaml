@@ -16,6 +16,8 @@ data:
   DPNK_PRODUCTION_ENVIRONMENT: "True"
   CELERY_TASK_QUEUES: "stravasync,celery"
   GLS_BASE_URL: "https://online.gls-czech.com"
+  GLS_DISPATCHED_SUBSIDIARY_BOXES_DATE_FROM: "01.01.2024"
+  GLS_DISPATCHED_SUBSIDIARY_BOXES_DATE_TO: "date +%d.%m.%Y"
   HELPDESK_IFRAME_URL: "None"
   DPNK_AKLUB_URL: "https://automat.klub-pratel.cz"
   GUNICORN_NUM_WORKERS: "17"
