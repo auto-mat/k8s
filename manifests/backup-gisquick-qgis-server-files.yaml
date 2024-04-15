@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-gisquick-qgis-server-files
+spec:
+  schedule: "0 4 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup-gisquick-qgis-server-files
+            image: auto0mat/backup-gisquick-qgis-server-files:2024.0
+            args:
+            - /bin/sh
+            - backup.sh
+            env:
+            - name: NFS_SERVER_ADDRESS
+              value: nfs-server
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: AWS-KEY-ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: check-rendering-server-connection-access
+                  key: AWS-KEY
+          restartPolicy: Never
