@@ -13,6 +13,9 @@ spec:
           containers:
           - name: backup-gisquick-qgis-server-files
             image: auto0mat/backup-gisquick-qgis-server-files:2024.0
+            imagePullPolicy: "IfNotPresent"
+            securityContext:
+              privileged: true
             args:
             - /bin/sh
             - backup.sh
