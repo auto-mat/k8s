@@ -17,7 +17,6 @@ spec:
             securityContext:
               privileged: true
             args:
-            - /bin/sh
             - backup.sh
             env:
             - name: NFS_SERVER_ADDRESS
