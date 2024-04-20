@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: backup-gisquick-qgis-server-files
-            image: auto0mat/backup-gisquick-qgis-server-files:2024.0
+            image: auto0mat/backup-gisquick-qgis-server-files:2024.1
             imagePullPolicy: "IfNotPresent"
             securityContext:
               privileged: true
