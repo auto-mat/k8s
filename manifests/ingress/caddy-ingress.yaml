@@ -107,7 +107,7 @@ metadata:
     app.kubernetes.io/version: "0.1.3"
     app.kubernetes.io/managed-by: Helm
   annotations:
-    service.beta.kubernetes.io/do-loadbalancer-size-unit: "8"
+    service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
 spec:
   type: "LoadBalancer"
   loadBalancerIP:  #Deprecated in Kubernetes v1.24
