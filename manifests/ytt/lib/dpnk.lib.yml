@@ -136,6 +136,7 @@ items:
               port: #@ port
             initialDelaySeconds: 60
             periodSeconds: 300
+            timeoutSeconds: 60
 
   status: {}
 - apiVersion: apps/v1
