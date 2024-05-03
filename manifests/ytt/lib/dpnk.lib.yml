@@ -71,7 +71,7 @@
 #@ ]
 #@ port = 8000
 
-#@ load("redis.lib.yml", "redis")
+#@ load("redis.dpnk.lib.yml", "redis")
 #@ load("@ytt:template", "template")
 #@ def web(app_name, image, config_map, secret_map, replicas, celery_replicas):
 apiVersion: v1

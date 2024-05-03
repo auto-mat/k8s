@@ -1,0 +1,57 @@
+#@ def redis(service_name):
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: #@ service_name
+  spec:
+    ports:
+    - name: "6379"
+      port: 6379
+      targetPort: 6379
+    selector:
+      app: #@ service_name
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ service_name
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: #@ service_name
+    template:
+      metadata:
+        labels:
+          app: #@ service_name
+      spec:
+        containers:
+          - name: #@ service_name
+            image: redis:5.0.4
+            command:
+              - redis-server
+              - "/redis-master/redis.conf"
+            env:
+            - name: MASTER
+              value: "true"
+            ports:
+            - containerPort: 6379
+            resources:
+              limits:
+                cpu: "3"
+            volumeMounts:
+            - mountPath: /redis-master-data
+              name: #@ service_name + "-data"
+            - mountPath: /redis-master
+              name: #@ service_name + "-config"
+        volumes:
+          - name: #@ service_name + "-data"
+            emptyDir: {}
+          - name: #@ service_name + "-config"
+            configMap:
+              name: #@ service_name + "-config"
+              items:
+              - key: redis-config
+                path: redis.conf
+#@ end
