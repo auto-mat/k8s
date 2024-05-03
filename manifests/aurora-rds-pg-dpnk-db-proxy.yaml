@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: aurora-rds-pg-dpnk-db-proxy
-        image: auto0mat/aurora-rds-pg-dpnk-db-proxy:2024.11
+        image: auto0mat/aurora-rds-pg-dpnk-db-proxy:2024.13
         imagePullPolicy: "IfNotPresent"
         ports:
           - containerPort: 5432
