@@ -130,6 +130,12 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: #@ port
+            initialDelaySeconds: 60
+            periodSeconds: 120
 
   status: {}
 - apiVersion: apps/v1
