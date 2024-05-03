@@ -135,7 +135,7 @@ items:
               path: /healthz
               port: #@ port
             initialDelaySeconds: 60
-            periodSeconds: 120
+            periodSeconds: 300
 
   status: {}
 - apiVersion: apps/v1
