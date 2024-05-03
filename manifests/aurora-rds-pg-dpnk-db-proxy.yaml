@@ -58,3 +58,11 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
+      livenessProbe:
+        exec:
+          command:
+            - sh
+            - -c
+            - grep -q -v "Too many open files" /tmp/autossh
+          initialDelaySeconds: 10
+          periodSeconds: 120
