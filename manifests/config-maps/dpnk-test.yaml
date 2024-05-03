@@ -10,7 +10,7 @@ data:
   DPNK_STATIC_URL: "https://d3fsxj6ulepi0p.cloudfront.net/static/"
   DPNK_AKLUB_URL: "https://devel-klub.auto-mat.cz"
   GUNICORN_NUM_WORKERS: "2"
-  GUNICORN_TIMEOUT: "4000"
+  GUNICORN_TIMEOUT: "300"
   GUNICORN_PORT: "8000"
   GLS_BASE_URL: "http://test.online.gls-czech.com"
   GLS_DISPATCHED_SUBSIDIARY_BOXES_DATE_FROM: "01.01.2019"
