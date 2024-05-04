@@ -21,7 +21,7 @@ data:
   HELPDESK_IFRAME_URL: "None"
   DPNK_AKLUB_URL: "https://automat.klub-pratel.cz"
   GUNICORN_NUM_WORKERS: "17"
-  GUNICORN_TIMEOUT: "300"
+  GUNICORN_TIMEOUT: "4000"
   GUNICORN_PORT: "8000"
   AWS_QUERYSTRING_AUTH: "True"
   METABASE_APP_DOMAIN: "https://metabase.dopracenakole.net/"
