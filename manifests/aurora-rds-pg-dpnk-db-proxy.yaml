@@ -49,7 +49,7 @@ spec:
         livenessProbe:
           exec:
             command:
-              - sh
+              - /bin/sh
               - -c
               - grep -q -v "Too many open files" /tmp/autossh
             initialDelaySeconds: 10

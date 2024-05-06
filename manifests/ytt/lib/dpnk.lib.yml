@@ -169,7 +169,7 @@ items:
           livenessProbe:
             exec:
               command:
-                - sh
+                - /bin/sh
                 - -c
                 - test $(($(date +%s) - $(stat -c %Y /tmp/worker_heartbeat))) -lt 10
             initialDelaySeconds: 30
@@ -177,7 +177,7 @@ items:
           readinessProbe:
             exec:
               command:
-                - sh
+                - /bin/sh
                 - c
                 - test -e /tmp/worker_ready
             initialDelaySeconds: 30
@@ -221,7 +221,7 @@ items:
           livenessProbe:
             exec:
               command:
-                - sh
+                - /bin/sh
                 - -c
                 - poetry run python manage.py check_celerybeat_liveness
             initialDelaySeconds: 30
@@ -230,7 +230,7 @@ items:
           readinessProbe:
             exec:
               command:
-                - sh
+                - /bin/sh
                 - c
                 - test -e /tmp/worker_ready
             initialDelaySeconds: 30
