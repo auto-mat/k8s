@@ -178,7 +178,7 @@ items:
             exec:
               command:
                 - /bin/sh
-                - c
+                - -c
                 - test -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
@@ -231,7 +231,7 @@ items:
             exec:
               command:
                 - /bin/sh
-                - c
+                - -c
                 - test -e /tmp/worker_ready
             initialDelaySeconds: 30
             periodSeconds: 120
