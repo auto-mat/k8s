@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: backup-gisquick-qgis-server-files
-            image: auto0mat/backup-gisquick-qgis-server-files:2024.5
+            image: auto0mat/backup-gisquick-qgis-server-files:2024.12
             imagePullPolicy: "IfNotPresent"
             securityContext:
               privileged: true
@@ -24,11 +24,11 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: check-rendering-server-connection-access
+                  name: backup-gisquick-qgis-server-files-access
                   key: AWS-KEY-ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: check-rendering-server-connection-access
+                  name: backup-gisquick-qgis-server-files-access
                   key: AWS-KEY
           restartPolicy: Never
