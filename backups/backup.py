@@ -12,9 +12,9 @@ dbs = {
     "SHARED_DB": [
         "dpnk-test",
         "klub-automat",
-        "klub-brontosaurus",
-        "klub-diakonie",
-        "klub-investigace",
+        # "klub-brontosaurus",
+        # "klub-diakonie",
+        # "klub-investigace",
         "klub-test",
         "limesurvey",
         "mapa",
