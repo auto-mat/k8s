@@ -1,0 +1,35 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dpnk-automat-staff-env
+  namespace: default
+data:
+  DJANGO_SETTINGS_MODULE: 'project.settings.base'
+  DJANGO_DEBUG: "False"
+  DPNK_LOG_FILE: "dpnk.log"
+  DPNK_ALLOWED_HOSTS: ".dopracenakole.cz,dopracenakole.net,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
+  DPNK_MEDIA_URL: "https://s3-eu-west-1.amazonaws.com/dpnk/"
+  DPNK_STATIC_URL: "https://dlxsohmbtwaie.cloudfront.net/static/"
+  DPNK_BROKER_URL: "redis://dpnk-automat-staff-redis-broker"
+  DPNK_CACHE_REDIS_LOCATION: "redis://dpnk-automat-staff-redis-cache"
+  SINGLE_BEAT_REDIS_SERVER: "redis://dpnk-automat-staff-redis-beat"
+  DPNK_PRODUCTION_ENVIRONMENT: "True"
+  CELERY_TASK_QUEUES: "stravasync,celery"
+  GLS_BASE_URL: "https://online.gls-czech.com"
+  GLS_DISPATCHED_SUBSIDIARY_BOXES_DATE_FROM: "01.03.2024"
+  GLS_DISPATCHED_SUBSIDIARY_BOXES_DATE_TO: "date +%d.%m.%Y"
+  HELPDESK_IFRAME_URL: "None"
+  DPNK_AKLUB_URL: "https://automat.klub-pratel.cz"
+  GUNICORN_NUM_WORKERS: "17"
+  GUNICORN_TIMEOUT: "4000"
+  GUNICORN_PORT: "8000"
+  AWS_QUERYSTRING_AUTH: "True"
+  METABASE_APP_DOMAIN: "https://metabase.dopracenakole.net/"
+  METABASE_DPNK_INDIVIDUAL_DATA_REPORT_URL: "public/dashboard/03659536-f587-4103-ac3a-2b6ac786a197"
+  METABASE_DPNK_ORGANIZATION_DATA_REPORT_URL: "public/dashboard/6ab474dd-7dc3-4345-8109-0e7703e8aaf3"
+  METABASE_DPNK_CITY_DATA_REPORT_URL: "public/dashboard/ce7967e3-a581-42af-b2e5-bebe021ca2ec"
+  FAKTUROID_INVOICE_NUMBER_WIDTH: "4"
+  FAKTUROID_BASE_REST_API_URL: "https://app.fakturoid.cz/api/v2"
+  FAKTUROID_DATE_FROM_CREATE_INVOICES: "2022-04-29"
+  DISABLE_SERVER_SIDE_CURSORS: "True"
+  CELERY_CONCURENCY: "8"
