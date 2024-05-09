@@ -7,7 +7,7 @@ data:
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
   DJANGO_DEBUG: "False"
   DPNK_LOG_FILE: "dpnk.log"
-  DPNK_ALLOWED_HOSTS: ".dopracenakole.cz,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
+  DPNK_ALLOWED_HOSTS: ".dopracenakole.cz,dopracenakole.net,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
   DPNK_MEDIA_URL: "https://s3-eu-west-1.amazonaws.com/dpnk/"
   DPNK_STATIC_URL: "https://dlxsohmbtwaie.cloudfront.net/static/"
   DPNK_BROKER_URL: "redis://dpnk-redis-broker"
