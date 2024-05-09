@@ -132,9 +132,11 @@ items:
                 name: #@ secret_map
           #@ end
           livenessProbe:
-            httpGet:
-              path: /
-              port: #@ port
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - curl localhost:8000
             initialDelaySeconds: 60
             periodSeconds: 120
             timeoutSeconds: 300
