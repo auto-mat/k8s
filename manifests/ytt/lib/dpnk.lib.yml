@@ -133,7 +133,7 @@ items:
           #@ end
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /
               port: #@ port
             initialDelaySeconds: 60
             periodSeconds: 120
