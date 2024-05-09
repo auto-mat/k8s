@@ -1,0 +1,6 @@
+#@ app_name = "dpnk-automat-staff"
+#@ image = "auto0mat/dopracenakole:2024.1764"
+#@ config_map = "dpnk-env"
+#@ secret_map = "dpnk-access"
+#@ load("dpnk.lib.yml", "web")
+--- #@ web(app_name, image, config_map, secret_map, 2, 1)
