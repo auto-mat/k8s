@@ -17,7 +17,7 @@ metadata:
   labels:
     name: aurora-rds-pg-dpnk-db-proxy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       name: aurora-rds-pg-dpnk-db-proxy
