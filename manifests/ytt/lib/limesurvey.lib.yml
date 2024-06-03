@@ -43,7 +43,7 @@ items:
     metadata:
       name: #@ app_name
     spec:
-      replicas: 1
+      replicas: 3
       selector:
         matchLabels:
           app: #@ app_name
