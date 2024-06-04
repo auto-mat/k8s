@@ -108,8 +108,6 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
-    service.beta.kubernetes.io/do-loadbalancer-http-idle-timeout-seconds: "300"
-    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
 spec:
   type: "LoadBalancer"
   loadBalancerIP:  #Deprecated in Kubernetes v1.24
