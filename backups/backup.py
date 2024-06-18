@@ -8,19 +8,21 @@ from typing import *
 ##############################################################
 
 dbs = {
-    # "DPNK": ["dpnk"],
+    "DPNK": ["dpnk"],
     "SHARED_DB": [
         "dpnk-test",
         "klub-automat",
-        # "klub-brontosaurus",
-        # "klub-diakonie",
-        # "klub-investigace",
         "klub-test",
         "limesurvey",
         "mapa",
         "mapa-test",
+        "cyclescape",
+        "gisquick",
+        "mnk-gisquick",
+        "mnk-gisquick-comments",
+        "metabase",
+
     ],
-    "METABASE_DB": ["metabase"],
 }
 
 pg_backup_parent_dir = "/backup/dbs/postgress/"
