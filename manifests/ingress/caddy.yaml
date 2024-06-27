@@ -285,16 +285,6 @@ spec:
           service:
             name: limesurvey
             port:
-                number: 80
-  - host: limesurvey-test.dopracenakole.net
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: limesurvey-test
-            port:
                 number: 3000
   - host: embedded-map.dopracenakole.net
     http:
