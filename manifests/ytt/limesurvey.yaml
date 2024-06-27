@@ -1,5 +1,5 @@
 #@ app_name = "limesurvey"
-#@ image = "439267276348970/limesurvey:0"
+#@ image = "martialblog/limesurvey:6-apache"
 #@ config_map = "limesurvey-env"
 #@ secret_map = "limesurvey-access"
 #@ load("limesurvey.lib.yml", "limesurvey")

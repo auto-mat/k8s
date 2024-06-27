@@ -1,13 +1,5 @@
 #@ config_vars = [
 #@     "DB_TYPE",
-#@     "POSTGRES_ENV_GOSU_VERSION",
-#@     "SMTP_AUTH",
-#@     "SMTP_TLS",
-#@     "MAIL_FROM_DEFAULT",
-#@     "MAIL_DOMAIN",
-#@     "SMTP_TLS_CHECK",
-#@     "SMTP_STARTTLS",
-#@     "SMTP_TLS_TRUST_FILE",
 #@ ]
 #@ secret_vars = [
 #@    "DB_USERNAME",
@@ -15,12 +7,13 @@
 #@    "DB_HOST",
 #@    "DB_PORT",
 #@    "DB_NAME",
-#@    "SMTP_HOST",
-#@    "SMTP_USERNAME",
-#@    "SMTP_PASSWORD",
+#@    "ADMIN_USER",
+#@    "ADMIN_PASSWORD",
+#@    "ADMIN_EMAIL",
+#@    "LISTEN_PORT",
 #@ ]
 
-#@ port = 80
+#@ port = 3000
 
 #@ def limesurvey(app_name, image, config_map, secret_map):
 apiVersion: v1
@@ -31,7 +24,8 @@ items:
       name: #@ app_name
     spec:
       ports:
-        - name: "80"
+        - name: "3000"
+
           port: #@ port
           targetPort: #@ port
       selector:
@@ -58,6 +52,9 @@ items:
               ports:
                 - containerPort: #@ port
               resources: {}
+              volumeMounts:
+                - mountPath: /var/www/html/upload/surveys
+                  name: #@ app_name + "-data"
               env:
                 #@ for var in config_vars:
                 - name: #@ var
@@ -72,7 +69,25 @@ items:
                     secretKeyRef:
                       key: #@ var
                       name: #@ secret_map
-              #@ end
+                #@ end
+          volumes:
+            - name: #@ app_name + "-data"
+              persistentVolumeClaim:
+                claimName: #@ app_name + "-data"
+
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: #@ app_name + "-data"
+      name: #@ app_name + "-data"
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
     status: {}
 kind: List
 metadata: {}

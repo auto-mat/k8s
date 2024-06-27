@@ -12,21 +12,5 @@ metadata:
         "f:data":
           .: {}
           "f:DB_TYPE": {}
-          "f:POSTGRES_ENV_GOSU_VERSION": {}
-          "f:SMTP_AUTH": {}
-          "f:SMTP_TLS": {}
-          "f:MAIL_FROM_DEFAULT": {}
-          "f:MAIL_DOMAIN:": {}
-          "f:SMTP_TLS_CHECK:": {}
-          "f:SMTP_STARTTLS:": {}
-          "f:SMTP_TLS_TRUST_FILE:": {}
 data:
   DB_TYPE: "pgsql"
-  POSTGRES_ENV_GOSU_VERSION: "pgsql"
-  SMTP_AUTH: "on"
-  SMTP_TLS: "on"
-  MAIL_FROM_DEFAULT: "kontakt@dopracenakole.cz"
-  MAIL_DOMAIN: "dopracenakole.cz"
-  SMTP_TLS_CHECK: "on"
-  SMTP_STARTTLS: "on"
-  SMTP_TLS_TRUST_FILE: "/etc/ssl/certs/ca-certificates.crt"
