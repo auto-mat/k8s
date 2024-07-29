@@ -416,6 +416,16 @@ spec:
             name: dpnk
             port:
                 number: 8000
+  - host: dpnk2024.dopracenakole.cz
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: dpnk
+              port:
+                number: 8000
   - host: vyzva2023.dopracenakole.cz
     http:
       paths:
