@@ -53,7 +53,7 @@ items:
                 - containerPort: #@ port
               resources: {}
               volumeMounts:
-                - mountPath: /var/www/html/upload/surveys
+                - mountPath: /var/www/html/upload/
                   name: #@ app_name + "-data"
               env:
                 #@ for var in config_vars:
