@@ -74,6 +74,8 @@ items:
             - name: #@ app_name + "-data"
               persistentVolumeClaim:
                 claimName: #@ app_name + "-data"
+          securityContext:
+            fsGroup: 33
 
   - apiVersion: v1
     kind: PersistentVolumeClaim
