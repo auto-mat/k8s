@@ -7,6 +7,7 @@
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
+#@    "GOOGLE_LOGIN_APP_ID",
 #@ ]
 
 #@ port = 80
