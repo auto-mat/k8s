@@ -5,4 +5,4 @@ data:
     maxmemory-policy allkeys-lru
 kind: ConfigMap
 metadata:
-  name: ride-to-work-by-bike-backend-redis-cache-config
+  name: ride-to-work-by-bike-backend-test-redis-cache-config
