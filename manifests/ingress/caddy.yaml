@@ -546,7 +546,7 @@ spec:
             name: ride-to-work-by-bike-frontend-test
             port:
                 number: 80
-  - host: rtwbb-backend-test.dopracenakole.cz
+  - host: test.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
