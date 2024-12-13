@@ -4,7 +4,7 @@ metadata:
   name: ride-to-work-by-bike-backend-test-env
   namespace: default
 data:
-  DJANGO_SETTINGS_MODULE: 'project.settings.base'
+  DJANGO_SETTINGS_MODULE: 'project.settings.rtwbb'
   DPNK_ALLOWED_HOSTS: .dopracenakole.net,localhost,$HEALTHY_CHECK_IP,dpnk-test-1366503246.eu-west-1.elb.amazonaws.com
   DJANGO_DEBUG: "False"
   DPNK_STATIC_URL: "https://d3fsxj6ulepi0p.cloudfront.net/static/"
