@@ -605,4 +605,4 @@ spec:
           service:
             name: bugzilla
             port:
-                number: 8080
+                number: 80
