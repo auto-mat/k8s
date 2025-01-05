@@ -1,0 +1,6 @@
+#@ app_name = "bugzilla"
+#@ image = "auto0mat/bugzilla:2025-0"
+#@ config_map = "bugzilla-env"
+#@ secret_map = "bugzilla-access"
+#@ load("bugzilla.lib.yml", "bugzilla")
+--- #@ bugzilla(app_name, image, config_map, secret_map)

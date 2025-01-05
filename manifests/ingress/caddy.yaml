@@ -596,3 +596,13 @@ spec:
             name: mnk-gisquick-comments-app
             port:
                 number: 3000
+  - host: bugzilla.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/bugzilla"
+        backend:
+          service:
+            name: bugzilla
+            port:
+                number: 8080
