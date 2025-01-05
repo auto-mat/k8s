@@ -74,22 +74,20 @@ items:
                   persistentVolumeClaim:
                     claimName: #@ app_name + "-data"
 
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: #@ app_name + "-data"
+      name: #@ app_name + "-data"
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
     status: {}
----
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    creationTimestamp: null
-    labels:
-      io.kompose.service: #@ app_name + "-data"
-    name: #@ app_name + "-data"
-  spec:
-    accessModes:
-      - ReadWriteOnce
-    resources:
-      requests:
-        storage: 8Gi
-  status: {}
 kind: List
 metadata: {}
 #@ end
