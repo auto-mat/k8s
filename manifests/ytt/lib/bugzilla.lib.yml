@@ -69,10 +69,10 @@ items:
                       key: #@ var
                       name: #@ secret_map
                 #@ end
-              volumes:
-                - name: #@ app_name + "-data"
-                  persistentVolumeClaim:
-                    claimName: #@ app_name + "-data"
+          volumes:
+            - name: #@ app_name + "-data"
+              persistentVolumeClaim:
+                claimName: #@ app_name + "-data"
 
   - apiVersion: v1
     kind: PersistentVolumeClaim
