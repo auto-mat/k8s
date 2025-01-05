@@ -52,7 +52,7 @@ items:
                 - containerPort: #@ port
               resources: {}
               volumeMounts:
-                - mountPath: /home/bugzilla
+                - mountPath: /home/bugzilla/devel/htdocs/bugzilla/data
                   name: #@ app_name + "-data"
               env:
                 #@ for var in config_vars:
