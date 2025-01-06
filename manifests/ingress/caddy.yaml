@@ -600,7 +600,7 @@ spec:
     http:
       paths:
       - pathType: Prefix
-        path: "/bugzilla"
+        path: "/"
         backend:
           service:
             name: bugzilla
