@@ -13,4 +13,4 @@ metadata:
           .: {}
           'f:BUGS_CONTEXT': {}
 data:
-  BUGS_CONTEXT: "https://bugzilla.dopracenakole.net/bugzilla/"
+  BUGS_CONTEXT: "http://localhost:8080"
