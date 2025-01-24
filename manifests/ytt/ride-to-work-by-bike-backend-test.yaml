@@ -1,5 +1,5 @@
 #@ app_name = "ride-to-work-by-bike-backend-test"
-#@ image = "auto0mat/dopracenakole:2025.1992"
+#@ image = "auto0mat/dopracenakole:2025.1993"
 #@ config_map = "ride-to-work-by-bike-backend-test-env"
 #@ secret_map = "ride-to-work-by-bike-backend-test-access"
 #@ load("dpnk.lib.yml", "web")
