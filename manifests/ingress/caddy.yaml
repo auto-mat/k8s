@@ -316,7 +316,7 @@ spec:
             name: dpnk-test
             port:
                 number: 8000
-  - host: leden2022.dopracenakole.cz
+  - host: leden2022.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -326,7 +326,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2015.dopracenakole.cz
+  - host: dpnk2015.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -336,7 +336,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2016.dopracenakole.cz
+  - host: dpnk2016.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -346,7 +346,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2017.dopracenakole.cz
+  - host: dpnk2017.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -356,7 +356,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2018.dopracenakole.cz
+  - host: dpnk2018.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -366,7 +366,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2019.dopracenakole.cz
+  - host: dpnk2019.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -376,7 +376,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2020.dopracenakole.cz
+  - host: dpnk2020.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -386,7 +386,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2021.dopracenakole.cz
+  - host: dpnk2021.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -396,7 +396,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2022.dopracenakole.cz
+  - host: dpnk2022.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -406,7 +406,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2023.dopracenakole.cz
+  - host: dpnk2023.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -416,7 +416,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk2024.dopracenakole.cz
+  - host: dpnk2024.dopracenakole.net
     http:
       paths:
         - pathType: Prefix
@@ -426,7 +426,7 @@ spec:
               name: dpnk
               port:
                 number: 8000
-  - host: vyzva2023.dopracenakole.cz
+  - host: vyzva2023.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -436,7 +436,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: vyzva2022.dopracenakole.cz
+  - host: vyzva2022.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -446,7 +446,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: leden2023.dopracenakole.cz
+  - host: leden2023.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -456,7 +456,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: leden2024.dopracenakole.cz
+  - host: leden2024.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -466,17 +466,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: bank.dopracenakole.cz
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: dpnk
-            port:
-                number: 8000
-  - host: dpnk.dopracenakole.cz
+  - host: bank.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
@@ -493,9 +483,19 @@ spec:
         path: "/"
         backend:
           service:
-            name: dpnk-automat-staff
+            name: dpnk
             port:
                 number: 8000
+  #! - host: dpnk.dopracenakole.net
+  #!   http:
+  #!     paths:
+  #!     - pathType: Prefix
+  #!       path: "/"
+  #!       backend:
+  #!         service:
+  #!           name: dpnk-automat-staff
+  #!           port:
+  #!               number: 8000
   - host: selenium-hub.dopracenakole.net
     http:
       paths:

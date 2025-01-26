@@ -7,7 +7,7 @@ data:
   DJANGO_SETTINGS_MODULE: 'project.settings.base'
   DJANGO_DEBUG: "False"
   DPNK_LOG_FILE: "dpnk.log"
-  DPNK_ALLOWED_HOSTS: ".dopracenakole.cz,localhost,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
+  DPNK_ALLOWED_HOSTS: ".dopracenakole.net,localhost,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
   DPNK_MEDIA_URL: "https://s3-eu-west-1.amazonaws.com/dpnk/"
   DPNK_STATIC_URL: "https://dlxsohmbtwaie.cloudfront.net/static/"
   DPNK_BROKER_URL: "redis://dpnk-redis-broker"
@@ -30,7 +30,7 @@ data:
   FAKTUROID_DATE_FROM_CREATE_INVOICES: "2022-04-29"
   DISABLE_SERVER_SIDE_CURSORS: "True"
   CELERY_CONCURENCY: "8"
-  DPNK_SITE_ID: "1"
+  DPNK_SITE_ID: "36"
   USE_BJOERN_WSGI_SERVER: "True"
   STATSD_SERVER_HOST: "statsd"
   STATSD_SERVER_PORT: "8125"
