@@ -11,6 +11,6 @@ metadata:
       fieldsV1:
         "f:data":
           .: {}
-          "f:TEST": {}
+          "f:API_BASE": {}
 data:
-  TEST: "Test"
+  API_BASE: "https://test.dopracenakole.cz/rest/"
