@@ -546,14 +546,24 @@ spec:
             name: ride-to-work-by-bike-frontend-test
             port:
                 number: 80
-  - host: test.dopracenakole.net
+  - host: rtwbb-test.dopracenakole.net
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: ride-to-work-by-bike-backend-test
+            name: ride-to-work-by-bike-frontend-test
+            port:
+                number: 80
+  - host: dpnk.dopracenakole.cz
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ride-to-work-by-bike-frontend-production
             port:
                 number: 8000
   - host: gisquick.dopracenakole.net
