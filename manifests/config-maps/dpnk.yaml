@@ -4,7 +4,7 @@ metadata:
   name: dpnk-env
   namespace: default
 data:
-  DJANGO_SETTINGS_MODULE: 'project.settings.base'
+  DJANGO_SETTINGS_MODULE: 'project.settings.rtwbb_prod'
   DJANGO_DEBUG: "False"
   DPNK_LOG_FILE: "dpnk.log"
   DPNK_ALLOWED_HOSTS: ".dopracenakole.net,localhost,$HEALTHY_CHECK_IP,dpnk-132639103.eu-west-1.elb.amazonaws.com"
