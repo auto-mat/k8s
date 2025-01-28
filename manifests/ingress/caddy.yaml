@@ -565,7 +565,7 @@ spec:
           service:
             name: ride-to-work-by-bike-frontend-production
             port:
-                number: 8000
+                number: 80
   - host: gisquick.dopracenakole.net
     http:
       paths:
