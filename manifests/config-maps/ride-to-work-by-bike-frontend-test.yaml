@@ -9,16 +9,8 @@ metadata:
       apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
-        'f:data':
+        "f:data":
           .: {}
-          'f:PRIMARY_COLOR': {}
-          'f:IMAGE': {}
-          'f:WIDTH': {}
-          'f:TITLE': {}
-          'f:SUBTITLE': {}
+          "f:TEST": {}
 data:
-  PRIMARY_COLOR: '#000000'
-  IMAGE: 'image.png'
-  WIDTH: '850px'
-  TITLE: 'Title'
-  SUBTITLE: 'Subtitle'
+  TEST: "Test"

@@ -1,9 +1,5 @@
 #@ config_vars = [
-#@     "PRIMARY_COLOR",
-#@     "IMAGE",
-#@     "WIDTH",
-#@     "TITLE",
-#@     "SUBTITLE",
+#@     "TEST",
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
