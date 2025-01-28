@@ -1,5 +1,5 @@
 #@ config_vars = [
-#@     "TEST",
+#@     "API_BASE",
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
