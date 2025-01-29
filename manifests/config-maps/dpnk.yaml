@@ -44,5 +44,5 @@ data:
   PAYU_PRODUCTION_REST_API_AUTH_URL: "https://secure.payu.com/pl/standard/user/oauth/authorize"
   PAYU_PRODUCTION_REST_API_CREATE_ORDER_URL: "https://secure.payu.com/api/v2_1/orders"
   PAYU_PRODUCTION_REST_API_CREATE_ORDER_CURRENCY_CODE: "CZK"
-  USE_PAYU_TEST_CONF: "True"
+  USE_PAYU_TEST_CONF: "False"
   RTWBB_FRONTEND_APP_BASE_URL: "https://dpnk.dopracenakole.cz/#/"
