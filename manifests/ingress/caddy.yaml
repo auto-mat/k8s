@@ -316,6 +316,16 @@ spec:
             name: dpnk-test
             port:
                 number: 8000
+  - host: test.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ride-to-work-by-bike-backend-test
+            port:
+                number: 8000
   - host: leden2022.dopracenakole.net
     http:
       paths:
@@ -534,16 +544,6 @@ spec:
         backend:
           service:
             name: mnk-rendering
-            port:
-                number: 80
-  - host: rtwbb-test.dopracenakole.net
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: ride-to-work-by-bike-frontend-test
             port:
                 number: 80
   - host: rtwbb-test.dopracenakole.net
