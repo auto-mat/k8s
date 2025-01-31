@@ -14,3 +14,5 @@ metadata:
           "f:API_BASE": {}
 data:
   API_BASE: "https://test.dopracenakole.cz/rest/"
+  URL_APP_DATA_PRIVACY_POLICY = "https://dopracenakole.cz/zasady"
+  ENTRY_FEE_PAYMENT_OPTIONS = "850,1500"
