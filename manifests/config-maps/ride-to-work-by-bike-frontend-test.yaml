@@ -12,6 +12,8 @@ metadata:
         "f:data":
           .: {}
           "f:API_BASE": {}
+          "f:URL_APP_DATA_PRIVACY_POLICY": {}
+          "f:ENTRY_FEE_PAYMENT_OPTIONS": {}
 data:
   API_BASE: "https://test.dopracenakole.cz/rest/"
   URL_APP_DATA_PRIVACY_POLICY = "https://dopracenakole.cz/zasady"
