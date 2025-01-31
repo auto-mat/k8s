@@ -1,5 +1,7 @@
 #@ config_vars = [
 #@     "API_BASE",
+#@     "URL_APP_DATA_PRIVACY_POLICY",
+#@     "ENTRY_FEE_PAYMENT_OPTIONS",
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
