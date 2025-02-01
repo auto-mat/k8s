@@ -576,6 +576,16 @@ spec:
             name: gisquick-caddy
             port:
                 number: 80
+  - host: www.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: caddy
+            port:
+                number: 80
   - host: mapserver.dopracenakole.net
     http:
       paths:
