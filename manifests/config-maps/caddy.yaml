@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-configmap
+  labels:
+    app: caddy
+data:
+  Caddyfile: |
+    {
+      debug
+      admin 0.0.0.0:2019
+    }
+    :80 {
+      redir / https://dpnk.dopracenakole.cz/#/register-challenge
+    }
