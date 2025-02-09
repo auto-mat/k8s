@@ -42,5 +42,5 @@ data:
   PAYU_PRODUCTION_REST_API_CREATE_ORDER_URL: "https://secure.snd.payu.com/api/v2_1/orders"
   PAYU_PRODUCTION_REST_API_CREATE_ORDER_CURRENCY_CODE: "PLN"
   USE_PAYU_TEST_CONF: "True"
-  RTWBB_FRONTEND_APP_BASE_URL: "https://rtwbb-test.dopracenakole.net/#/"
+  RTWBB_FRONTEND_APP_BASE_URL: "http://localhost:9000/#/"
   SOCIALACCOUNT_EMAIL_AUTHENTICATION: "True"
