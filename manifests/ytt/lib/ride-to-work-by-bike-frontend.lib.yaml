@@ -8,6 +8,7 @@
 #@    "SECRET_KEY",
 #@    "GOOGLE_LOGIN_APP_ID",
 #@    "FACEBOOK_LOGIN_APP_ID",
+#@    "API_BASE_RTWBB_FEED_BEARER_TOKEN",
 #@ ]
 
 #@ port = 80
