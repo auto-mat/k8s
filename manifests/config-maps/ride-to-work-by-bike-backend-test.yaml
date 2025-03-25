@@ -23,7 +23,7 @@ data:
   DPNK_CACHE_REDIS_LOCATION: "redis://ride-to-work-by-bike-backend-test-redis-cache"
   SINGLE_BEAT_REDIS_SERVER: "redis://ride-to-work-by-bike-backend-test-redis-beat"
   FAKTUROID_INVOICE_NUMBER_WIDTH: "4"
-  FAKTUROID_BASE_REST_API_URL: "https://app.fakturoid.cz/api/v2"
+  FAKTUROID_BASE_REST_API_URL: "https://app.fakturoid.cz/api/v3"
   FAKTUROID_DATE_FROM_CREATE_INVOICES: ""
   DISABLE_SERVER_SIDE_CURSORS: "True"
   CELERY_CONCURENCY: "8"
