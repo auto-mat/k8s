@@ -3,4 +3,4 @@
 #@ config_map = "dpnk-test-env"
 #@ secret_map = "dpnk-test-access"
 #@ load("dpnk.lib.yml", "web")
---- #@ web(app_name, image, config_map, secret_map, 4, 3)
+--- #@ web(app_name, image, config_map, secret_map, 1, 3)
