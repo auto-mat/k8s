@@ -306,7 +306,7 @@ spec:
             name: embedded-map-test
             port:
                 number: 80
-  - host: test.dopracenakole.cz
+  - host: dpnk2019.dopracenakole.cz
     http:
       paths:
       - pathType: Prefix
