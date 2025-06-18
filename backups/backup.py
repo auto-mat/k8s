@@ -21,7 +21,8 @@ dbs = {
         "mnk-gisquick",
         "mnk-gisquick-comments",
         "metabase",
-
+        "bugzilla",
+        "ride-to-work-by-bike-backend-test",
     ],
 }
 
