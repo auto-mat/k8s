@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: metabase
-        image: auto0mat/metabase:v1.50.22.1-2
+        image: metabase/metabase:v1.52.2.5
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 3000
