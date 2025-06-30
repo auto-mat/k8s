@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-dpnk-automat-staff-configmap
+  labels:
+    app: caddy-dpnk-automat-staff
+data:
+  Caddyfile: |
+    {
+      debug
+      admin 0.0.0.0:2019
+    }
+    :80 {
+      redir / https://dpnk.dopracenakole.net/
+      redir /admin/ https://dpnk.dopracenakole.net/admin/
+    }

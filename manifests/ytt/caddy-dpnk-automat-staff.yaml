@@ -1,0 +1,48 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: caddy-dpnk-automat-staff
+  spec:
+    ports:
+    - name: "80"
+      port: 80
+    selector:
+      app: caddy-dpnk-automat-staff
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null
+    labels:
+      io.kompose.service: caddy-dpnk-automat-staff
+    name: caddy-dpnk-automat-staff
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: caddy-dpnk-automat-staff
+    template:
+      metadata:
+        labels:
+          app: caddy-dpnk-automat-staff
+      spec:
+        containers:
+        - image: caddy:2-alpine
+          name: caddy-dpnk-automat-staff
+          imagePullPolicy: "IfNotPresent"
+          ports:
+          - containerPort: 80
+          resources: {}
+          volumeMounts:
+          - name: caddy-dpnk-automat-staff-configmap-volume
+            mountPath: /etc/caddy
+        volumes:
+        - name: caddy-dpnk-automat-staff-configmap-volume
+          configMap:
+            name: caddy-dpnk-automat-staff-configmap
+  status: {}
+kind: List
+metadata: {}
