@@ -37,7 +37,7 @@ items:
           app: geoserver
       spec:
         containers:
-        - image: kartoza/geoserver:2.27.1
+        - image: kartoza/geoserver:2.17.0
           name: geoserver
           ports:
           - containerPort: 8080
