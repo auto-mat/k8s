@@ -138,6 +138,9 @@ items:
           - name: mapserver-map-files
             mountPath: /opt/mapserver
         initContainers:
+        - name: check-nfs-server-avaibility
+          image: busybox:latest
+          command: ["sh", "-c", "while true; do nc -zw3 nfs-server 2049 && break || echo 'Checking nfs-server 2049 port...'; done"]
         - name: get-mapserver-map-file
           image: busybox:latest
           env:

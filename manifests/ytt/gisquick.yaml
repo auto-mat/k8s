@@ -186,6 +186,10 @@ items:
             mountPath: /publish
           - name: qgis-server-plugins
             mountPath: /usr/lib/qgis/python/plugins
+        initContainers:
+        - name: check-nfs-server-avaibility
+          image: busybox:latest
+          command: ["sh", "-c", "while true; do nc -zw3 nfs-server 2049 && break || echo 'Checking nfs-server 2049 port...'; done"]
         volumes:
         - name: qgis-server-publish
           persistentVolumeClaim:
@@ -317,6 +321,9 @@ items:
                   key: REDIS_ADDR
                   name: gisquick-access
         initContainers:
+        - name: check-nfs-server-avaibility
+          image: busybox:latest
+          command: ["sh", "-c", "while true; do nc -zw3 nfs-server 2049 && break || echo 'Checking nfs-server 2049 port...'; done"]
         - name: set-gisquick-publish-dir-permission
           image: busybox:latest
           command: ["sh", "-c", "chmod -R 777 /mnt"]
@@ -386,6 +393,9 @@ items:
           - name: gisquick-web-app
             mountPath: /var/www/html/
         initContainers:
+        - name: check-nfs-server-avaibility
+          image: busybox:latest
+          command: ["sh", "-c", "while true; do nc -zw3 nfs-server 2049 && break || echo 'Checking nfs-server 2049 port...'; done"]
         - name: get-caddy-conf
           image: busybox:latest
           command: ["sh", "-c", "cd /mnt; wget -O Caddyfile 'https://raw.githubusercontent.com/auto-mat/gisquick-caddy/main/Caddyfile'"]

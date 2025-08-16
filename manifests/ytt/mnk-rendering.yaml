@@ -208,6 +208,10 @@ items:
             mountPath: /var/lib/mod_tile
           - name: mnk-rendering-cache-persistent-storage
             mountPath: /usr/local/mapproxy/cache_data
+        initContainers:
+        - name: check-nfs-server-avaibility
+          image: busybox:latest
+          command: ["sh", "-c", "while true; do nc -zw3 nfs-server 2049 && break || echo 'Checking nfs-server 2049 port...'; done"]
         volumes:
         - name: mnk-rendering-data-persistent-storage
           persistentVolumeClaim:
