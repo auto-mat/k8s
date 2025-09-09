@@ -8,6 +8,7 @@
 #@     "GUNICORN_TIMEOUT",
 #@     "DISABLE_SERVER_SIDE_CURSORS",
 #@     "CONN_MAX_AGE",
+#@     "GEOAPIFY_AUTOCOMPLETE_API_URL",
 #@ ]
 #@ secret_vars = [
 #@    "DB_USER",
