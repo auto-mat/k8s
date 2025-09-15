@@ -636,3 +636,13 @@ spec:
             name: bugzilla
             port:
                 number: 80
+  - host: ced-test.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: city-experience-differently-frontend-test
+            port:
+                number: 80

@@ -1,0 +1,63 @@
+#@ config_vars = [
+#@     "API_BASE",
+#@ ]
+#@ secret_vars = [
+#@    "SECRET_KEY",
+#@ ]
+
+b#@ port = 80
+#@ def city_experience_differently_frontend(app_name, image, config_map, secret_map, replicas):
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: #@ app_name
+  spec:
+    ports:
+    - name: "80"
+      port: #@ port
+      targetPort: #@ port
+    selector:
+      app: #@ app_name
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: #@ app_name
+  spec:
+    replicas: #@ replicas
+    selector:
+      matchLabels:
+        app: #@ app_name
+    template:
+      metadata:
+        labels:
+          app: #@ app_name
+      spec:
+        containers:
+        - image: #@ image
+          name: #@ app_name
+          ports:
+          - containerPort: #@ port
+          resources: {}
+          env:
+          #@ for var in config_vars:
+          - name: #@ var
+            valueFrom:
+              configMapKeyRef:
+                key: #@ var
+                name: #@ config_map
+          #@ end
+          #@ for var in secret_vars:
+          - name: #@ var
+            valueFrom:
+              secretKeyRef:
+                key: #@ var
+                name: #@ secret_map
+          #@ end
+  status: {}
+kind: List
+metadata: {}
+#@ end
