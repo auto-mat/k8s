@@ -5,7 +5,7 @@
 #@    "SECRET_KEY",
 #@ ]
 
-b#@ port = 80
+#@ port = 80
 #@ def city_experience_differently_frontend(app_name, image, config_map, secret_map, replicas):
 apiVersion: v1
 items:
