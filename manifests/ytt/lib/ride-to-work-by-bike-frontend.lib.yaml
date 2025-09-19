@@ -3,6 +3,7 @@
 #@     "URL_APP_DATA_PRIVACY_POLICY",
 #@     "ENTRY_FEE_PAYMENT_OPTIONS",
 #@     "URL_DONATE",
+#@     "URL_RIDE_TO_WORK_BY_BIKE_OLD_FRONTEND_DJANGO_APP",
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
