@@ -76,6 +76,16 @@ spec:
               name: klub-test
               port:
                 number: 8000
+  - host: klub-zmj-test.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+         service:
+              name: klub-zmj-test
+              port:
+                number: 8000
   - host: automat.passbolt.klub-pratel.cz
     http:
       paths:
