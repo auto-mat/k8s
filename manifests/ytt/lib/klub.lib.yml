@@ -17,6 +17,7 @@
 #@     "WEB_URL",
 #@     "DARUJME_EMAIL_AS_USERNAME",
 #@     "DISABLE_SERVER_SIDE_CURSORS",
+#@     "CED_FRONTEND_APP_BASE_URL",
 #@ ]
 #@ secret_vars = [
 #@    "AKLUB_ADMINS",

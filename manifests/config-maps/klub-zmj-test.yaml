@@ -22,3 +22,4 @@ data:
   WEB_URL: ""
   DARUJME_EMAIL_AS_USERNAME: "False"
   DISABLE_SERVER_SIDE_CURSORS: "True"
+  CED_FRONTEND_APP_BASE_URL: "https://ced-test.dopracenakole.net/#/"
