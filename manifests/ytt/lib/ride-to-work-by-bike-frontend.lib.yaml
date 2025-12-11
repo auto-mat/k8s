@@ -4,6 +4,8 @@
 #@     "ENTRY_FEE_PAYMENT_OPTIONS",
 #@     "URL_DONATE",
 #@     "URL_RIDE_TO_WORK_BY_BIKE_OLD_FRONTEND_DJANGO_APP",
+#@     "CHALLENGE_MONTH",
+#@     "CHALLENGE_START_DATE",
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
