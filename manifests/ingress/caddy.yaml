@@ -486,6 +486,16 @@ spec:
             name: dpnk
             port:
                 number: 8000
+  - host: leden2025.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk
+            port:
+                number: 8000
   - host: bank.dopracenakole.net
     http:
       paths:
