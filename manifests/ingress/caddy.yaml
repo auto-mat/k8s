@@ -336,6 +336,16 @@ spec:
             name: ride-to-work-by-bike-backend-test
             port:
                 number: 8000
+  - host: testleden2019.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: ride-to-work-by-bike-backend-test
+            port:
+                number: 8000
   - host: leden2022.dopracenakole.net
     http:
       paths:
