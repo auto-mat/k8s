@@ -11,6 +11,6 @@ data:
       admin 0.0.0.0:2019
     }
     :80 {
-      redir / https://dpnk.dopracenakole.net/
-      redir /admin/ https://dpnk.dopracenakole.net/admin/
+      redir / https://leden2026.dopracenakole.net/
+      redir /admin/ https://leden2026.dopracenakole.net/admin/
     }
