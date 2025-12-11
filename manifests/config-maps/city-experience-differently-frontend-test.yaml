@@ -13,4 +13,4 @@ metadata:
           .: {}
           "f:API_BASE": {}
 data:
-  API_BASE: test
+  API_BASE: "https://klub-zmj-test.dopracenakole.net/api/"
