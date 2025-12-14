@@ -1,5 +1,5 @@
 #@ app_name = "city-experience-differently-frontend-test"
-#@ image = "auto0mat/city-experience-differently-frontend:2025.4"
+#@ image = "auto0mat/city-experience-differently-frontend:2025.5"
 #@ config_map = "city-experience-differently-frontend-test-env"
 #@ secret_map = "city-experience-differently-frontend-test-access"
 #@ load("city-experience-differently-frontend.lib.yaml", "city_experience_differently_frontend")
