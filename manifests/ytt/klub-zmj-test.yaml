@@ -1,5 +1,5 @@
 #@ app_name = "klub-zmj-test"
-#@ image = "auto0mat/klub-zmj-test:2025.404"
+#@ image = "auto0mat/klub-zmj-test:2025.419"
 #@ config_map = "klub-zmj-test-env"
 #@ secret_map = "klub-zmj-test-access"
 #@ load("klub.lib.yml", "klub_web")
