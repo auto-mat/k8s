@@ -23,6 +23,7 @@ dbs = {
         "metabase",
         "bugzilla",
         "ride-to-work-by-bike-backend-test",
+        "klub-zmj-test",
     ],
 }
 
