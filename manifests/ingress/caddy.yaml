@@ -346,6 +346,16 @@ spec:
             name: ride-to-work-by-bike-backend-test
             port:
                 number: 8000
+  - host: testdpnk2026.dopracenakole.cz
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk-test
+            port:
+                number: 8000
   - host: leden2022.dopracenakole.net
     http:
       paths:
