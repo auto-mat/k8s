@@ -19,11 +19,11 @@ metadata:
           "f:CHALLENGE_MONTH": {}
           "f:CHALLENGE_START_DATE": {}
 data:
-  API_BASE: "https://leden2026.dopracenakole.net/rest/"
+  API_BASE: "https://dpnk.dopracenakole.net/rest/"
   URL_APP_DATA_PRIVACY_POLICY: "https://dopracenakole.cz/zasady"
   ENTRY_FEE_PAYMENT_OPTIONS: "850,1500"
   URL_DONATE: "https://auto-mat.cz/daruj-dopracenakole"
-  URL_RIDE_TO_WORK_BY_BIKE_OLD_FRONTEND_DJANGO_APP: "https://leden2026.dopracenakole.fun"
+  URL_RIDE_TO_WORK_BY_BIKE_OLD_FRONTEND_DJANGO_APP: "https://dpnk.dopracenakole.fun"
   CHALLENGE_MONTH: "january"
   CHALLENGE_START_DATE: "2025-29-12T12:00:00"
   CHALLENGE_ALLOW_REGISTER_ORGANIZATION_ADMIN: "disable"
