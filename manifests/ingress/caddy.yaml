@@ -546,7 +546,7 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: leden2026.dopracenakole.fun
+  - host: dpnk.dopracenakole.fun
     http:
       paths:
       - pathType: Prefix
