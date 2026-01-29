@@ -1,5 +1,5 @@
 #@ app_name = "dpnk"
-#@ image = "auto0mat/dopracenakole:2026.2177"
+#@ image = "auto0mat/dopracenakole:2026.2178"
 #@ config_map = "dpnk-env"
 #@ secret_map = "dpnk-access"
 #@ load("dpnk.lib.yml", "web")
