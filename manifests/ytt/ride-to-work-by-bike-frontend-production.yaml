@@ -1,5 +1,5 @@
 #@ app_name = "ride-to-work-by-bike-frontend-production"
-#@ image = "auto0mat/ride-to-work-by-bike-frontend:2026.403"
+#@ image = "auto0mat/ride-to-work-by-bike-frontend:2026.404"
 #@ config_map = "ride-to-work-by-bike-frontend-production-env"
 #@ secret_map = "ride-to-work-by-bike-frontend-production-access"
 #@ load("ride-to-work-by-bike-frontend.lib.yaml", "ride_to_work_by_bike_frontend")
