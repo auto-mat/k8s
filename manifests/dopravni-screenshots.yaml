@@ -3,7 +3,9 @@ kind: CronJob
 metadata:
   name: dopravni-screenshots
 spec:
-  schedule: "30 6,14 * * *"
+  # The schedule is set to "0 0 31 2 *", which corresponds to midnight on February 31st.
+  # This is a non-existent date, effectively disabling the CronJob while keeping it configured.
+  schedule: "0 0 31 2 *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
