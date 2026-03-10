@@ -20,8 +20,7 @@ items:
       name: #@ app_name
     spec:
       ports:
-        - name: "8080
-        "
+        - name: "8080"
           port: #@ port
           targetPort: #@ port
       selector:
