@@ -9,7 +9,7 @@
 #@    "MATOMO_DATABASE_DBNAME",
 #@ ]
 
-#@ port = 8080
+#@ port = 80
 
 #@ def matomo(app_name, image, config_map, secret_map):
 apiVersion: v1
@@ -20,7 +20,7 @@ items:
       name: #@ app_name
     spec:
       ports:
-        - name: "8080"
+        - name: "80"
           port: #@ port
           targetPort: #@ port
       selector:
