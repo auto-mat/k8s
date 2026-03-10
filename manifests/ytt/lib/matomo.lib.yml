@@ -1,0 +1,92 @@
+#@ config_vars = [
+#@     "PHP_MEMORY_LIMIT",
+#@ ]
+#@ secret_vars = [
+#@    "MATOMO_DATABASE_HOST",
+#@    "MATOMO_DATABASE_TABLES_PREFIX",
+#@    "MATOMO_DATABASE_USERNAME",
+#@    "MATOMO_DATABASE_PASSWORD",
+#@    "MATOMO_DATABASE_DBNAME",
+#@ ]
+
+#@ port = 8080
+
+#@ def matomo(app_name, image, config_map, secret_map):
+apiVersion: v1
+items:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: #@ app_name
+    spec:
+      ports:
+        - name: "8080
+        "
+          port: #@ port
+          targetPort: #@ port
+      selector:
+        app: #@ app_name
+    status:
+      loadBalancer: {}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: #@ app_name
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: #@ app_name
+      template:
+        metadata:
+          labels:
+            app: #@ app_name
+        spec:
+          containers:
+            - image: #@ image
+              name: #@ app_name
+              ports:
+                - containerPort: #@ port
+              resources: {}
+              volumeMounts:
+                - mountPath: /var/www/html/
+                  name: #@ app_name + "-data"
+              env:
+                #@ for var in config_vars:
+                - name: #@ var
+                  valueFrom:
+                    configMapKeyRef:
+                      key: #@ var
+                      name: #@ config_map
+                #@ end
+                #@ for var in secret_vars:
+                - name: #@ var
+                  valueFrom:
+                    secretKeyRef:
+                      key: #@ var
+                      name: #@ secret_map
+                #@ end
+          volumes:
+            - name: #@ app_name + "-data"
+              persistentVolumeClaim:
+                claimName: #@ app_name + "-data"
+          securityContext:
+            fsGroup: 33
+
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: #@ app_name + "-data"
+      name: #@ app_name + "-data"
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+    status: {}
+kind: List
+metadata: {}
+#@ end

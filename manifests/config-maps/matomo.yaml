@@ -1,0 +1,16 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: matomo-env
+  namespace: default
+  managedFields:
+    - manager: kubectl
+      operation: Update
+      apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        "f:data":
+          .: {}
+          "f:PHP_MEMORY_LIMIT": {}
+data:
+    PHP_MEMORY_LIMIT: "128"

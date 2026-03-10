@@ -1,0 +1,6 @@
+#@ app_name = "matomo"
+#@ image = "matomo:5.8-apache"
+#@ config_map = "matomo-env"
+#@ secret_map = "matomo-access"
+#@ load("matomo.lib.yml", "matomo")
+--- #@ matomo(app_name, image, config_map, secret_map)
