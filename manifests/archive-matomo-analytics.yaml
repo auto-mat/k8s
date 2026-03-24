@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: archive-matomo-analytics
+spec:
+  schedule: "3 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: archive-matomo-analytics
+            image: matomo:5.8-apache
+            imagePullPolicy: IfNotPresent
+            command:
+            - su www-data
+            - -s
+            - /bin/bash -c
+            - "/usr/bin/php /path/to/matomo/console core:archive --url=https://matomo.dopracenakole.net/"
+            env:
+            - name: MATOMO_DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: matomo-access
+                  key: MATOMO_DATABASE_HOST
+            - name: MATOMO_DATABASE_TABLES_PREFIX
+              valueFrom:
+                secretKeyRef:
+                  name: matomo-access
+                  key: MATOMO_DATABASE_TABLES_PREFIX
+            - name: MATOMO_DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: matomo-access
+                  key: MATOMO_DATABASE_USERNAME
+            - name: MATOMO_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: matomo-access
+                  key: MATOMO_DATABASE_PASSWORD
+            - name: MATOMO_DATABASE_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: matomo-access
+                  key: MATOMO_DATABASE_DBNAME
+          restartPolicy: Never
