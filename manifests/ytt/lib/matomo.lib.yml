@@ -1,3 +1,5 @@
+#@ load("@ytt:data", "data")
+
 #@ config_vars = [
 #@     "PHP_MEMORY_LIMIT",
 #@ ]
@@ -68,24 +70,40 @@ items:
           volumes:
             - name: #@ app_name + "-data"
               persistentVolumeClaim:
-                claimName: #@ app_name + "-data"
+                claimName: #@ app_name + "-pv-claim"
           securityContext:
             fsGroup: 33
 
   - apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      name: #@ app_name + "-pv-volume"
+    spec:
+      capacity:
+        storage: 1Gi
+      accessModes:
+        - ReadWriteMany
+      storageClassName: "nfs"
+      mountOptions:
+        - hard
+        - nfsvers=4.2
+      nfs:
+        path: #@ "/{}-data".format(app_name)
+        server: #@ data.values.nfsServer.clusterIP
+
+  - apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.service: #@ app_name + "-data"
-      name: #@ app_name + "-data"
+      name: #@ app_name + "-pv-claim"
     spec:
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
       resources:
         requests:
           storage: 1Gi
+      storageClassName: "nfs"
     status: {}
+
 kind: List
 metadata: {}
 #@ end

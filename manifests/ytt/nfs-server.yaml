@@ -54,6 +54,7 @@ items:
           "/exports/gisquick-web-app",
           "/exports/mapserver-map-files",
           "/exports/mnk-gisquick-web-app",
+          "/exports/matomo-data",
           ]
           volumeMounts:
           - name: nfs-server-persistent-storage
