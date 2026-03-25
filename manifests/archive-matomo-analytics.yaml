@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: archive-matomo-analytics
 spec:
-  schedule: "3 * * * *"
+  schedule: "*/30 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -14,11 +14,11 @@ spec:
           - name: archive-matomo-analytics
             image: matomo:5.8-apache
             imagePullPolicy: IfNotPresent
-            command:
-            - su www-data
-            - -s
-            - /bin/bash -c
-            - "/usr/bin/php /path/to/matomo/console core:archive --url=https://matomo.dopracenakole.net/"
+            command: ["/bin/bash"]
+            args: ["-c", "/entrypoint.sh; /usr/local/bin/php /var/www/html/console core:archive --url=https://matomo.dopracenakole.cz/"]
+            volumeMounts:
+              - mountPath: /var/www/html/
+                name: matomo-data
             env:
             - name: MATOMO_DATABASE_HOST
               valueFrom:
@@ -45,4 +45,10 @@ spec:
                 secretKeyRef:
                   name: matomo-access
                   key: MATOMO_DATABASE_DBNAME
+          volumes:
+            - name: matomo-data
+              persistentVolumeClaim:
+                claimName: matomo-pv-claim
+          securityContext:
+            fsGroup: 33
           restartPolicy: Never
