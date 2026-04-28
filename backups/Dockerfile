@@ -1,4 +1,4 @@
-from debian
+from debian:trixie
 run apt-get update
 run apt-get install -y restic curl gnupg2 lsb-release mariadb-client ca-certificates
 run install -d /usr/share/postgresql-common/pgdg \
