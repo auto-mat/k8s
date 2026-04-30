@@ -546,16 +546,6 @@ spec:
             name: dpnk
             port:
                 number: 8000
-  - host: dpnk.dopracenakole.fun
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: caddy-dpnk-automat-staff
-            port:
-                number: 80
   # - host: dpnk.dopracenakole.fun
   #   http:
   #     paths:
@@ -563,9 +553,19 @@ spec:
   #       path: "/"
   #       backend:
   #         service:
-  #           name: dpnk-automat-staff
+  #           name: caddy-dpnk-automat-staff
   #           port:
-  #               number: 8000
+  #               number: 80
+  - host: dpnk.dopracenakole.fun
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dpnk-automat-staff
+            port:
+                number: 8000
   - host: selenium-hub.dopracenakole.net
     http:
       paths:
