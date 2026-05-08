@@ -30,3 +30,4 @@ data:
   URL_MATOMO_ANALYTICS: ""
   MATOMO_ANALYTICS_RTWBB_APP_SITE_ID: ""
   TRIP_MAX_FILE_UPLOAD_SIZE_MEGABYTES: "8"
+  URL_AUTO_MAT_SHOP = "https://obchod.auto-mat.cz/specialni-akce/"

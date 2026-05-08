@@ -10,6 +10,7 @@
 #@     "URL_MATOMO_ANALYTICS",
 #@     "MATOMO_ANALYTICS_RTWBB_APP_SITE_ID",
 #@     "TRIP_MAX_FILE_UPLOAD_SIZE_MEGABYTES",
+#@     "URL_AUTO_MAT_SHOP",
 #@ ]
 #@ secret_vars = [
 #@    "SECRET_KEY",
