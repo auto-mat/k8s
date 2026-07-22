@@ -1,5 +1,5 @@
 #@ app_name = "dpnk-test"
-#@ image = "439267276348970/rtwbb-backend-test:2026.1"
+#@ image = "439267276348970/rtwbb-backend-test:2026.2"
 #@ config_map = "dpnk-test-env"
 #@ secret_map = "dpnk-test-access"
 #@ load("dpnk-test.lib.yml", "web")
