@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: archive-matomo-analytics
-            image: matomo:5.8-apache
+            image: matomo:5.13-apache
             imagePullPolicy: IfNotPresent
             command: ["/bin/bash"]
             args: ["-c", "/entrypoint.sh; /usr/local/bin/php /var/www/html/console core:archive --url=https://matomo.dopracenakole.cz/"]
