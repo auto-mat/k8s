@@ -38,7 +38,7 @@ items:
           app: nfs-server
       spec:
         containers:
-        - image: 439267276348970/nfs-server:0
+        - image: 439267276348970/nfs-server:1
           name: nfs-server
           imagePullPolicy: "IfNotPresent"
           securityContext:
