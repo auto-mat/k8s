@@ -220,7 +220,7 @@ items:
         - image: #@ image
           name: #@ app_name + "-celery"
           resources: {}
-          command: ["poetry", "run", "celery", "-A", "project.celery", "worker", "--pool=prefork", "--concurrency=8", "--loglevel=info"]
+          command: ["poetry", "run", "celery", "-A", "project.celery", "worker", "--pool=prefork", "--concurrency=8", "--loglevel=debug"]
           env:
           #@ for var in config_vars:
           - name: #@ var
