@@ -28,7 +28,7 @@
       spec:
         containers:
           - name: #@ service_name
-            image: redis:5.0.4
+            image: redis:8.10
             command:
               - redis-server
               - "/redis-master/redis.conf"
