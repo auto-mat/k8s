@@ -26,9 +26,9 @@ data:
   GISQUICK_MAP_CACHE_ROOT: "/cache"
   GISQUICK_THUMBNAILS_ROOT: "/thumbnails"
   config.yaml: |
-    baseUrl: https://mnk.tukan.zip
-    owsUrl: https://mnk.tukan.zip/api/map/ows/jerrytm/mnk
-    projectUrl: https://mnk.tukan.zip/api/map/project/jerrytm/mnk
+    baseUrl: https://mnk-gisquick.dopracenakole.net
+    owsUrl: https://mnk-gisquick.dopracenakole.net/api/map/ows/automat/mnk
+    projectUrl: https://mnk-gisquick.dopracenakole.net/api/map/project/automat/mnk
     defaultProjection: EPSG:3857
     defaultExtent: [0, 0, 0, 0]
     bookmarks:
@@ -78,5 +78,5 @@ data:
         description: Poslední komentáře na webu Městem na kole
         language: cs-cz
         options:
-          url: https://comments.tukan.zip/api/open/comments
-          appId: 0da141f9-30f9-4ceb-86e5-44a6844c3104
+          url: https://comments-app.dopracenakole.net/api/open/comments
+          appId: 09518e12-c8ef-4c3a-8cd2-c571d782600e
