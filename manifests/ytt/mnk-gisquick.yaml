@@ -431,7 +431,7 @@ items:
           - name: mnk-gisquick-web-app
             mountPath: /assets
         - name: mnk-gisquick-web-settings
-          image: auto0mat/mnk-gisquick-web-settings:2026.0
+          image: auto0mat/mnk-gisquick-web-settings:2024.0
           volumeMounts:
           - name: mnk-gisquick-web-app
             mountPath: /assets
