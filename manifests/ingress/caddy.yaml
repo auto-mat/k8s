@@ -286,6 +286,16 @@ spec:
             name: mapa
             port:
                 number: 8000
+  - host: limesurvey.dopracenakole.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: limesurvey
+            port:
+                number: 3000
   - host: embedded-map.dopracenakole.net
     http:
       paths:
