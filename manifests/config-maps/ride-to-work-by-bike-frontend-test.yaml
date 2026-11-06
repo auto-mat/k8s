@@ -19,13 +19,13 @@ metadata:
           "f:CHALLENGE_MONTH": {}
           "f:CHALLENGE_START_DATE": {}
 data:
-  API_BASE: "https://testdpnkzari2026.dopracenakole.cz/rest/"
+  API_BASE: "https://testdpnk2026.dopracenakole.cz/rest/"
   URL_APP_DATA_PRIVACY_POLICY: "https://dopracenakole.cz/zasady"
   ENTRY_FEE_PAYMENT_OPTIONS: "850,1500"
   URL_DONATE: "https://auto-mat.cz/daruj-dopracenakole"
   URL_RIDE_TO_WORK_BY_BIKE_OLD_FRONTEND_DJANGO_APP: "https://testdpnk2026.dopracenakole.cz"
-  CHALLENGE_MONTH: "september"
-  CHALLENGE_START_DATE: "2026-20-06T12:00:00"
+  CHALLENGE_MONTH: "may"
+  CHALLENGE_START_DATE: "2026-01-05T12:00:00"
   CHALLENGE_ALLOW_REGISTER_ORGANIZATION_ADMIN: "enable"
   URL_MATOMO_ANALYTICS: ""
   MATOMO_ANALYTICS_RTWBB_APP_SITE_ID: ""
