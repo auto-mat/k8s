@@ -16,16 +16,16 @@ spec:
               name: geoserver
               port:
                 number: 8080
-  - host: mapa-test.prahounakole.cz
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-              name: mapa-test
-              port:
-                number: 8000
+  # - host: mapa-test.prahounakole.cz
+  #   http:
+  #     paths:
+  #     - pathType: Prefix
+  #       path: "/"
+  #       backend:
+  #         service:
+  #             name: mapa-test
+  #             port:
+  #               number: 8000
   - host: mapa.prahounakole.cz
     http:
       paths:
