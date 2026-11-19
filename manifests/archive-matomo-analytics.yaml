@@ -15,7 +15,7 @@ spec:
             image: matomo:5.14-apache
             imagePullPolicy: IfNotPresent
             command: ["/bin/bash"]
-            args: ["-c", "/entrypoint.sh; /usr/local/bin/php /var/www/html/console core:archive --url=https://matomo.dopracenakole.cz/"]
+            args: ["-c", "/entrypoint.sh; /usr/local/bin/php /var/www/html/console core:archive --url=https://matomo.dopracenakole.net/"]
             volumeMounts:
               - mountPath: /var/www/html/
                 name: matomo-data
