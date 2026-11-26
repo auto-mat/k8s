@@ -191,15 +191,15 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #       - /bin/sh
-          #       - -c
-          #       - curl localhost:8000
-          #   initialDelaySeconds: 60
-          #   periodSeconds: 120
-          #   timeoutSeconds: 300
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - curl localhost:8000
+            initialDelaySeconds: 60
+            periodSeconds: 120
+            timeoutSeconds: 300
 
   status: {}
 - apiVersion: apps/v1
@@ -236,22 +236,22 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #       - /bin/sh
-          #       - -c
-          #       - test $(($(date +%s) - $(stat -c %Y /tmp/worker_heartbeat))) -lt 10
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 120
-          # readinessProbe:
-          #   exec:
-          #     command:
-          #       - /bin/sh
-          #       - -c
-          #       - test -e /tmp/worker_ready
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 120
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - test $(($(date +%s) - $(stat -c %Y /tmp/worker_heartbeat))) -lt 10
+            initialDelaySeconds: 30
+            periodSeconds: 120
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - test -e /tmp/worker_ready
+            initialDelaySeconds: 30
+            periodSeconds: 120
   status: {}
 
 - apiVersion: apps/v1
@@ -288,23 +288,23 @@ items:
                 key: #@ var
                 name: #@ secret_map
           #@ end
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #       - /bin/sh
-          #       - -c
-          #       - poetry run python manage.py check_celerybeat_liveness
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 120
-          #   timeoutSeconds: 60
-          # readinessProbe:
-          #   exec:
-          #     command:
-          #       - /bin/sh
-          #       - -c
-          #       - test -e /tmp/worker_ready
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 120
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - poetry run python manage.py check_celerybeat_liveness
+            initialDelaySeconds: 30
+            periodSeconds: 120
+            timeoutSeconds: 60
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - test -e /tmp/worker_ready
+            initialDelaySeconds: 30
+            periodSeconds: 120
   status: {}
 - #@ template.replace(redis(app_name + "-redis-broker"))
 - #@ template.replace(redis(app_name + "-redis-cache"))
